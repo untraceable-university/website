@@ -1,0 +1,9 @@
+Django==4.2.2
+psycopg2
+Pillow
+python-dateutil
+django-stdimage
+django-anymail[mailgun]
+markdown
+bleach
+django-cleanup

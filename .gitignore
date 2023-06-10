@@ -1,0 +1,7 @@
+*.pyc
+*/*/*.pyc
+*/migrations/*
+/__pycache__
+*/static/
+*/media/
+src/core/settings.py

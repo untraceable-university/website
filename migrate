@@ -1,0 +1,2 @@
+sudo docker exec -it uu_web python untraceableuniversity/manage.py makemigrations
+sudo docker exec -it uu_web python untraceableuniversity/manage.py migrate
