@@ -3,5 +3,4 @@
 */migrations/*
 /__pycache__
 */media/
-src/core/settings.py
-design/*
+untraceableuniversity/untraceableuniversity/settings.py
