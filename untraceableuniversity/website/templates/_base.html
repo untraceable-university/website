@@ -5,33 +5,130 @@
 <title>{% block title %}{% endblock %} - {{ _("Untraceable University") }}</title>
 <meta charset="UTF-8" />
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<script src="{% static 'js/bootstrap.min.js' %}" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+<style type="text/css">
+.nav-pills {
+  --bs-nav-pills-link-active-bg: #333;
+}
+
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet"> 
+
+<style type="text/css">
+.main, .tfont {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.2em;
+  line-height: 1.6em;
+}
+
+.leftcol h2 {
+  text-align: right;
+}
+
+footer {
+  background: #D8CFBD url("{% static "img/bg.footer.jpg" %}") bottom right no-repeat;
+}
+
+footer .logo {
+  max-height: 300px;
+}
+
+header .nav-item {
+  font-size: 1.2em;
+}
+
+.navbar {
+  transition: all 0.2s ease-out;
+  height: 100px;
+}
+
+.navbar.scrolled_down {
+  background: #fff;
+  border-bottom: 1px solid #999;
+  height: 70px;
+  background: #fff url("{% static "img/bg.header.jpg" %}") top left no-repeat;
+}
+header a span, header a.nav-link {
+  z-index: 100;
+  position: relative;
+  color: #fff;
+  font-weight: bold;
+}
+header .scrolled_down a span, header .scrolled_down a.nav-link {
+  color: #000;
+}
+
+</style>
+
+
+
 {% block head %}{% endblock %}
 </head>
 <body>
 
-<div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">{{ _("Untraceable University") }}</span>
-      </a>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4">
+  <nav class="navbar fixed-top ps-4 pe-4" style="z-index:1000">
+    <a href="/" id="brand" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <span class="fs-4 ps-2">{{ _("The Untraceable University") }}</span>
+    </a>
 
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Overview</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Mission</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Timeline</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Join Us</a></li>
-      </ul>
-    </header>
-  </div>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Overview</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Mission</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Timeline</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Join Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="wrapper">
+
+  {% block content %}{% endblock %}
+
 </div>
 
-{% block content %}{% endblock %}
-
 {% block footer %}{% endblock %}
+
+<footer class="bd-footer py-4 py-md-5 mt-5 " style="background:#">
+  <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row">
+      <div class="col-lg-4 mb-3">
+        <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="/" aria-label="Untraceable University">
+          <img src="{% static "img/logo.png" %}" alt="" class="logo" />
+        </a>
+      </div>
+      <div class="col-lg-2 mb-3">
+        <h5>About us</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            We are a non-profit research institute, registered in South Africa.
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-2 mb-3">
+        <h5>Newsletter</h5>
+        <form method="post">
+          <input type="text" name="name" placeholder="Name" class="form-control mb-2" required />
+          <input type="email" name="email" placeholder="E-mail" class="form-control mb-2" required />
+          <button type="submit" class="btn btn-outline-secondary">Sign up</button>
+        </form>
+      </div>
+      <div class="col-6 col-lg-2 mb-3">
+        <ul class="list-unstyled small">
+          <li class="mb-2"><strong>We embrace open access and open source code.</strong></li>
+          <li class="mb-2">Code licensed <a href="LICENSE" target="_blank" rel="license">MIT</a>, content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>.</li>
+          <li class="mb-2">We do not track visitors and do not use cookies.</li>
+          <li class="mb-2">Last update: August 2023</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

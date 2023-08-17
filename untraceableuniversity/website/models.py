@@ -1,4 +1,6 @@
 from django.db import models
+from markdown import markdown
+from django.utils.safestring import mark_safe
 
 class Language(models.Model):
     name = models.CharField(max_length=255)
@@ -32,8 +34,7 @@ class PageContent(models.Model):
     slug = models.SlugField(max_length=100, null=True, blank=True, unique=True)
 
     def get_content(self):
-        description = markdown(self.description) if self.page.format == "markdown" else self.description
-        return mark_safe(description)
+        return mark_safe(markdown(self.content) if self.page.format == "markdown" else self.content)
 
     def __str__(self):
         return self.title

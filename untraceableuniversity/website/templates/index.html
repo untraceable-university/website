@@ -1,7 +1,226 @@
 {% extends "_base.html" %}
 
+{% block head %}
+<style type="text/css">
+.bg {
+  background-image: url("/media/before.png");
+  background-size: cover;
+  height: 100vh;
+}
+.bg2 {
+  background-image: url("/media/after.png");
+  background-size: cover;
+  height: 100vh;
+}
+.bg2 h2, .bg h2 {
+  font-size: 2em;
+  font-weight: bold;
+  display: inline-block;
+  color: #000;
+  background: #fff;
+  padding: 4px;
+}
+.bg h1 {
+  font-size: 4em;
+  font-weight: bold;
+  color: #000;
+  background: #fff;
+  padding: 4px;
+  display: inline-block;
+}
+#titles {
+  position: relative;
+  top: 500px;
+}
+.bg2 #titles {
+  top: 60px;
+}
+#sub {
+  position: absolute;
+  bottom: 100px;
+  background: #fff;
+}
+.bg, .bg2 {
+  position: relative;
+  top: -66px;
+}
+.joinbox h2 {
+  border-top: 2px solid #999;
+  padding-top: 10px;
+}
+.joinbox a:hover {
+  background: #fff;
+}
+.joinbox a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  padding: 0 4px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> 
+<script type="text/javascript">
+window.onscroll = function () {  
+  if (window.scrollY==0) {
+    $(".navbar").removeClass("scrolled_down");
+  } else {
+    $(".navbar").addClass("scrolled_down");
+  }
+}
+</script>
+{% endblock %}
+
 {% block title %}{{ _("Homepage") }}{% endblock %}
 
 {% block content %}
-{% endblock %}
 
+<div class="bg">
+  <div class="container">
+    <div id="titles">
+      <h1>Our mission</h1>
+      <br>
+      <h2>
+        To find out how we can build a university at a heavily degraded site...
+      </h2>
+    </div>
+
+    <div id="sub" hidden>
+    <h3>Our mission</h3>
+    <p>To find out how we can go from this...</p>
+    </div>
+  </div>
+</div>
+
+<div class="bg2">
+  <div class="container">
+    <div id="titles">
+      <h2>
+      ... and what can be achieved if we focus primarily on ecological and social restoration.
+      </h2>
+    </div>
+
+    <div id="sub" hidden>
+    <h3>Our mission</h3>
+    <p>To find out how we can go from this...</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-3 leftcol mb-4">
+      <h2>Our Mission</h2>
+    </div>
+
+    <div class="col-md-8 main mb-4">
+      <p>
+      In 2029 the Untraceable University aims to build a radical, new campus in a
+      heavily degraded landscape, such as an abandoned mine. The teaching and
+      practices of the university focus on enabling students, residents and staff to
+      convert this landscape into a restored ecosystem in the decades that follow.
+      The university itself aims to question existing social practices and norms, and
+      develop new ones, as part of its restorative ambitions. The goal of this
+      campus-city is to be of such a scale and ambition that it serves as inspiration
+      and example for new practices in existing cities. <a href="http://">Read more</a>
+      </p>
+    </div>
+
+    <div class="col-md-3 leftcol">
+      <h2>Research</h2>
+    </div>
+
+    <div class="col-md-8 main">
+      <p>
+        As a precursor to this new campus, the Untraceable University Research
+        Initiative brings together researchers, students, and practitioners
+        from a wide variety of disciplines to validate, refine, and prepare the
+        strategy for this unique campus-city. 
+
+        Currently, the Untraceable University Research Initiative is building a consortium of partners, with
+        a strong focus on participation from the Global South.
+        Partners are sought in all disciplines that might be relevant to the physical, social, and ecological
+        development of this campus, with a specific focus on people and organisations that look at
+        alternative systems to enable sustainability transitions.
+
+        <a href="http://">Read more</a>
+
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<div style="background:#f0f0f0" class="container-fluid mt-5 mb-5 joinbox">
+  <div class="container">
+    <div class="row">
+      <h1 class="text-center mb-1 mt-4">Join the Untraceable University Research Initiative</h1>
+      <p class="text-center mb-5">
+        Find out how you can link your research to feed into the Untraceable University's research objectives.
+      </p>
+      <div class="col font">
+        <a href="as">
+        <h2>Researcher</h2>
+        <p>
+          Do you publish academic papers? 
+          Coordinate your research efforts with us.
+        </p>
+        </a>
+      </div>
+      <div class="col font">
+        <a href="as">
+        <h2>Supervisor</h2>
+        <p>
+          Do you supervise bachelor or master students? Support our research by offering your students topics and
+          research questions related to our project.
+        </p>
+        </a>
+      </div>
+      <div class="col font">
+        <h2>Lecturer</h2>
+        <p>
+          Do you teach classes at university or other academic institutions? We are happy to provide course assignments 
+          or a guest lecture to your students.
+        </p>
+      </div>
+      <div class="col font">
+        <h2>Student</h2>
+        <p>
+          Are you looking for a topic of investigation as part of a bachelor degree or master dissertation? Link your work
+          with our research priorities.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 leftcol">
+      <h2>Teaching</h2>
+    </div>
+
+    <div class="col-md-8 main">
+      <p>
+        As a precursor to this new campus, the Untraceable University Research
+        Initiative brings together researchers, students, and practitioners
+        from a wide variety of disciplines to validate, refine, and prepare the
+        strategy for this unique campus-city. 
+
+        Currently, the Untraceable University Research Initiative is building a consortium of partners, with
+        a strong focus on participation from the Global South.
+        Partners are sought in all disciplines that might be relevant to the physical, social, and ecological
+        development of this campus, with a specific focus on people and organisations that look at
+        alternative systems to enable sustainability transitions.
+
+        <a href="http://">Read more</a>
+
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

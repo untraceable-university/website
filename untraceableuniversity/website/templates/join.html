@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+
+{% block title %}
+  {{ info }}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ info }}</h1>
+
+{{ info.get_content }}
+
+<form method="post">
+  
+  <div class="mb-3">
+    <label class="form-label">Your name</label>
+    <input name="name" type="text" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email address</label>
+    <input name="name" type="email" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+
+  {% csrf_token %}
+</form>
+
+
+{% endblock %}
