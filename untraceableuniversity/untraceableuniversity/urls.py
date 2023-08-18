@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin_site.urls),
     path("", include("website.urls")),
+    path("mdeditor/", include("mdeditor.urls")),
 ]
 
 if settings.DEBUG:

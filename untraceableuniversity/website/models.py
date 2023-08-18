@@ -1,6 +1,7 @@
 from django.db import models
 from markdown import markdown
 from django.utils.safestring import mark_safe
+from mdeditor.fields import MDTextField
 
 class Language(models.Model):
     name = models.CharField(max_length=255)
@@ -30,7 +31,7 @@ class PageContent(models.Model):
     title = models.CharField(max_length=255)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name="content")
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
-    content = models.TextField(null=True, blank=True)
+    content = MDTextField(null=True, blank=True)
     slug = models.SlugField(max_length=100, null=True, blank=True, unique=True)
 
     def get_content(self):

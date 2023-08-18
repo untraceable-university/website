@@ -7,3 +7,4 @@ django-anymail[mailgun]
 markdown
 bleach
 django-cleanup
+django-mdeditor
