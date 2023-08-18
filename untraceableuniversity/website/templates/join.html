@@ -6,6 +6,8 @@
 
 {% block content %}
 
+<div class="container">
+
 <h1>{{ info }}</h1>
 
 {{ info.get_content }}
@@ -31,5 +33,6 @@
   {% csrf_token %}
 </form>
 
+</div>
 
 {% endblock %}

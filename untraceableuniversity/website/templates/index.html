@@ -2,6 +2,9 @@
 
 {% block head %}
 <style type="text/css">
+.wrapper {
+  margin-top: 0;
+}
 .bg {
   background-image: url("/media/before.png");
   background-size: cover;
@@ -44,18 +47,12 @@
   position: relative;
   top: -66px;
 }
+.joinbox {
+  background:#f0f0f0;
+}
 .joinbox h2 {
   border-top: 2px solid #999;
   padding-top: 10px;
-}
-.joinbox a:hover {
-  background: #fff;
-}
-.joinbox a {
-  text-decoration: none;
-  color: #000;
-  display: block;
-  padding: 0 4px;
 }
 </style>
 
@@ -124,7 +121,7 @@ window.onscroll = function () {
       The university itself aims to question existing social practices and norms, and
       develop new ones, as part of its restorative ambitions. The goal of this
       campus-city is to be of such a scale and ambition that it serves as inspiration
-      and example for new practices in existing cities. <a href="http://">Read more</a>
+      and example for new practices in existing cities. <a href="mission/">Read more</a>
       </p>
     </div>
 
@@ -154,7 +151,7 @@ window.onscroll = function () {
 
 </div>
 
-<div style="background:#f0f0f0" class="container-fluid mt-5 mb-5 joinbox">
+<div class="container-fluid mt-5 mb-5 joinbox pb-4">
   <div class="container">
     <div class="row">
       <h1 class="text-center mb-1 mt-4">Join the Untraceable University Research Initiative</h1>
@@ -162,22 +159,20 @@ window.onscroll = function () {
         Find out how you can link your research to feed into the Untraceable University's research objectives.
       </p>
       <div class="col font">
-        <a href="as">
         <h2>Researcher</h2>
         <p>
-          Do you publish academic papers? 
-          Coordinate your research efforts with us.
+          Do you engage in academic research?
+          Find out how you can make your research align with the goals of the Untraceable University.
         </p>
-        </a>
+        <a class="btn btn-outline-success btn-sm" href="join/researcher/">Learn more</a>
       </div>
       <div class="col font">
-        <a href="as">
         <h2>Supervisor</h2>
         <p>
           Do you supervise bachelor or master students? Support our research by offering your students topics and
           research questions related to our project.
         </p>
-        </a>
+        <a class="btn btn-outline-success btn-sm" href="join/supervisor/">Learn more</a>
       </div>
       <div class="col font">
         <h2>Lecturer</h2>
@@ -185,6 +180,7 @@ window.onscroll = function () {
           Do you teach classes at university or other academic institutions? We are happy to provide course assignments 
           or a guest lecture to your students.
         </p>
+        <a class="btn btn-outline-success btn-sm" href="join/lecturer/">Learn more</a>
       </div>
       <div class="col font">
         <h2>Student</h2>
@@ -192,6 +188,7 @@ window.onscroll = function () {
           Are you looking for a topic of investigation as part of a bachelor degree or master dissertation? Link your work
           with our research priorities.
         </p>
+        <a class="btn btn-outline-success btn-sm" href="join/student/">Learn more</a>
       </div>
     </div>
   </div>

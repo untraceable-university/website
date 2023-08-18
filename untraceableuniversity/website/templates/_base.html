@@ -60,28 +60,29 @@ header a span, header a.nav-link {
 header .scrolled_down a span, header .scrolled_down a.nav-link {
   color: #000;
 }
+.wrapper {
+  margin-top: 100px;
+}
 
 </style>
-
-
 
 {% block head %}{% endblock %}
 </head>
 <body>
 
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
-  <nav class="navbar fixed-top ps-4 pe-4" style="z-index:1000">
+  <nav class="navbar fixed-top ps-4 pe-4 {% if not menu_transparent %}scrolled_down{% endif %}">
     <a href="/" id="brand" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <span class="fs-4 ps-2">{{ _("The Untraceable University") }}</span>
     </a>
 
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="/" class="nav-link {% if menu == "home" %}active" aria-current="page{% endif %}">Home</a></li>
+      <li class="nav-item"><a href="{% url "mission" %}" class="nav-link {% if menu == "mission" %}active" aria-current="page{% endif %}">Mission</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Overview</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Mission</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Timeline</a></li>
       <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Join Us</a></li>
+      <li class="nav-item"><a href="{% url "join_us" %}" class="nav-link {% if menu == "join_us" %}active" aria-current="page{% endif %}">Join Us</a></li>
     </ul>
   </nav>
 </header>
