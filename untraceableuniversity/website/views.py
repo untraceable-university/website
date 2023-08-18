@@ -18,7 +18,7 @@ def index(request):
 def join_us(request, slug="join"):
     context = {
         "info": get_page(slug),
-        "menu": "join",
+        "menu": "join_us",
     }
 
     return render(request, "join.html", context)

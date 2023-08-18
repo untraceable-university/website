@@ -78,11 +78,11 @@ header .scrolled_down a span, header .scrolled_down a.nav-link {
 
     <ul class="nav nav-pills">
       <li class="nav-item"><a href="/" class="nav-link {% if menu == "home" %}active" aria-current="page{% endif %}">Home</a></li>
+      <li class="nav-item"><a href="{% url "overview" %}" class="nav-link {% if menu == "overview" %}active" aria-current="page{% endif %}">Overview</a></li>
       <li class="nav-item"><a href="{% url "mission" %}" class="nav-link {% if menu == "mission" %}active" aria-current="page{% endif %}">Mission</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Overview</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Timeline</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">FAQ</a></li>
+      <li class="nav-item"><a href="{% url "timeline" %}" class="nav-link {% if menu == "timeline" %}active" aria-current="page{% endif %}">Timeline</a></li>
       <li class="nav-item"><a href="{% url "join_us" %}" class="nav-link {% if menu == "join_us" %}active" aria-current="page{% endif %}">Join Us</a></li>
+      <li class="nav-item"><a href="{% url "contact" %}" class="nav-link {% if menu == "contact" %}active" aria-current="page{% endif %}">Contact</a></li>
     </ul>
   </nav>
 </header>

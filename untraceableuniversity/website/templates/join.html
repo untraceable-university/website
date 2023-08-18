@@ -10,7 +10,9 @@
 
 <h1>{{ info }}</h1>
 
+<div class="tfont">
 {{ info.get_content }}
+</div>
 
 <form method="post">
   
@@ -25,7 +27,12 @@
   </div>
 
   <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+    <label class="form-label">Your discipline/field</label>
+    <input name="field" type="text" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Please elaborate on your interest and capacity to collaborate</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
 

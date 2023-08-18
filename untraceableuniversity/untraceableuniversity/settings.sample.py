@@ -172,7 +172,7 @@ MDEDITOR_CONFIGS = {
         'flow_chart': True,  # whether to open the flow chart function
         'sequence': True, # Whether to open the sequence diagram function
         'watch': True,  # Live preview
-        'lineWrapping': False,  # lineWrapping
+        'lineWrapping': True,  # lineWrapping
         'lineNumbers': False,  # lineNumbers
         'language': 'en'  # zh / en / es 
     }
