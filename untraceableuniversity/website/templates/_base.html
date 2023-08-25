@@ -13,15 +13,15 @@
 
 </style>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet"> 
-
 <style type="text/css">
 .main, .tfont {
-  font-family: 'Source Serif 4', serif;
   font-size: 1.2em;
   line-height: 1.6em;
+}
+
+h1 {
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .leftcol h2 {
@@ -61,8 +61,46 @@ header .scrolled_down a span, header .scrolled_down a.nav-link {
   color: #000;
 }
 .wrapper {
-  margin-top: 100px;
+  margin-top: 10px;
 }
+
+.main img {
+  max-width: 100%;
+}
+
+.navbar {
+  {% if request.GET.style == "2" %}
+  background: #D9D9D9;
+  {% else %}
+  background: #7F8E95;
+  {% endif %}
+}
+
+.nav-divider {
+  width: 100%;
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+
+{% if request.GET.style == "2" %}
+header a.nav-link {
+  color: #545454;
+}
+body,.container.h {
+  background: #D9D9D9;
+}
+.wrapper {
+  background: #fff;
+  margin-top:0;
+}
+.nav-divider {
+  background-color: #D9D9D9;
+}
+{% endif %}
 
 </style>
 
@@ -70,22 +108,52 @@ header .scrolled_down a span, header .scrolled_down a.nav-link {
 </head>
 <body>
 
-<header class="d-flex flex-wrap justify-content-center py-3 mb-4">
-  <nav class="navbar fixed-top ps-4 pe-4 {% if not menu_transparent %}scrolled_down{% endif %}">
+
+{% if request.GET.style == "2" %}
+  <div class="container h">
+    <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <img src="{% if request.GET.style == "2" %}{% static "img/logo5.png" %}{% else %}{% static "img/logo4.png" %}{% endif %}" style="max-width:60px" alt="" />
+        <span class="fs-4 text-dark">Untraceable University</span>
+      </a>
+
+      <ul class="nav nav-pills">
+      <li class="nav-item"><a href="/" class="nav-link {% if menu == "home" %}active" aria-current="page{% endif %}">Home</a></li>
+      <li class="nav-item"><a href="{% url "overview" %}" class="nav-link {% if menu == "overview" %}active" aria-current="page{% endif %}">Overview</a></li>
+      <li class="nav-item"><a href="{% url "research" %}" class="nav-link {% if menu == "research" %}active" aria-current="page{% endif %}">Research</a></li>
+      <li class="nav-item"><a href="{% url "teaching" %}" class="nav-link {% if menu == "teaching" %}active" aria-current="page{% endif %}">Teaching</a></li>
+      <li class="nav-item"><a href="{% url "timeline" %}" class="nav-link {% if menu == "timeline" %}active" aria-current="page{% endif %}">Timeline</a></li>
+      <li class="nav-item"><a href="{% url "join_us" %}" class="nav-link {% if menu == "join_us" %}active" aria-current="page{% endif %}">Join Us</a></li>
+      <li class="nav-item"><a href="{% url "contact" %}" class="nav-link {% if menu == "contact" %}active" aria-current="page{% endif %}">Contact</a></li>
+      </ul>
+    </header>
+  </div>
+{% else %}
+<div class="container">
+<header class="d-flex {% if request.GET.style != "2" %}flex-wrap justify-content-center py-3 mb-4{% endif %}">
+  <nav class="navbar {% if request.GET.style != "2" %}fixed-top ps-4 pe-4{% endif %} {% if not menu_transparent %}crolled_down{% endif %}">
     <a href="/" id="brand" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <span class="fs-4 ps-2">{{ _("The Untraceable University") }}</span>
+      <span class="fs-4 ps-2">
+        <img src="{% if request.GET.style == "2" %}{% static "img/logo5.png" %}{% else %}{% static "img/logo4.png" %}{% endif %}" style="max-width:80px" alt="" />
+      </span>
     </a>
 
     <ul class="nav nav-pills">
       <li class="nav-item"><a href="/" class="nav-link {% if menu == "home" %}active" aria-current="page{% endif %}">Home</a></li>
       <li class="nav-item"><a href="{% url "overview" %}" class="nav-link {% if menu == "overview" %}active" aria-current="page{% endif %}">Overview</a></li>
-      <li class="nav-item"><a href="{% url "mission" %}" class="nav-link {% if menu == "mission" %}active" aria-current="page{% endif %}">Mission</a></li>
+      <li class="nav-item"><a href="{% url "research" %}" class="nav-link {% if menu == "research" %}active" aria-current="page{% endif %}">Research</a></li>
+      <li class="nav-item"><a href="{% url "teaching" %}" class="nav-link {% if menu == "teaching" %}active" aria-current="page{% endif %}">Teaching</a></li>
       <li class="nav-item"><a href="{% url "timeline" %}" class="nav-link {% if menu == "timeline" %}active" aria-current="page{% endif %}">Timeline</a></li>
       <li class="nav-item"><a href="{% url "join_us" %}" class="nav-link {% if menu == "join_us" %}active" aria-current="page{% endif %}">Join Us</a></li>
       <li class="nav-item"><a href="{% url "contact" %}" class="nav-link {% if menu == "contact" %}active" aria-current="page{% endif %}">Contact</a></li>
     </ul>
   </nav>
 </header>
+</div>
+
+<br>
+{% endif %}
+<div class="nav-divider"></div>
 
 <div class="wrapper">
 
@@ -95,7 +163,9 @@ header .scrolled_down a span, header .scrolled_down a.nav-link {
 
 {% block footer %}{% endblock %}
 
-<footer class="bd-footer py-4 py-md-5 mt-5 " style="background:#">
+<div class="nav-divider"></div>
+
+<footer class="bd-footer py-4 py-md-5">
   <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
     <div class="row">
       <div class="col-lg-4 mb-3">
@@ -113,9 +183,10 @@ header .scrolled_down a span, header .scrolled_down a.nav-link {
       </div>
       <div class="col-lg-2 mb-3">
         <h5>Newsletter</h5>
-        <form method="post">
-          <input type="text" name="name" placeholder="Name" class="form-control mb-2" required />
-          <input type="email" name="email" placeholder="E-mail" class="form-control mb-2" required />
+        <form method="post" action="https://untraceable-university.us12.list-manage.com/subscribe/post?u=db071d713e76cb286850fcbad&amp;id=4a944722c8&amp;f_id=007369e0f0" target="_blank">
+          <input type="text" name="FNAME" placeholder="Name" class="form-control mb-2" required />
+          <input type="email" name="EMAIL" placeholder="E-mail" class="form-control mb-2" required />
+          <input type="hidden" name="b_db071d713e76cb286850fcbad_4a944722c8" tabindex="-1" value="">
           <button type="submit" class="btn btn-outline-secondary">Sign up</button>
         </form>
       </div>

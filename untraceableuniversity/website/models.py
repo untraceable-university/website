@@ -43,3 +43,15 @@ class PageContent(models.Model):
     class Meta:
         ordering = ["title"]
 
+class Inspiration(models.Model):
+    title = models.CharField(max_length=255)
+    url = models.CharField(max_length=255)
+    image = models.FileField(null=True, blank=True, upload_to="inspiration")
+    position = models.PositiveSmallIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ["position", "title"]
+

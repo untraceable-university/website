@@ -10,9 +10,10 @@ def index(request):
     context = {
         "menu_transparent": True,
         "menu": "home",
+        "inspiration": Inspiration.objects.all(),
     }
 
-    return render(request, "index.html", context)
+    return render(request, "home.html", context)
 
 @csrf_exempt
 def join_us(request, slug="join"):

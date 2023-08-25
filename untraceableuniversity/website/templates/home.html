@@ -1,0 +1,66 @@
+{% extends "_base.html" %}
+
+{% block head %}
+<style type="text/css">
+.inspiration .card {
+  max-width: 90px;
+  margin-right: 10px;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.1),0 6px 20px 0 rgba(0,0,0,0.1) !important;
+  margin-bottom: 10px;
+}
+.inspiration {
+  column-count: 5;
+  column-gap: 2px;
+}
+</style>
+{% endblock %}
+
+{% block title %}
+  The Untraceable University
+{% endblock %}
+
+{% block content %}
+
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-5">
+        <div class="inspiration">
+        {% for each in inspiration %}
+            <div class="card">
+              <img src="{{ each.image.url }}" class="card-img-top" alt="...">
+            </div>
+        {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">The Untraceable University</h1>
+        <p class="lead">
+          We have many inspiring examples of alternative systems applied at
+          small scale or by niche groups - from eco-villages and industrial
+          symbiosis sites, to regenerative agriculture and communal living.
+          There is also growing research on sustainable transitions, the
+          material requirements for well-being, and the opportunities for
+          societal re-imaginings. But we don't have enough examples of how
+          to transform research and experience into a large-scale
+          implementation. 
+          The Untraceable University pushes the envelope by setting up a
+          large-scale experiment into social and ecological restoration. 
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" style="background:#3D4748;border-color:#3D4748">Learn more</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Join us</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+  <h1>
+  The Untraceable University
+  </h1>
+
+  <p>Because they believe in the project, not because they believe in the funding.</p>
+
+  <h2>Our inspiration</h2>
+
+{% endblock %}
