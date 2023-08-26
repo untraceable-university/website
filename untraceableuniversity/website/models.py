@@ -55,3 +55,25 @@ class Inspiration(models.Model):
     class Meta:
         ordering = ["position", "title"]
 
+class Discipline(models.Model):
+    name = models.CharField(max_length=255)
+    translations = models.JSONField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+class Question(models.Model):
+    question = models.CharField(max_length=1000)
+    research_question = models.PositiveSmallIntegerField(null=True, blank=True, help_text="1=Take stock, 2=Barriers, 3=Integrated visions, 4=Framework")
+    description = models.TextField(null=True, blank=True)
+    discipline = models.ManyToManyField(Discipline)
+    translations = models.JSONField(null=True, blank=True)
+
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        ordering = ["question"]

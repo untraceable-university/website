@@ -11,4 +11,5 @@ urlpatterns = [
     path("overview/", views.page, { "slug": "overview" }, name="overview"),
     path("timeline/", views.page, { "slug": "timeline" }, name="timeline"),
     path("contact/", views.page, { "slug": "timeline" }, name="contact"),
+    path("templates/", views.templates),
 ]
