@@ -80,7 +80,7 @@ def contact(request):
         email = EmailMultiAlternatives(
             subject,
             msg,
-            "automail@untraceable-university.org",
+            "info@untraceable-university.org",
             ["info@untraceable-university.org"],
             reply_to=[request.POST.get("email")],
         )

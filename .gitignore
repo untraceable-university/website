@@ -1,6 +1,5 @@
 *.pyc
 */*/*.pyc
-*/migrations/*
 /__pycache__
 */media/
 untraceableuniversity/static/img/logo4.png
