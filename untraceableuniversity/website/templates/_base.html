@@ -6,6 +6,12 @@
 <meta charset="UTF-8" />
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+<link class="favicon" rel="shortcut icon" sizes="126x126" href="{% static 'img/favicon/favicon.ico' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+<meta name="msapplication-TileColor" content="#7F8E95">
+<meta name="theme-color" content="#ffffff">
 <style type="text/css">
 .nav-pills {
   --bs-nav-pills-link-active-bg: #333;
@@ -179,7 +185,7 @@ header {
           <img src="{% static "img/logo.png" %}" alt="" class="logo" />
         </a>
       </div>
-      <div class="col-lg-2 mb-3">
+      <div class="col-lg-2 mb-3" hidden>
         <h5>About us</h5>
         <ul class="list-unstyled">
           <li class="mb-2">
@@ -187,7 +193,7 @@ header {
           </li>
         </ul>
       </div>
-      <div class="col-lg-2 mb-3">
+      <div class="col-lg-3 mb-3">
         <h5>Newsletter</h5>
         <form method="post" action="https://untraceable-university.us12.list-manage.com/subscribe/post?u=db071d713e76cb286850fcbad&amp;id=4a944722c8&amp;f_id=007369e0f0" target="_blank">
           <input type="text" name="FNAME" placeholder="Name" class="form-control mb-2" required />
@@ -196,10 +202,11 @@ header {
           <button type="submit" class="btn btn-outline-secondary">Sign up</button>
         </form>
       </div>
-      <div class="col-6 col-lg-2 mb-3">
+      <div class="col-6 col-lg-2 offset-lg-1 mb-3">
         <ul class="list-unstyled small">
           <li class="mb-2"><strong>We embrace open access and open source code.</strong></li>
-          <li class="mb-2">Code licensed <a href="LICENSE" target="_blank" rel="license">MIT</a>, content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>.</li>
+          <li class="mb-2">Code licensed <a href="https://github.com/untraceable-university/website" target="_blank" rel="license">MIT</a>, content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>.
+          </li>
           <li class="mb-2">We do not track visitors and do not use cookies.</li>
           <li class="mb-2">Last update: August 2023</li>
         </ul>
