@@ -1,0 +1,9 @@
+The following form was filled out on the Untraceable University website:
+
+Name: {{ name }}
+E-mail: {{ email }}
+Institution: {{ institution }}
+Discipline/field: {{ discipline }}
+Interest:
+
+{{ message }}

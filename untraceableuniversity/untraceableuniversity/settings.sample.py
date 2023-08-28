@@ -140,6 +140,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Email configuration
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend' # Save mails locally
+EMAIL_FILE_PATH = os.path.join(MEDIA_ROOT, 'maillog')
 
 # Locales
 LOCALE_PATHS = [

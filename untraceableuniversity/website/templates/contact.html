@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load static %}
 
 {% block title %}
   {{ info }}
@@ -13,7 +14,7 @@
 
 <h1>{{ info }}</h1>
 
-<div class="tfont">
+<div class="tfont" id="contact_content">
 {{ info.get_content }}
 </div>
 
@@ -30,17 +31,7 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Institution</label>
-    <input name="institution" type="text" class="form-control">
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Your discipline/field</label>
-    <input name="discipline" type="text" class="form-control" required>
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Please elaborate on your interest and capacity to collaborate</label>
+    <label class="form-label">Message</label>
     <textarea class="form-control" name="message" rows="9" required></textarea>
   </div>
 
@@ -54,4 +45,22 @@
 </div>
 </div>
 
+{% endblock %}
+
+{% block head %}
+  <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+  <script type="text/javascript">
+  $(function(){
+    
+    function setCharAt(str,index,chr) {
+      if(index > str.length-1) return str;
+      return str.substring(0,index) + chr + str.substring(index+1);
+    }
+
+    cc = $("#contact_content p").last();
+    str = cc.text();
+    str = setCharAt(str,4,"&#64;");
+    $(cc).html(str);
+  });
+  </script>
 {% endblock %}

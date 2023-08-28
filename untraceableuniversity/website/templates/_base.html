@@ -151,6 +151,18 @@ header {
 
 <div class="wrapper">
 
+  {% if messages %}
+    <div class="container">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show text-center" role="alert">
+          <i class="fad mr-2 fa-{% if message.tags == 'alert-info' %}info-circle{% elif message.tags == 'alert-success' %}check-circle{% elif message.tags == 'alert-warning' %}exclamation-triangle{% elif message.tags == 'error' %}exclamation-triangle{% endif %}"></i>
+          {{ message|safe }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+
   {% block content %}{% endblock %}
 
 </div>
