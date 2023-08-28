@@ -39,7 +39,7 @@ def join_us(request, slug="join"):
         email = EmailMultiAlternatives(
             subject,
             msg,
-            "automail@untraceable-university.org",
+            "info@untraceable-university.org",
             ["info@untraceable-university.org"],
             reply_to=[request.POST.get("email")],
         )
