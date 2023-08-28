@@ -76,7 +76,7 @@ def contact(request):
             "email": request.POST.get("email"),
             "message": request.POST.get("message"),
         }
-        msg = render_to_string("mailbody/join.txt", mailcontext)
+        msg = render_to_string("mailbody/contact.txt", mailcontext)
         email = EmailMultiAlternatives(
             subject,
             msg,
