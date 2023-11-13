@@ -198,6 +198,18 @@ header {
             </a>
           </li>
         </ul>
+
+        <h5 class="mt-4">{{ _("Language") }}</h5>
+        <ul class="list-unstyled">
+          {% if request.language == "en" %}
+            <li><strong>English</strong></li>
+            <li><a href="/es/">Español</a></li>
+          {% else %}
+            <li><strong>Español</strong></li>
+            <li><a href="/">English</a></li>
+          {% endif %}
+        </ul>
+
       </div>
       <div class="col-lg-3 mb-3">
         <h5>{{ _("Newsletter") }}</h5>
