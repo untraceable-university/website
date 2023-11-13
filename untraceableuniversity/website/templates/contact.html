@@ -21,22 +21,22 @@
 <form method="post">
   
   <div class="mb-3">
-    <label class="form-label">Your name</label>
+    <label class="form-label">{{ _("Your name") }}</label>
     <input name="name" type="text" class="form-control" required>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Email address</label>
+    <label class="form-label">{{ _("Email address") }}</label>
     <input name="email" type="email" class="form-control" required>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Message</label>
+    <label class="form-label">{{ _("Message") }}</label>
     <textarea class="form-control" name="message" rows="9" required></textarea>
   </div>
 
   <div class="mb-3">
-    <button type="submit" class="btn btn-success">Send</button>
+    <button type="submit" class="btn btn-success">{{ _("Send") }}</button>
   </div>
 
   {% csrf_token %}

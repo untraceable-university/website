@@ -20,32 +20,32 @@
 <form method="post">
   
   <div class="mb-3">
-    <label class="form-label">Your name</label>
+    <label class="form-label">{{ _("Your name") }}</label>
     <input name="name" type="text" class="form-control" required>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Email address</label>
+    <label class="form-label">{{ _("E-mail address") }}</label>
     <input name="email" type="email" class="form-control" required>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Institution</label>
+    <label class="form-label">{{ _("Institution") }}</label>
     <input name="institution" type="text" class="form-control">
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Your discipline/field</label>
+    <label class="form-label">{{ _("Your discipline/field") }}</label>
     <input name="discipline" type="text" class="form-control" required>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Please elaborate on your interest and capacity to collaborate</label>
+    <label class="form-label">{{ _("Please elaborate on your interest and capacity to collaborate") }}</label>
     <textarea class="form-control" name="message" rows="9" required></textarea>
   </div>
 
   <div class="mb-3">
-    <button type="submit" class="btn btn-success">Send</button>
+    <button type="submit" class="btn btn-success">{{ _("Send") }}</button>
   </div>
 
   {% csrf_token %}

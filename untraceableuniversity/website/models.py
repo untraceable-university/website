@@ -18,8 +18,10 @@ class Page(models.Model):
     FORMAT = [
         ("markdown", "Markdown"),
         ("html", "HTML"),
+        ("blurb", "Blurb"),
     ]
     format = models.CharField(max_length=8, choices=FORMAT, db_index=True, default="markdown")
+    slug = models.SlugField(max_length=100, null=True, blank=True, unique=True)
 
     def __str__(self):
         return self.name
@@ -33,6 +35,7 @@ class PageContent(models.Model):
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     content = MDTextField(null=True, blank=True)
     slug = models.SlugField(max_length=100, null=True, blank=True, unique=True)
+    last_update = models.DateTimeField(auto_now=True)
 
     def get_content(self):
         return mark_safe(markdown(self.content) if self.page.format == "markdown" else self.content)

@@ -13,11 +13,20 @@ class MyAdminSite(AdminSite):
     index_title = "Untraceable University"
     enable_nav_sidebar = False
 
+class ContentAdmin(admin.ModelAdmin):
+    search_fields = ["title"]
+    list_filter = ["language"]
+    list_display = ["title", "slug", "language"]
+
+class PageAdmin(admin.ModelAdmin):
+    search_fields = ["name"]
+    list_display = ["name", "slug"]
+
 admin_site = MyAdminSite()
 
 admin_site.register(Language)
-admin_site.register(Page)
-admin_site.register(PageContent)
+admin_site.register(Page, PageAdmin)
+admin_site.register(PageContent, ContentAdmin)
 admin_site.register(Inspiration)
 admin_site.register(Discipline)
 admin_site.register(Question)

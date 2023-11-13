@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load i18n %}
 
 {% block head %}
 <style type="text/css">
@@ -33,36 +34,24 @@
 </style>
 {% endblock %}
 
-{% block title %}
-  The Untraceable University
-{% endblock %}
+{% block title %}{{ _("The Untraceable University") }}{% endblock %}
 
 {% block content %}
 
 <div class="container col-xxl-8 px-4 py-5">
   <div class="row flex-lg-row align-items-center g-5 py-5">
     <div class="col-lg-7">
-      <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">The Untraceable University</h1>
+      <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ _("The Untraceable University") }}</h1>
       <p class="lead">
-        The Untraceable University is a large-scale experiment into social and
-        ecological restoration. There are many inspiring examples of alternative
-        systems applied at small scale or by niche groups - from eco-villages and
-        industrial symbiosis sites, to regenerative agriculture and communal living.
-        There is also growing research on sustainable transitions, on the material
-        requirements for well-being, and on opportunities for societal re-imaginings.
-        But we don't have enough examples of how to transform research and experience
-        into a large-scale implementation, that is both integrated and scalable by
-        design. Untraceable University takes that leap forward by daring to try out —
-        in real life — the best of our current knowledge and wisdom on how to build
-        regenerative societies.
+        {{ summary.get_content }}
       </p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a href="overview/" class="btn btn-primary btn-lg px-4 me-md-2">Learn more</a>
-        <a href="join/" class="btn btn-outline-secondary btn-lg px-4">Join us</a>
+        <a href="overview/" class="btn btn-primary btn-lg px-4 me-md-2">{{ _("Learn more") }}</a>
+        <a href="join/" class="btn btn-outline-secondary btn-lg px-4">{{ _("Join us") }}</a>
       </div>
     </div>
     <div class="col-10 col-sm-8 col-lg-5">
-      <small>Some examples of inspiring projects and literature:</small>
+      <small>{{ _("Some examples of inspiring projects and literature:") }}</small>
       <div class="inspiration mt-2">
       {% for each in inspiration %}
           <div class="card">
@@ -83,13 +72,13 @@
     <div class="col-sm-12 col-md-6">
       <h2>Research</h2>
       {{ research.get_content|truncatewords:60 }}
-      <a href="research/">Read more</a>
+      <a href="research/">{{ _("Read more") }}</a>
     </div>
 
     <div class="col-sm-12 col-md-6">
       <h2>Teaching</h2>
       {{ teaching.get_content|truncatewords:60 }}
-      <a href="teaching/">Read more</a>
+      <a href="teaching/">{{ _("Read more") }}</a>
     </div>
 
   </div>
@@ -101,41 +90,37 @@
 <div class="container-fluid joinbox pb-5 pt-4">
   <div class="container">
     <div class="row">
-      <h1 class="text-center mb-1 mt-4">Join the <span style="background:#7f8e95;color:white;padding:0px 5px ">Untraceable University Research Initiative</span></h1>
+      <h1 class="text-center mb-1 mt-4">{{ _("Join the Untraceable University Research Initiative") }}</span></h1>
       <p class="text-center mb-5">
-        Find out how you can link your research to feed into the Untraceable University's research objectives.
+        {{ _("Find out how you can link your research to feed into the Untraceable University's research objectives.") }}
       </p>
       <div class="col-md-3 col-sm-6">
-        <h2><a href="join/researcher/">Researcher</a></h2>
+        <h2><a href="join/researcher/">{{ _("Researcher") }}</a></h2>
         <p>
-          Do you engage in academic research?
-          Find out how you can make your research align with the goals of the Untraceable University.
+          {{ _("Do you engage in academic research? Find out how you can make your research align with the goals of the Untraceable University.") }}
         </p>
-        <a class="btn btn-secondary btn-sm" href="join/researcher/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="join/researcher/">{{ _("More information") }}</a>
       </div>
       <div class="col-md-3 col-sm-6">
-        <h2><a href="join/supervisor/">Supervisor</a></h2>
+        <h2><a href="join/supervisor/">{{ _("Supervisor") }}</a></h2>
         <p>
-          Do you supervise bachelor or master students? Support our research by offering your students topics and
-          research questions related to our project.
+          {{ _("Do you supervise bachelor or master students? Support our research by offering your students topics and research questions related to our project.") }}
         </p>
-        <a class="btn btn-secondary btn-sm" href="join/supervisor/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="join/supervisor/">{{ _("More information") }}</a>
       </div>
       <div class="col-md-3 col-sm-6">
-        <h2><a href="join/lecturer/">Lecturer</a></h2>
+        <h2><a href="join/lecturer/">{{ _("Lecturer") }}</a></h2>
         <p>
-          Do you teach classes at university or other academic institutions? We are happy to provide course assignments 
-          or a guest lecture to your students.
+          {{ _("Do you teach classes at university or other academic institutions? We are happy to provide course assignments or a guest lecture to your students.") }}
         </p>
-        <a class="btn btn-secondary btn-sm" href="join/lecturer/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="join/lecturer/">{{ _("More information") }}</a>
       </div>
       <div class="col-md-3 col-sm-6">
-        <h2><a href="join/student/">Student</a></h2>
+        <h2><a href="join/student/">{{ _("Student") }}</a></h2>
         <p>
-          Are you looking for a topic of investigation as part of a bachelor degree or master dissertation? Link your work
-          with our research priorities.
+          {{ _("Are you looking for a topic of investigation as part of a bachelor degree or master dissertation? Link your work with our research priorities.") }}
         </p>
-        <a class="btn btn-secondary btn-sm" href="join/student/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="join/student/">{{ _("More information") }}</a>
       </div>
     </div>
   </div>

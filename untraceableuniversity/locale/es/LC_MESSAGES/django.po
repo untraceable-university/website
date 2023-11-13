@@ -1,0 +1,249 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-13 11:57+0000\n"
+"PO-Revision-Date: 2023-11-13 13:57+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: untraceableuniversity/untraceableuniversity/settings.py:123
+#: untraceableuniversity/untraceableuniversity/settings.sample.py:123
+msgid "English"
+msgstr "Inglés"
+
+#: untraceableuniversity/untraceableuniversity/settings.py:124
+#: untraceableuniversity/untraceableuniversity/settings.sample.py:124
+msgid "Spanish"
+msgstr "Español"
+
+#: untraceableuniversity/website/templates/_base.html:5
+msgid "Untraceable University"
+msgstr "Universidad sin Rastros"
+
+#: untraceableuniversity/website/templates/_base.html:131
+#: untraceableuniversity/website/templates/home.html:37
+#: untraceableuniversity/website/templates/home.html:44
+msgid "The Untraceable University"
+msgstr "La Universidad sin Rastros"
+
+#: untraceableuniversity/website/templates/_base.html:140
+msgid "Home"
+msgstr "Inicio"
+
+#: untraceableuniversity/website/templates/_base.html:141
+msgid "Overview"
+msgstr "Resumen"
+
+#: untraceableuniversity/website/templates/_base.html:142
+msgid "Research"
+msgstr "Investigación"
+
+#: untraceableuniversity/website/templates/_base.html:143
+msgid "Teaching"
+msgstr "Educación"
+
+#: untraceableuniversity/website/templates/_base.html:144
+msgid "Timeline"
+msgstr "Línea de Tiempo"
+
+#: untraceableuniversity/website/templates/_base.html:145
+msgid "Join Us"
+msgstr "Unite"
+
+#: untraceableuniversity/website/templates/_base.html:146
+msgid "Contact"
+msgstr "Contacto"
+
+#: untraceableuniversity/website/templates/_base.html:189
+msgid "About us"
+msgstr "Sobre nosotros"
+
+#: untraceableuniversity/website/templates/_base.html:192
+msgid "We are a non-profit research institute, registered in South Africa."
+msgstr "Somos una ONG sin fines de lucro, registrada en Sudáfrica."
+
+#: untraceableuniversity/website/templates/_base.html:203
+msgid "Newsletter"
+msgstr "Boletín"
+
+#: untraceableuniversity/website/templates/_base.html:205
+msgid "Name"
+msgstr "Nombre"
+
+#: untraceableuniversity/website/templates/_base.html:206
+msgid "E-mail"
+msgstr "Correo"
+
+#: untraceableuniversity/website/templates/_base.html:208
+msgid "Sign up"
+msgstr "Registrar"
+
+#: untraceableuniversity/website/templates/_base.html:213
+msgid "We embrace open access and open source code."
+msgstr "Soportamos a acceso libre y código fuente abierto."
+
+#: untraceableuniversity/website/templates/_base.html:214
+msgid "Code licensed"
+msgstr "Licencia de código"
+
+#: untraceableuniversity/website/templates/_base.html:214
+msgid "content"
+msgstr "contenido"
+
+#: untraceableuniversity/website/templates/_base.html:216
+msgid ""
+"We do not track visitors. By default, no cookies are used on this website."
+msgstr ""
+"No rastreamos a los visitantes del sitio. Por defecto, no se utilizan a "
+"cookies para el uso de nuestro sitio web."
+
+#: untraceableuniversity/website/templates/_base.html:217
+msgid "Privacy policy"
+msgstr "Políticas de Privacidad"
+
+#: untraceableuniversity/website/templates/_base.html:219
+msgid "Last update:"
+msgstr "Últimate actualización:"
+
+#: untraceableuniversity/website/templates/contact.html:24
+#: untraceableuniversity/website/templates/join.html:23
+msgid "Your name"
+msgstr "Su nombre"
+
+#: untraceableuniversity/website/templates/contact.html:29
+msgid "Email address"
+msgstr "Correo"
+
+#: untraceableuniversity/website/templates/contact.html:34
+msgid "Message"
+msgstr "Mensaje"
+
+#: untraceableuniversity/website/templates/contact.html:39
+#: untraceableuniversity/website/templates/join.html:48
+msgid "Send"
+msgstr "Enviar"
+
+#: untraceableuniversity/website/templates/home.html:49
+msgid "Learn more"
+msgstr "Leér más"
+
+#: untraceableuniversity/website/templates/home.html:50
+msgid "Join us"
+msgstr "Unite"
+
+#: untraceableuniversity/website/templates/home.html:54
+msgid "Some examples of inspiring projects and literature:"
+msgstr "Algunos ejemplos de proyectos y publicaciones que nos inspiran:"
+
+#: untraceableuniversity/website/templates/home.html:75
+#: untraceableuniversity/website/templates/home.html:81
+msgid "Read more"
+msgstr "Leér más"
+
+#: untraceableuniversity/website/templates/home.html:93
+msgid "Join the Untraceable University Research Initiative"
+msgstr "Unite a La Universidad sin Rastros"
+
+#: untraceableuniversity/website/templates/home.html:95
+msgid ""
+"Find out how you can link your research to feed into the Untraceable "
+"University's research objectives."
+msgstr ""
+"Descubra cómo puede vincular su investigación para contribuir a los "
+"objetivos de investigación de la Universidad sin Rastros."
+
+#: untraceableuniversity/website/templates/home.html:98
+msgid "Researcher"
+msgstr "Investigador"
+
+#: untraceableuniversity/website/templates/home.html:100
+msgid ""
+"Do you engage in academic research? Find out how you can make your research "
+"align with the goals of the Untraceable University."
+msgstr ""
+"¿Se dedica a la investigación académica? Descubra cómo puede hacer que su "
+"investigación se alinee con los objetivos de la Universidad sin Rastros."
+
+#: untraceableuniversity/website/templates/home.html:102
+#: untraceableuniversity/website/templates/home.html:109
+#: untraceableuniversity/website/templates/home.html:116
+#: untraceableuniversity/website/templates/home.html:123
+msgid "More information"
+msgstr "Más información"
+
+#: untraceableuniversity/website/templates/home.html:105
+msgid "Supervisor"
+msgstr "Supervisor"
+
+#: untraceableuniversity/website/templates/home.html:107
+msgid ""
+"Do you supervise bachelor or master students? Support our research by "
+"offering your students topics and research questions related to our project."
+msgstr ""
+"¿Supervisas estudiantes de licenciatura o maestría? Apoye nuestra "
+"investigación ofreciendo a sus estudiantes temas y preguntas de "
+"investigación relacionados con nuestro proyecto."
+
+#: untraceableuniversity/website/templates/home.html:112
+msgid "Lecturer"
+msgstr "Instructor"
+
+#: untraceableuniversity/website/templates/home.html:114
+msgid ""
+"Do you teach classes at university or other academic institutions? We are "
+"happy to provide course assignments or a guest lecture to your students."
+msgstr ""
+"¿Das clases en la universidad u otras instituciones académicas? Estaremos "
+"encantados de proporcionar tareas de curso o una charla invitada a sus "
+"estudiantes."
+
+#: untraceableuniversity/website/templates/home.html:119
+msgid "Student"
+msgstr "Estudiante"
+
+#: untraceableuniversity/website/templates/home.html:121
+msgid ""
+"Are you looking for a topic of investigation as part of a bachelor degree or "
+"master dissertation? Link your work with our research priorities."
+msgstr ""
+"¿Estás buscando un tema de investigación como parte de una licenciatura o "
+"tesis de maestría? Vincula tu trabajo con nuestras temas de investigación."
+
+#: untraceableuniversity/website/templates/index.html:71
+msgid "Homepage"
+msgstr "Inicio"
+
+#: untraceableuniversity/website/templates/join.html:28
+msgid "E-mail address"
+msgstr "Correo electrónico"
+
+#: untraceableuniversity/website/templates/join.html:33
+msgid "Institution"
+msgstr "Institución"
+
+#: untraceableuniversity/website/templates/join.html:38
+msgid "Your discipline/field"
+msgstr "Tu campo/sector"
+
+#: untraceableuniversity/website/templates/join.html:43
+msgid "Please elaborate on your interest and capacity to collaborate"
+msgstr "Favor elaborar sobre tu interés y capacidad para colaborar"
+
+#: untraceableuniversity/website/views.py:55
+#: untraceableuniversity/website/views.py:96
+msgid ""
+"Thanks, we have received your information. We will get back to you within a "
+"few days."
+msgstr "Gracias, recibimos tu información. Te contactamos dentro de unos días."
