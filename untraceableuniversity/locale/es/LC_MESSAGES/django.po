@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 11:57+0000\n"
+"POT-Creation-Date: 2023-11-13 12:57+0000\n"
 "PO-Revision-Date: 2023-11-13 13:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -47,10 +47,12 @@ msgid "Overview"
 msgstr "Resumen"
 
 #: untraceableuniversity/website/templates/_base.html:142
+#: untraceableuniversity/website/templates/home.html:73
 msgid "Research"
 msgstr "Investigación"
 
 #: untraceableuniversity/website/templates/_base.html:143
+#: untraceableuniversity/website/templates/home.html:79
 msgid "Teaching"
 msgstr "Educación"
 
