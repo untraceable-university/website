@@ -75,7 +75,6 @@ def page(request, slug):
 def templates(request):
     return render(request, "templates.html")
 
-@csrf_exempt
 def contact(request):
     if request.method == "POST":
         subject = "Untraceable University contact form"
