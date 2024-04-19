@@ -18,21 +18,31 @@
 {{ info.get_content }}
 </div>
 
+{% if not message_sent %}
 <form method="post">
   
   <div class="mb-3">
     <label class="form-label">{{ _("Your name") }}</label>
-    <input name="name" type="text" class="form-control" required>
+    <input name="name" type="text" class="form-control" required value="{{ request.POST.name }}">
   </div>
 
   <div class="mb-3">
     <label class="form-label">{{ _("Email address") }}</label>
-    <input name="email" type="email" class="form-control" required>
+    <input name="email" type="email" class="form-control" required value="{{ request.POST.email }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _("Please prove you are not a robot. What is 5 + 2?") }}</label>
+    <input name="number" type="number" class="form-control" required>
   </div>
 
   <div class="mb-3">
     <label class="form-label">{{ _("Message") }}</label>
-    <textarea class="form-control" name="message" rows="9" required></textarea>
+    <textarea class="form-control" name="message" rows="9" required>{{ request.POST.message }}</textarea>
+  </div>
+
+  <div class="d-none">
+  <input name="fax" type="text" />
   </div>
 
   <div class="mb-3">
@@ -41,6 +51,7 @@
 
   {% csrf_token %}
 </form>
+{% endif %}
 
 </div>
 </div>

@@ -76,27 +76,33 @@ def templates(request):
     return render(request, "templates.html")
 
 def contact(request):
+    message_sent = False
     if request.method == "POST":
-        subject = "Untraceable University contact form"
-        mailcontext = {
-            "name": request.POST.get("name"),
-            "email": request.POST.get("email"),
-            "message": request.POST.get("message"),
-        }
-        msg = render_to_string("mailbody/contact.txt", mailcontext)
-        email = EmailMultiAlternatives(
-            subject,
-            msg,
-            "info@untraceable-university.org",
-            ["info@untraceable-university.org"],
-            reply_to=[request.POST.get("email")],
-        )
-        email.send()
-        messages.success(request, _("Thanks, we have received your information. We will get back to you within a few days."))
+        if request.POST.get("number") == "7" and not request.POST.get("fax"):
+            subject = "Untraceable University contact form"
+            mailcontext = {
+                "name": request.POST.get("name"),
+                "email": request.POST.get("email"),
+                "message": request.POST.get("message"),
+            }
+            msg = render_to_string("mailbody/contact.txt", mailcontext)
+            email = EmailMultiAlternatives(
+                subject,
+                msg,
+                "info@untraceable-university.org",
+                ["info@untraceable-university.org"],
+                reply_to=[request.POST.get("email")],
+            )
+            email.send()
+            messages.success(request, _("Thanks, we have received your information. We will get back to you within a few days."))
+            message_sent = True
+        else:
+            messages.error(request, _("Sorry, please enter the right value in the robot check question."))
 
     context = {
         "info": get_page(request, "contact"),
         "menu": "contact",
+        "message_sent": message_sent,
     }
 
     return render(request, "contact.html", context)
