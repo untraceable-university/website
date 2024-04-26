@@ -15,6 +15,8 @@ class Language(models.Model):
 
 class Page(models.Model):
     name = models.CharField(max_length=255)
+    parent_page = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
+    position = models.PositiveSmallIntegerField(null=True, blank=True)
     FORMAT = [
         ("markdown", "Markdown"),
         ("html", "HTML"),
@@ -27,7 +29,7 @@ class Page(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["parent_page_id", "position", "name"]
 
 class PageContent(models.Model):
     title = models.CharField(max_length=255)
@@ -38,13 +40,30 @@ class PageContent(models.Model):
     last_update = models.DateTimeField(auto_now=True)
 
     def get_content(self):
-        return mark_safe(markdown(self.content) if self.page.format == "markdown" else self.content)
+        # Activate the markdown in HTML extension because we sometimes want to add a div with a specific class inside the markdown
+        return mark_safe(markdown(self.content, extensions=["md_in_html"]) if self.page.format == "markdown" else self.content)
 
     def __str__(self):
         return self.title
 
     class Meta:
-        ordering = ["title"]
+        ordering = ["page__position", "title"]
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    related_to = models.ForeignKey(Page, on_delete=models.CASCADE, null=True, blank=True, related_name="questions")
+    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    answer = MDTextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now=True)
+
+    def get_content(self):
+        return mark_safe(markdown(self.content))
+
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        ordering = ["created_at"]
 
 class Inspiration(models.Model):
     title = models.CharField(max_length=255)

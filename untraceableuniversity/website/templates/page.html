@@ -4,16 +4,93 @@
   {{ info }}
 {% endblock %}
 
+{% block head %}
+<style type="text/css">
+.framework h3{
+  padding: 10px;
+  margin-top: 30px;
+  margin-left: 234px;
+  text-transform: uppercase;
+}
+
+.framework li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.framework li strong {
+  width: 200px;
+  flex-shrink: 0; /* Prevents the strong element from shrinking */
+  text-transform: uppercase;
+  font-weight: normal;
+  text-align: right;
+  padding-top: 10px;
+  margin-right: 10px;
+}
+
+/* This will make the content occupy the remaining space */
+.framework li span {
+  flex-grow: 1;
+  border-left: 3px solid #333;
+  padding: 10px;
+  background: #f8f9fa;
+}
+
+@media (max-width: 1000px ) {
+  .framework li {
+    display: block;
+  }
+  .framework li strong {
+    padding-top: 0;
+    display: block;
+    font-weight: bold;
+    width: auto;
+    text-align: left;
+  }
+  .framework li span {
+    background: #fff;
+    border: none;
+    padding: 0;
+  }
+  .framework h3 {
+    margin-left: 0;
+  }
+}
+
+</style>
+{% endblock %}
+
 {% block content %}
 
 <div class="container pb-5">
+
   <div class="row">
 
-    <div class="col-lg-8 col-md-12 offset-lg-2">
+    {% if sidebar %}
+    <div class="d-flex flex-column sidebar flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <span class="fs-4">Activities</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        {% for each in sidebar %}
+          <li class="nav-item">
+            <a href="{% if each.page.parent_page == each.page %}{% url each.page.parent_page.slug %}{% else %}{% url each.page.parent_page.slug each.page.slug %}{% endif %}" class="nav-link link-body-emphasis {% if page == each.slug %}active{% endif %}">
+              {{ each }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="{% if sidebar %}col{% else %}col-lg-8 col-md-12 offset-lg-2{% endif %}">
       <h1>{{ info }}</h1>
       <div class="main">
       {{ info.get_content }}
       </div>
+
     </div>
 
   </div>

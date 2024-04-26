@@ -16,11 +16,11 @@ class MyAdminSite(AdminSite):
 class ContentAdmin(admin.ModelAdmin):
     search_fields = ["title"]
     list_filter = ["language"]
-    list_display = ["title", "slug", "language"]
+    list_display = ["title", "page", "slug", "language"]
 
 class PageAdmin(admin.ModelAdmin):
     search_fields = ["name"]
-    list_display = ["name", "slug"]
+    list_display = ["name", "parent_page", "position", "slug"]
 
 admin_site = MyAdminSite()
 
@@ -30,3 +30,4 @@ admin_site.register(PageContent, ContentAdmin)
 admin_site.register(Inspiration)
 admin_site.register(Discipline)
 admin_site.register(Question)
+admin_site.register(FAQ)

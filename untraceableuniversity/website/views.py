@@ -33,43 +33,16 @@ def index(request):
     return render(request, "home.html", context)
 
 @csrf_exempt
-def join_us(request, slug="join"):
-    if request.method == "POST":
-        subject = "Joining the Untraceable University project"
-        mailcontext = {
-            "name": request.POST.get("name"),
-            "email": request.POST.get("email"),
-            "institution": request.POST.get("institution"),
-            "discipline": request.POST.get("discipline"),
-            "message": request.POST.get("message"),
-        }
-        msg = render_to_string("mailbody/join.txt", mailcontext)
-        email = EmailMultiAlternatives(
-            subject,
-            msg,
-            "info@untraceable-university.org",
-            ["info@untraceable-university.org"],
-            reply_to=[request.POST.get("email")],
-        )
-        email.send()
-        messages.success(request, _("Thanks, we have received your information. We will get back to you within a few days."))
-
-    context = {
-        "info": get_page(request, "join"),
-        "menu": "join_us",
-    }
-
-    return render(request, "join.html", context)
-
-@csrf_exempt
 def page(request, slug):
+    info = get_page(request, slug)
     context = {
-        "info": get_page(request, slug),
-        "menu": slug,
+        "info": info,
+        "menu": info.page.parent_page.slug,
+        "page": slug,
+        "sidebar": PageContent.objects.filter(page__parent_page=info.page.parent_page, language__language_code=request.language),
     }
 
     return render(request, "page.html", context)
-
 
 @csrf_exempt
 def templates(request):
