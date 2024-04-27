@@ -21,6 +21,7 @@ class Page(models.Model):
         ("markdown", "Markdown"),
         ("html", "HTML"),
         ("blurb", "Blurb"),
+        ("faq", "FAQ"),
     ]
     format = models.CharField(max_length=8, choices=FORMAT, db_index=True, default="markdown")
 

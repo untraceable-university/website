@@ -94,11 +94,26 @@ def contact(request):
 
 # This is the control panel, where staff can edit information
 @staff_member_required
+def controlpanel(request):
+
+    context = {
+        "controlpanel": True,
+        "pages": Page.objects.all(),
+    }
+
+    return render(request, "controlpanel/index.html", context)
+
+@staff_member_required
 def controlpanel_page(request, id=None):
 
     info = None
     if id:
         info = Page.objects.get(pk=id)
+
+    if request.GET.get("parent"):
+        initial = {"parent_page": request.GET["parent"]}
+    else:
+        initial = {}
 
     PageForm = modelform_factory(Page, fields=("name", "parent_page", "position", "format"))
     PageContentForm = modelform_factory(PageContent, fields=("title", "content", "slug"))
@@ -112,7 +127,7 @@ def controlpanel_page(request, id=None):
     if request.method == "POST":
         form = PageForm(request.POST, instance=info)
         if form.is_valid():
-            form.save()
+            page = form.save()
             messages.success(request, "The information was saved.")
         else:
             messages.warning(request, form.errors)
@@ -120,7 +135,7 @@ def controlpanel_page(request, id=None):
         for language_name, form_data in forms.items():
             form = form_data["form"]
             form.instance.language_id = form_data["language_id"]
-            form.instance.page_id = id
+            form.instance.page_id = page.id
             if form.is_valid():
                 form.save()
             else:
@@ -132,7 +147,7 @@ def controlpanel_page(request, id=None):
             return redirect(request.get_full_path())
 
     else:
-        form = PageForm(instance=info)
+        form = PageForm(instance=info, initial=initial)
 
     context = {
         "info": info,

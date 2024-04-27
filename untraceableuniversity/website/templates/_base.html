@@ -65,6 +65,16 @@
 :root {
   --bs-body-font-family: "Poppins", sans-serif;
 }
+a {
+  color: black;
+  text-underline-offset: 3px;
+  text-decoration: underline #fdbf1e;
+  text-decoration-thickness: 3px; /* Thickness of the underline */
+  font-weight: 500;
+}
+a:hover {
+  text-decoration: none;
+}
 
 .main, .tfont {
   font-size: 1.2em;
@@ -223,6 +233,31 @@ footer a{
   margin-top: 1.3em;
 }
 
+::selection {
+    background-color: #427d99;
+    color: #fff;
+}
+.btn-edit {
+  position: fixed;
+  top: 60px;
+  left: 10px;
+}
+.btn-control-panel {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+{% if controlpanel %}
+  .yellow img {max-height:100px}
+  .yellow h2{
+    margin-top:20px;
+    position: relative;
+    left: -200px;
+  }
+  header{display:none}
+{% endif %}
+
 </style>
 
 {% block head %}{% endblock %}
@@ -244,10 +279,14 @@ footer a{
         <h1><img src="/static/img/logo3.png"></h1>
       </div>
       <div class="col-sm-6 col-md-7 col-lg-8 quote">
-        <h2>
-          "You never change things by fighting against the existing reality. To change something, build a new model that makes the old model obsolete."
-        </h2>
-        <h3>Buckminster Fuller</h3>
+        {% if controlpanel %}
+          <h2>Control Panel</h2>
+        {% else %}
+          <h2>
+            "You never change things by fighting against the existing reality. To change something, build a new model that makes the old model obsolete."
+          </h2>
+          <h3>Buckminster Fuller</h3>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -334,7 +373,7 @@ footer a{
           <input type="text" name="FNAME" placeholder="{{ _("Name") }}" class="form-control mb-2" required />
           <input type="email" name="EMAIL" placeholder="{{ _("E-mail") }}" class="form-control mb-2" required />
           <input type="hidden" name="b_db071d713e76cb286850fcbad_4a944722c8" tabindex="-1" value="">
-          <button type="submit" class="btn btn-outline-secondary">{{ _("Sign up") }}</button>
+          <button type="submit" class="btn btn-light">{{ _("Sign up") }}</button>
         </form>
       </div>
       <div class="col-6 col-lg-2 offset-lg-1 mb-3 socialmedia">
@@ -377,6 +416,12 @@ footer a{
     </div>
   </div>
 </footer>
+
+{% if request.user.is_staff %}
+  <a class="btn btn-warning btn-control-panel" href="{% url "controlpanel" %}?redirect={{ request.get_full_path }}">
+    <i class="bi bi-lock"></i>
+  </a>
+{% endif %}
 
 </body>
 </html>

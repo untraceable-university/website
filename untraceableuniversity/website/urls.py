@@ -19,7 +19,9 @@ urlpatterns = [
     path("templates/", views.templates),
 
     # Control panel
+    path("controlpanel/", views.controlpanel, name="controlpanel"),
     path("controlpanel/page/<int:id>/", views.controlpanel_page, name="controlpanel_page"),
+    path("controlpanel/page/", views.controlpanel_page, name="controlpanel_page"),
 
     # Redirecting old URLs. Remove by June 2024:
     path("research/", lambda request: redirect("/activities/research/")),

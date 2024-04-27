@@ -6,6 +6,7 @@
     $(document).ready(function() {
       $('textarea').on('keydown', function(event) {
         if (event.ctrlKey) {
+          console.log(event.key);
           if (event.key === "b") {
             event.preventDefault();
             formatText('**', '**', this);
@@ -15,6 +16,9 @@
           } else if (event.key === "l") {
             event.preventDefault();
             insertLink(this);
+          } else if (event.key === "Enter") {
+            event.preventDefault();
+            $("#form").submit();
           }
         }
       });
@@ -77,7 +81,7 @@
       {% endblock %}
       </h1>
 
-      <form method="post">
+      <form method="post" id="form">
         {% csrf_token %}
 
         <section class="mb-4 p-4 bg-body-tertiary">
