@@ -20,7 +20,7 @@ class ContentAdmin(admin.ModelAdmin):
 
 class PageAdmin(admin.ModelAdmin):
     search_fields = ["name"]
-    list_display = ["name", "parent_page", "position", "slug"]
+    list_display = ["name", "parent_page", "position"]
 
 admin_site = MyAdminSite()
 

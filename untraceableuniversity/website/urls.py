@@ -9,16 +9,20 @@ urlpatterns = [
     path("activities/<slug:slug>/", views.page, name="activities"),
     path("activities/", views.page, {"slug": "activities"}, name="activities"),
 
-    path("join/<slug:slug>/", views.page),
-    path("join/", views.page, {"slug": "join_us"}, name="join_us"),
+    path("join/<slug:slug>/", views.page, name="join"),
+    path("join/", views.page, {"slug": "join"}, name="join"),
 
-    path("overview/", views.page, { "slug": "overview" }, name="overview"),
-    path("timeline/", views.page, { "slug": "timeline" }, name="timeline"),
-    path("sites/", views.page, { "slug": "sites" }, name="sites"),
+    path("about/", views.page, { "slug": "about" }, name="about"),
+    path("about/<slug:slug>/", views.page, name="about"),
+
     path("contact/", views.contact, name="contact"),
     path("templates/", views.templates),
+
+    # Control panel
+    path("controlpanel/page/<int:id>/", views.controlpanel_page, name="controlpanel_page"),
 
     # Redirecting old URLs. Remove by June 2024:
     path("research/", lambda request: redirect("/activities/research/")),
     path("teaching/", lambda request: redirect("/activities/education-and-outreach/")),
+
 ]

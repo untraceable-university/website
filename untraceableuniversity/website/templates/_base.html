@@ -4,6 +4,9 @@
 <head>
 <title>{% block title %}{% endblock %} - {{ _("Untraceable University") }}</title>
 <meta charset="UTF-8" />
+{% if jquery or controlpanel %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+{% endif %}
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -216,6 +219,10 @@ footer a{
   width:1em;
 }
 
+.main h2 {
+  margin-top: 1.3em;
+}
+
 </style>
 
 {% block head %}{% endblock %}
@@ -261,11 +268,9 @@ footer a{
       <div>
       <ul class="nav nav-pills collapse navbar-collapse" id="nbtoggler" style="position:relative;top:13px">
         <li class="nav-item"><a href="{% url "index" %}" class="nav-link {% if menu == "home" %}active" aria-current="page{% endif %}">{{ _("Home") }}</a></li>
-        <li class="nav-item"><a href="{% url "overview" %}" class="nav-link {% if menu == "overview" %}active" aria-current="page{% endif %}">{{ _("Overview") }}</a></li>
+        <li class="nav-item"><a href="{% url "about" %}" class="nav-link {% if menu == "about" %}active" aria-current="page{% endif %}">{{ _("About") }}</a></li>
         <li class="nav-item"><a href="{% url "activities" %}" class="nav-link {% if menu == "activities" %}active" aria-current="page{% endif %}">{{ _("Activities") }}</a></li>
-        <li class="nav-item"><a href="{% url "timeline" %}" class="nav-link {% if menu == "timeline" %}active" aria-current="page{% endif %}">{{ _("Timeline") }}</a></li>
-        <li class="nav-item"><a href="{% url "sites" %}" class="nav-link {% if menu == "sites" %}active" aria-current="page{% endif %}">{{ _("Sites") }}</a></li>
-        <li class="nav-item"><a href="{% url "join_us" %}" class="nav-link {% if menu == "join_us" %}active" aria-current="page{% endif %}">{{ _("Join Us") }}</a></li>
+        <li class="nav-item"><a href="{% url "join" %}" class="nav-link {% if menu == "join" %}active" aria-current="page{% endif %}">{{ _("Join Us") }}</a></li>
         <li class="nav-item"><a href="{% url "contact" %}" class="nav-link {% if menu == "contact" %}active" aria-current="page{% endif %}">{{ _("Contact") }}</a></li>
       </ul>
       </div>

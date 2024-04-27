@@ -8,3 +8,5 @@ markdown
 bleach
 django-cleanup
 django-mdeditor
+django-crispy-forms
+crispy-bootstrap5

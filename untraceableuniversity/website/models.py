@@ -23,7 +23,6 @@ class Page(models.Model):
         ("blurb", "Blurb"),
     ]
     format = models.CharField(max_length=8, choices=FORMAT, db_index=True, default="markdown")
-    slug = models.SlugField(max_length=100, null=True, blank=True, unique=True)
 
     def __str__(self):
         return self.name

@@ -58,6 +58,11 @@
   }
 }
 
+.btn-edit {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
 </style>
 {% endblock %}
 
@@ -70,15 +75,17 @@
     {% if sidebar %}
     <div class="d-flex flex-column sidebar flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <span class="fs-4">Activities</span>
+        <span class="fs-4">{{ parent_page }}</span>
       </a>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         {% for each in sidebar %}
           <li class="nav-item">
-            <a href="{% if each.page.parent_page == each.page %}{% url each.page.parent_page.slug %}{% else %}{% url each.page.parent_page.slug each.page.slug %}{% endif %}" class="nav-link link-body-emphasis {% if page == each.slug %}active{% endif %}">
-              {{ each }}
-            </a>
+            {% if each.page.parent_page == each.page %}
+              <a href="{% url each.slug %}" class="nav-link link-body-emphasis {% if page == each.slug %}active{% endif %}">{{ _("Overview") }}</a>
+            {% else %}
+              <a href="{% url parent_page.slug each.slug %}" class="nav-link link-body-emphasis {% if page == each.slug %}active{% endif %}">{{ each }}</a>
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
@@ -95,5 +102,11 @@
 
   </div>
 </div>
+
+{% if request.user.is_staff %}
+  <a class="btn btn-warning btn-edit" href="{% url "controlpanel_page" info.page.id %}?redirect={{ request.get_full_path }}">
+    <i class="bi bi-pencil-square"></i>
+  </a>
+{% endif %}
 
 {% endblock %}

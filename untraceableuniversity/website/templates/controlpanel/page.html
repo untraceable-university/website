@@ -1,0 +1,102 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+  <script>
+    $(document).ready(function() {
+      $('textarea').on('keydown', function(event) {
+        if (event.ctrlKey) {
+          if (event.key === "b") {
+            event.preventDefault();
+            formatText('**', '**', this);
+          } else if (event.key === "i") {
+            event.preventDefault();
+            formatText('*', '*', this);
+          } else if (event.key === "l") {
+            event.preventDefault();
+            insertLink(this);
+          }
+        }
+      });
+    });
+
+    function formatText(startTag, endTag, textarea) {
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const text = textarea.value.substring(start, end);
+
+      if (start === end) {
+        const newText = startTag + endTag;
+        textarea.setRangeText(newText, start, end, 'end');
+        textarea.setSelectionRange(start + startTag.length, start + startTag.length);
+      } else {
+        const newText = startTag + text + endTag;
+        textarea.setRangeText(newText, start, end, 'end');
+        textarea.setSelectionRange(start, end + startTag.length * 2);
+      }
+    }
+
+    function insertLink(textarea) {
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selectedText = textarea.value.substring(start, end);
+
+      let url = '';
+      if (selectedText.trim() !== '') {
+        url = prompt("Enter the URL:");
+      }
+
+      const linkText = selectedText !== '' ? selectedText : "Link Text";
+      const linkMarkdown = `[${linkText}](${url})`;
+
+      textarea.setRangeText(linkMarkdown, start, end, 'end');
+
+      if (selectedText.trim() === '') {
+        textarea.setSelectionRange(start + 1, start + linkText.length + 1);
+      } else {
+        textarea.setSelectionRange(end + 3, end + 3 + url.length);
+      }
+    }
+  </script>
+  <style type="text/css">
+    textarea{height:500px}
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h1>
+      {% block title %}
+        Edit page: {{ info }}
+      {% endblock %}
+      </h1>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <section class="mb-4 p-4 bg-body-tertiary">
+          <h2>Top-level page information</h2>
+          {{ form|crispy }}
+        </section>
+
+        {% for language,form in forms.items %}
+          <section class="mb-4 p-4 bg-body-tertiary">
+            <h2>{{ language }}</h2>
+            {{ form.form|crispy }}
+          </section>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
