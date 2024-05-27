@@ -26,7 +26,7 @@
       <tbody>
       {% for each in pages %}
         <tr>
-          <td><a href="{% url 'controlpanel_page' each.id %}">{{ each }}</a></td>
+          <td><a href="{% url 'controlpanel_page' each.id %}?redirect=/controlpanel/">{{ each }}</a></td>
           <td>{{ each.get_format_display }}</td>
           <td>{{ each.parent_page }}</td>
           <td><a href="{% url 'controlpanel_page' %}?parent={{ each.id }}">Add</a></td>

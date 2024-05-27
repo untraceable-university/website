@@ -1,223 +1,161 @@
 {% extends "_base.html" %}
+{% load i18n %}
 
 {% block head %}
 <style type="text/css">
-.wrapper {
-  margin-top: 0;
+.inspiration .card {
+  max-width: 90px;
+  margin-right: 10px;
+  box-shadow:0 10px 16px 0 rgba(0,0,0,0.1),0 6px 20px 0 rgba(0,0,0,0.1) !important;
+  margin-bottom: 10px;
 }
-.bg {
-  background-image: url("/media/before.png");
-  background-size: cover;
-  height: 100vh;
-}
-.bg2 {
-  background-image: url("/media/after.png");
-  background-size: cover;
-  height: 100vh;
-}
-.bg2 h2, .bg h2 {
-  font-size: 2em;
-  font-weight: bold;
-  display: inline-block;
-  color: #000;
-  background: #fff;
-  padding: 4px;
-}
-.bg h1 {
-  font-size: 4em;
-  font-weight: bold;
-  color: #000;
-  background: #fff;
-  padding: 4px;
-  display: inline-block;
-}
-#titles {
-  position: relative;
-  top: 500px;
-}
-.bg2 #titles {
-  top: 60px;
-}
-#sub {
-  position: absolute;
-  bottom: 100px;
-  background: #fff;
-}
-.bg, .bg2 {
-  position: relative;
-  top: -66px;
+.inspiration {
+  column-count: 5;
+  column-gap: 2px;
 }
 .joinbox {
-  background:#f0f0f0;
+  background:#f4f4f4;
 }
 .joinbox h2 {
   border-top: 2px solid #999;
   padding-top: 10px;
 }
-</style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> 
-<script type="text/javascript">
-window.onscroll = function () {  
-  if (window.scrollY==0) {
-    $(".navbar").removeClass("scrolled_down");
-  } else {
-    $(".navbar").addClass("scrolled_down");
-  }
+.partners img {
+  max-height: 100px;
+  margin-right: 50px;
 }
-</script>
+.wrapper {
+  margin-top: 30px;
+}
+iframe {
+  margin-top:30px;
+}
+.secondbox i {
+  font-size: 2.5em;
+  float: right;
+  margin-right: 10px;
+}
+.secondbox h2 {
+  padding-top: 30px;
+  padding: 10px;
+}
+.secondbox h2 a {
+  border-color: #333;
+}
+.secondbox .col-md-6 {
+  padding: 50px;
+}
+</style>
 {% endblock %}
 
-{% block title %}{{ _("Homepage") }}{% endblock %}
+{% block title %}{{ _("Untraceable University") }}{% endblock %}
 
 {% block content %}
 
-<div class="bg">
-  <div class="container">
-    <div id="titles">
-      <h1>Our mission</h1>
-      <br>
-      <h2>
-        To find out how we can build a university at a heavily degraded site...
-      </h2>
+<div class="container px-4 px-md-3 mb-5">
+  <div class="row">
+    <div class="col-lg-5 mb-3">
+      <h2 class="mt-5"><a href="{% url "about" %}">About Us</a></h2>
+
+      <p class="lead">
+        {{ summary.get_content }}
+      </p>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <a href="{% url "about" %}" class="btn btn-primary btn-lg px-4 me-md-2">{{ _("Learn more") }}</a>
+      <a href="{% url "join" %}" class="btn btn-outline-secondary btn-lg px-4">{{ _("Join us") }}</a>
     </div>
 
-    <div id="sub" hidden>
-    <h3>Our mission</h3>
-    <p>To find out how we can go from this...</p>
     </div>
+    <div class="col-lg-7 mb-3">
+      <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/NU1iPIXkm8Q?cc_load_policy=1&cc_lang_pref=es-419&hl=es-419&rel=0" title="{{ _("Introduction of the Untraceable University") }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
   </div>
 </div>
 
-<div class="bg2">
-  <div class="container">
-    <div id="titles">
-      <h2>
-      ... and what can be achieved if we focus primarily on ecological and social restoration.
-      </h2>
-    </div>
+<div class="nav-divider"></div>
 
-    <div id="sub" hidden>
-    <h3>Our mission</h3>
-    <p>To find out how we can go from this...</p>
-    </div>
-  </div>
-</div>
-
-<div class="container">
+<div class="container pb-5 secondbox mt-5">
 
   <div class="row">
 
-    <div class="col-md-3 leftcol mb-4">
-      <h2>Our Mission</h2>
+    <div class="col-sm-12 col-md-6">
+      <div>
+        <i class="bi bi-journal-text"></i>
+        <h2><a href="{% url "activities" "research" %}">{{ _("Research") }}</a></h2>
+        <div class="p-2">
+          {{ research.get_content|truncatewords:60 }}
+        </div>
+      </div>
+    <a href="{% url "activities" "research" %}" class="btn btn-primary btn px-4 me-md-2 mt-2">{{ _("Learn more") }}</a>
     </div>
 
-    <div class="col-md-8 main mb-4">
-      <p>
-      In 2029 the Untraceable University aims to build a radical, new campus in a
-      heavily degraded landscape, such as an abandoned mine. The teaching and
-      practices of the university focus on enabling students, residents and staff to
-      convert this landscape into a restored ecosystem in the decades that follow.
-      The university itself aims to question existing social practices and norms, and
-      develop new ones, as part of its restorative ambitions. The goal of this
-      campus-city is to be of such a scale and ambition that it serves as inspiration
-      and example for new practices in existing cities. <a href="mission/">Read more</a>
-      </p>
-    </div>
-
-    <div class="col-md-3 leftcol">
-      <h2>Research</h2>
-    </div>
-
-    <div class="col-md-8 main">
-      <p>
-        As a precursor to this new campus, the Untraceable University Research
-        Initiative brings together researchers, students, and practitioners
-        from a wide variety of disciplines to validate, refine, and prepare the
-        strategy for this unique campus-city. 
-
-        Currently, the Untraceable University Research Initiative is building a consortium of partners, with
-        a strong focus on participation from the Global South.
-        Partners are sought in all disciplines that might be relevant to the physical, social, and ecological
-        development of this campus, with a specific focus on people and organisations that look at
-        alternative systems to enable sustainability transitions.
-
-        <a href="http://">Read more</a>
-
-      </p>
+    <div class="col-sm-12 col-md-6">
+      <div>
+        <i class="bi bi-people"></i>
+        <h2><a href="{% url "activities" "education-and-outreach" %}">{{ _("Education & Outreach") }}</a></h2>
+        <div class="p-2">
+          {{ education.get_content|truncatewords:60 }}
+        </div>
+      </div>
+      <a href="{% url "activities" "education-and-outreach" %}" class="btn btn-primary btn mt-2 px-4 me-md-2">{{ _("Learn more") }}</a>
     </div>
 
   </div>
 
 </div>
 
-<div class="container-fluid mt-5 mb-5 joinbox pb-4">
+<div class="nav-divider"></div>
+
+<div class="container-fluid joinbox pb-5 pt-4">
   <div class="container">
     <div class="row">
-      <h1 class="text-center mb-1 mt-4">Join the Untraceable University Research Initiative</h1>
+      <h1 class="text-center mb-1 mt-4">{{ _("Join the Untraceable University Research Initiative") }}</span></h1>
       <p class="text-center mb-5">
-        Find out how you can link your research to feed into the Untraceable University's research objectives.
+        {{ _("We are looking for people interested in scaling radical ideas around social justice and environmental sustainability.") }}
       </p>
-      <div class="col font">
-        <h2>Researcher</h2>
+      <div class="col-md-3 col-sm-6">
+        <h2><a href="{% url "join" "tac" %}">{{ _("Researcher") }}</a></h2>
         <p>
-          Do you engage in academic research?
-          Find out how you can make your research align with the goals of the Untraceable University.
+          {{ _("Do you engage in academic research? Does your field have value to add to the visions and execution of the ideas behind the Untraceable University?") }}
         </p>
-        <a class="btn btn-outline-success btn-sm" href="join/researcher/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="{% url "join" "tac" %}">{{ _("More information") }}</a>
       </div>
-      <div class="col font">
-        <h2>Supervisor</h2>
+      <div class="col-md-3 col-sm-6">
+        <h2><a href="{% url "join" "tac" %}">{{ _("Practitioner") }}</a></h2>
         <p>
-          Do you supervise bachelor or master students? Support our research by offering your students topics and
-          research questions related to our project.
+          {{ _("Do you work in a field that is relevant to social and environmental transitions? To the planning, design, and construction of place and culture? Your support is needed.") }}
         </p>
-        <a class="btn btn-outline-success btn-sm" href="join/supervisor/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="{% url "join" "tac" %}">{{ _("More information") }}</a>
       </div>
-      <div class="col font">
-        <h2>Lecturer</h2>
+      <div class="col-md-3 col-sm-6">
+        <h2><a href="{% url "join" "tac" %}">{{ _("Student") }}</a></h2>
         <p>
-          Do you teach classes at university or other academic institutions? We are happy to provide course assignments 
-          or a guest lecture to your students.
+          {{ _("Are you a Masters student or PhD candidate and interested in helping organise events and prepare material that can bring your field's thinking to the Untraceable University?") }}
         </p>
-        <a class="btn btn-outline-success btn-sm" href="join/lecturer/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="{% url "join" "tac" %}">{{ _("More information") }}</a>
       </div>
-      <div class="col font">
-        <h2>Student</h2>
+      <div class="col-md-3 col-sm-6">
+        <h2><a href="{% url "join" "volunteers" %}">{{ _("Volunteer") }}</a></h2>
         <p>
-          Are you looking for a topic of investigation as part of a bachelor degree or master dissertation? Link your work
-          with our research priorities.
+          {{ _("We have a number of internal volunteer roles available, related to communications and outreach, website and multimedia development, and event management.") }}
         </p>
-        <a class="btn btn-outline-success btn-sm" href="join/student/">Learn more</a>
+        <a class="btn btn-secondary btn-sm" href="{% url "join" "volunteers" %}">{{ _("More information") }}</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3 leftcol">
-      <h2>Teaching</h2>
-    </div>
+{% if False %}
+<div class="nav-divider"></div>
 
-    <div class="col-md-8 main">
-      <p>
-        As a precursor to this new campus, the Untraceable University Research
-        Initiative brings together researchers, students, and practitioners
-        from a wide variety of disciplines to validate, refine, and prepare the
-        strategy for this unique campus-city. 
-
-        Currently, the Untraceable University Research Initiative is building a consortium of partners, with
-        a strong focus on participation from the Global South.
-        Partners are sought in all disciplines that might be relevant to the physical, social, and ecological
-        development of this campus, with a specific focus on people and organisations that look at
-        alternative systems to enable sustainability transitions.
-
-        <a href="http://">Read more</a>
-
-      </p>
-    </div>
-  </div>
+<div class="px-4 py-5 my-5 text-center partners">
+    <h1 class="display-5 fw-bold text-body-emphasis">Our partners</h1>
+    <img class="px-2" src="/media/partners/logo2.jpg" alt="" >
+    <img class="" src="/media/partners/logo2.svg" alt="">
+    <img class="" src="/media/partners/logo3.png" alt="">
 </div>
+{% endif %}
 
 {% endblock %}

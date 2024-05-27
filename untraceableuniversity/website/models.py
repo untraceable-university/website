@@ -41,7 +41,7 @@ class PageContent(models.Model):
 
     def get_content(self):
         # Activate the markdown in HTML extension because we sometimes want to add a div with a specific class inside the markdown
-        return mark_safe(markdown(self.content, extensions=["md_in_html"]) if self.page.format == "markdown" else self.content)
+        return mark_safe(markdown(self.content, extensions=["md_in_html"]) if self.page.format == "markdown" or self.page.format == "blurb" else self.content)
 
     def __str__(self):
         return self.title

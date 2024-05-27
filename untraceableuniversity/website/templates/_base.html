@@ -144,7 +144,6 @@ header {
 }
 
 iframe {
-  margin-top:30px;
   border-radius: 10px;
 }
 
@@ -247,6 +246,8 @@ footer a{
   top: 10px;
   left: 10px;
 }
+.block-list li strong {display:block}
+.block-list li{margin-bottom:25px}
 
 {% if controlpanel %}
   .yellow img {max-height:100px}
@@ -276,7 +277,7 @@ footer a{
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-md-5 col-lg-4">
-        <h1><img src="/static/img/logo3.png"></h1>
+        <h1><a href="/"><img src="/static/img/logo3.png" alt="The Untraceable University logo"></a></h1>
       </div>
       <div class="col-sm-6 col-md-7 col-lg-8 quote">
         {% if controlpanel %}

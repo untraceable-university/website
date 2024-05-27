@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.contrib import messages
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 # We want to give people a cookie-less experience so we turn off CSRF
 # by default (we don't have many forms anyways)
@@ -21,6 +22,9 @@ from django.forms import modelform_factory, modelformset_factory
 def get_page(request, slug):
     try:
         return PageContent.objects.get(slug=slug, language__language_code=request.language)
+    except ObjectDoesNotExist:
+        english_version = PageContent.objects.get(slug=slug, language_id=1)
+        return PageContent.objects.get(page_id=english_version.page_id, language__language_code=request.language)
     except:
         return PageContent()
 
@@ -29,12 +33,12 @@ def index(request):
     context = {
         "menu": "home",
         "inspiration": Inspiration.objects.all(),
-        "teaching": get_page(request, "teaching"),
+        "education": get_page(request, "education-and-outreach"),
         "research": get_page(request, "research"),
         "summary": get_page(request, "summary"),
     }
 
-    return render(request, "home.html", context)
+    return render(request, "index.html", context)
 
 @csrf_exempt
 def page(request, slug):
