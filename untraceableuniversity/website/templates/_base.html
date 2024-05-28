@@ -277,14 +277,14 @@ footer a{
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-md-5 col-lg-4">
-        <h1><a href="/"><img src="/static/img/logo3.png" alt="The Untraceable University logo"></a></h1>
+        <h1><a href="/"><img src="{% static "img/logos/crop/" %}logo_{{ request.language }}.png" alt="{{ _("The Untraceable University") }}"></a></h1>
       </div>
       <div class="col-sm-6 col-md-7 col-lg-8 quote">
         {% if controlpanel %}
           <h2>Control Panel</h2>
         {% else %}
           <h2>
-            "You never change things by fighting against the existing reality. To change something, build a new model that makes the old model obsolete."
+            "{{ _("You never change things by fighting against the existing reality. To change something, build a new model that makes the old model obsolete.") }}"
           </h2>
           <h3>Buckminster Fuller</h3>
         {% endif %}
@@ -296,10 +296,6 @@ footer a{
 <header style="background:#FDBF1E">
   <div class="container">
     <nav class="navbar ps-4 pe-4 navbar-expand-xl" >
-      <a href="{% url "index" %}" id="brand" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none d-none">
-        <img src="{% static "img/logo2.png" %}" style="max-width:80px" alt="" />
-        <span class="fs-4 text-light">{{ _("Untraceable University") }}</span>
-      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nbtoggler" aria-controls="nbtoggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -345,7 +341,7 @@ footer a{
     <div class="row">
       <div class="col-lg-4 mb-3">
         <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="/" aria-label="Untraceable University">
-          <img src="{% static "img/logo4.jpg" %}" alt="" class="logo" />
+          <img src="{% static "img/logos/crop/" %}logo_{{ request.language }}_blue.png" alt="" class="logo" />
         </a>
       </div>
       <div class="col-lg-2 mb-3">

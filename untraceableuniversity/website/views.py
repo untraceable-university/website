@@ -23,6 +23,10 @@ def get_page(request, slug):
     try:
         return PageContent.objects.get(slug=slug, language__language_code=request.language)
     except ObjectDoesNotExist:
+        # When linking pages in templates, we use English slugs. So if the PageContent is not found, we try
+        # to get the English Page, and get the PageContent for that particular language. Not greatly efficient
+        # but it does the trick. We use canonical <link> elements to clarify to search engines etc what the 
+        # official link is
         english_version = PageContent.objects.get(slug=slug, language_id=1)
         return PageContent.objects.get(page_id=english_version.page_id, language__language_code=request.language)
     except:
@@ -48,7 +52,7 @@ def page(request, slug):
     # When a page is the main page in a section, we want to show the title as 'Overview' because the name of the
     # page already appears on top of the sidebar, and it looks a bit too duplicated otherwise.
     if info == parent_page:
-        info.title = "Overview"
+        info.title = _("Overview")
 
     context = {
         "info": info,
@@ -119,7 +123,7 @@ def controlpanel_page(request, id=None):
     else:
         initial = {}
 
-    PageForm = modelform_factory(Page, fields=("name", "parent_page", "position", "format"))
+    PageForm = modelform_factory(Page, fields=("name", "parent_page", "position", "format", "slug"))
     PageContentForm = modelform_factory(PageContent, fields=("title", "content", "slug"))
 
     languages = Language.objects.all()

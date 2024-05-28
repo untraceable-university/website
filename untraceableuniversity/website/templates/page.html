@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 
 {% block title %}
-  {{ info }}
+  {{ info.title }}
 {% endblock %}
 
 {% block head %}
@@ -77,9 +77,9 @@
         {% for each in sidebar %}
           <li class="nav-item">
             {% if each.page.parent_page == each.page %}
-              <a href="{% url each.slug %}" class="nav-link link-body-emphasis {% if page == each.slug %}active{% endif %}">{{ _("Overview") }}</a>
+              <a href="{% url each.page.slug %}" class="nav-link link-body-emphasis {% if page == each.page.slug %}active{% endif %}">{{ _("Overview") }}</a>
             {% else %}
-              <a href="{% url parent_page.slug each.slug %}" class="nav-link link-body-emphasis {% if page == each.slug %}active{% endif %}">{{ each }}</a>
+              <a href="{% url parent_page.page.slug each.page.slug %}" class="nav-link link-body-emphasis {% if page == each.page.slug %}active{% endif %}">{{ each }}</a>
             {% endif %}
           </li>
         {% endfor %}
@@ -88,7 +88,7 @@
     {% endif %}
 
     <div class="{% if sidebar %}col{% else %}col-lg-8 col-md-12 offset-lg-2{% endif %}">
-      <h1>{{ info }}</h1>
+      <h1>{{ info.title }}</h1>
       <div class="main">
       {{ info.get_content }}
       </div>
