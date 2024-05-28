@@ -68,7 +68,7 @@ iframe {
 
     </div>
     <div class="col-lg-7 mb-3">
-      <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/NU1iPIXkm8Q?cc_load_policy=1&cc_lang_pref=es-419&hl=es-419&rel=0" title="{{ _("Introduction of the Untraceable University") }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/NU1iPIXkm8Q?cc_load_policy=1{% if request.language == "es" %}&cc_lang_pref=es-419&hl=es-419{% endif %}&rel=0" title="{{ _("Introduction of the Untraceable University") }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
 
   </div>

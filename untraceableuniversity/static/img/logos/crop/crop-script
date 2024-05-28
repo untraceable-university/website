@@ -1,0 +1,3 @@
+Blue logo:
+mogrify -crop 478x410+11+45 *png
+

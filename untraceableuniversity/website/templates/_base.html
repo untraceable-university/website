@@ -8,6 +8,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 {% endif %}
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link class="favicon" rel="shortcut icon" sizes="126x126" href="{% static 'img/favicon/favicon.ico' %}">
@@ -157,6 +158,7 @@ iframe {
 .yellow img {
   max-height: 200px;
   max-width: 100%;
+  margin-top: 10px;
 }
 
 @media (min-width: 768px) {
@@ -165,7 +167,7 @@ iframe {
     width: 75%;
   }
   .yellow img {
-    max-height: fit-content;
+    max-height: 350px;
   }
 }
 @media (max-width: 768px) {
@@ -215,8 +217,12 @@ footer a{
 .wrapper img {
   max-width: 100%;
 }
-.sidebar .active {
+
+.dropdown-item.active, .dropdown-item:active,
+.sidebar .nav-link.active {
   font-weight: 600;
+  background: #ccc;
+  color: #333;
 }
 
 .icon-square {
@@ -277,7 +283,7 @@ footer a{
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-md-5 col-lg-4">
-        <h1><a href="/"><img src="{% static "img/logos/crop/" %}logo_{{ request.language }}.png" alt="{{ _("The Untraceable University") }}"></a></h1>
+        <h1><a href="{% url "index" %}"><img src="{% static "img/logos/crop/" %}logo_{{ request.language }}.png" alt="{{ _("The Untraceable University") }}"></a></h1>
       </div>
       <div class="col-sm-6 col-md-7 col-lg-8 quote">
         {% if controlpanel %}
@@ -304,9 +310,48 @@ footer a{
       <div>
       <ul class="nav nav-pills collapse navbar-collapse" id="nbtoggler" style="position:relative;top:13px">
         <li class="nav-item"><a href="{% url "index" %}" class="nav-link {% if menu == "home" %}active" aria-current="page{% endif %}">{{ _("Home") }}</a></li>
-        <li class="nav-item"><a href="{% url "about" %}" class="nav-link {% if menu == "about" %}active" aria-current="page{% endif %}">{{ _("About") }}</a></li>
-        <li class="nav-item"><a href="{% url "activities" %}" class="nav-link {% if menu == "activities" %}active" aria-current="page{% endif %}">{{ _("Activities") }}</a></li>
-        <li class="nav-item"><a href="{% url "join" %}" class="nav-link {% if menu == "join" %}active" aria-current="page{% endif %}">{{ _("Join Us") }}</a></li>
+        <li class="nav-item dropdown"><a href="{% url "about" %}" class="nav-link dropdown-toggle {% if menu == "about" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("About") }}</a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "about" and page == "about" %}active{% endif %}"
+              href="{% url "about" %}">{{ _("Overview") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "guiding-principles" %}active{% endif %}"
+              href="{% url "about" "guiding-principles" %}">{{ _("Guiding principles") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "sites" %}active{% endif %}"
+              href="{% url "about" "sites" %}">{{ _("Potential sites") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "about-us" %}active{% endif %}"
+              href="{% url "about" "about-us" %}">{{ _("About us") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "news" %}active{% endif %}"
+              href="{% url "about" "news" %}">{{ _("News") }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"><a href="{% url "activities" %}" class="nav-link dropdown-toggle {% if menu == "activities" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Activities") }}</a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "activities" and page == "activities" %}active{% endif %}"
+              href="{% url "activities" %}">{{ _("Overview") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "activities" and page == "research" %}active{% endif %}"
+              href="{% url "activities" "research" %}">{{ _("Research") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "activities" and page == "education-and-outreach" %}active{% endif %}"
+              href="{% url "activities" "education-and-outreach" %}">{{ _("Education & Outreach") }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"><a href="{% url "join" %}" class="nav-link dropdown-toggle {% if menu == "join" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Join Us") }}</a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "join" and page == "join" %}active{% endif %}"
+              href="{% url "join" %}">{{ _("Overview") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "join" and page == "tac" %}active{% endif %}"
+              href="{% url "join" "tac" %}">{{ _("Thematic Action Committees") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "join" and page == "volunteers" %}active{% endif %}"
+              href="{% url "about" "volunteers" %}">{{ _("Volunteers") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "join" and page == "advisory-board" %}active{% endif %}"
+              href="{% url "about" "advisory-board" %}">{{ _("Advisory Board") }}</a></li>
+          </ul>
+        </li>
+
         <li class="nav-item"><a href="{% url "contact" %}" class="nav-link {% if menu == "contact" %}active" aria-current="page{% endif %}">{{ _("Contact") }}</a></li>
       </ul>
       </div>
@@ -340,7 +385,7 @@ footer a{
   <div class="container py-4 py-md-5 px-4 px-md-3 text-white">
     <div class="row">
       <div class="col-lg-4 mb-3">
-        <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="/" aria-label="Untraceable University">
+        <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="{% url "index" %}" aria-label="{{ _("Untraceable University") }}">
           <img src="{% static "img/logos/crop/" %}logo_{{ request.language }}_blue.png" alt="" class="logo" />
         </a>
       </div>

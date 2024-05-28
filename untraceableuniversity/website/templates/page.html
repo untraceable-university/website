@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 
 {% block title %}
-  {{ info.title }}
+  {{ info.title }} - {{ info.page.parent_page }}
 {% endblock %}
 
 {% block head %}
@@ -56,6 +56,13 @@
   .framework h3 {
     margin-left: 0;
   }
+}
+
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
 </style>
