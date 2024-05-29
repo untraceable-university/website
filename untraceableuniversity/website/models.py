@@ -18,6 +18,7 @@ class Page(models.Model):
     parent_page = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     slug = models.SlugField(max_length=100, null=True, blank=True, unique=True)
+    is_active = models.BooleanField(db_index=True, default=True)
     FORMAT = [
         ("markdown", "Markdown"),
         ("html", "HTML"),

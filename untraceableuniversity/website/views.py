@@ -56,10 +56,10 @@ def page(request, slug):
 
     context = {
         "info": info,
-        "menu": parent_page.slug,
+        "menu": parent_page.page.slug,
         "parent_page": parent_page,
         "page": slug,
-        "sidebar": PageContent.objects.filter(page__parent_page=info.page.parent_page, language__language_code=request.language),
+        "sidebar": PageContent.objects.filter(page__parent_page=info.page.parent_page, language__language_code=request.language, page__is_active=True),
     }
 
     return render(request, "page.html", context)
@@ -123,7 +123,7 @@ def controlpanel_page(request, id=None):
     else:
         initial = {}
 
-    PageForm = modelform_factory(Page, fields=("name", "parent_page", "position", "format", "slug"))
+    PageForm = modelform_factory(Page, fields=("name", "parent_page", "position", "format", "slug", "is_active"))
     PageContentForm = modelform_factory(PageContent, fields=("title", "content", "slug"))
 
     languages = Language.objects.all()

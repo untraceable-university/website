@@ -273,9 +273,9 @@ footer a{
 
 <div class="float-end mt-2" style="margin-right:20px">
   {% if request.language == "en" %}
-    <a href="/es/">Español</a>
+    <a href="/es{{ request.get_full_path }}">Español</a>
   {% else %}
-    <a href="/">English</a>
+    <a href="{{ request.get_full_path|slice:"3:" }}">English</a>
   {% endif %}
 </div>
 
