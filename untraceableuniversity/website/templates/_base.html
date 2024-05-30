@@ -3,257 +3,45 @@
 <html>
 <head>
 <title>{% block title %}{% endblock %} - {{ _("Untraceable University") }}</title>
+
+{% if canonical %}
+  <link rel="canonical" href="{{ URL }}{{ canonical }}">
+{% endif %}
+
 <meta charset="UTF-8" />
+
 {% if jquery or controlpanel %}
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 {% endif %}
+
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link class="favicon" rel="shortcut icon" sizes="126x126" href="{% static 'img/favicon/favicon.ico' %}">
 <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
 <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+
 <meta name="msapplication-TileColor" content="#7F8E95">
 <meta name="theme-color" content="#ffffff">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static "css/styles.css" %}?r" />
 
 <style type="text/css">
-.yellow {
-  background:#fdbf1e;
-}
-.nav-pills {
-  --bs-nav-pills-link-active-bg: #333;
-}
-.btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #427d99;
-  --bs-btn-border-color: #427d99;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #6799b0;
-  --bs-btn-hover-border-color: #427d99;
-  --bs-btn-focus-shadow-rgb: 49,132,253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #2e586c;
-  --bs-btn-active-border-color: #0a53be;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #427d99;
-  --bs-btn-disabled-border-color: #427d99;
-}
-
-.btn-info {
-  --bs-btn-color: #333;
-  --bs-btn-bg: #D8CFBD;
-  --bs-btn-border-color: #D8CFBD;
-  --bs-btn-hover-color: #333;
-  --bs-btn-hover-bg: #AEA696;
-  --bs-btn-hover-border-color: #D8CFBD;
-  --bs-btn-focus-shadow-rgb: 49,132,253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #2e586c;
-  --bs-btn-active-border-color: #0a53be;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #D8CFBD;
-  --bs-btn-disabled-border-color: #D8CFBD;
-}
-:root {
-  --bs-body-font-family: "Poppins", sans-serif;
-}
-a {
-  color: black;
-  text-underline-offset: 3px;
-  text-decoration: underline #fdbf1e;
-  text-decoration-thickness: 3px; /* Thickness of the underline */
-  font-weight: 500;
-}
-a:hover {
-  text-decoration: none;
-}
-
-.main, .tfont {
-  font-size: 1.2em;
-  line-height: 1.6em;
-}
-
-h1 {
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-
-.leftcol h2 {
-  text-align: right;
-}
-
 footer {
   background: #427d99 url("{% static "img/bg.footer.jpg" %}") bottom right no-repeat;
 }
 
-footer .logo {
-  max-height: 300px;
-}
-
-header a span, header a.nav-link {
-  z-index: 100;
-  position: relative;
-  color: #fff;
-  font-weight: 500;
-}
-header .scrolled_down a span, header .scrolled_down a.nav-link {
-  color: #000;
-}
+{% if homepage %}
 .wrapper {
-  {% if homepage %}
-    margin-top: 10px;
-  {% else %}
-    margin-top: 70px;
-  {% endif %}
-}
-
-.main img {
-  max-width: 100%;
-}
-
-.spacer {
-  height: 95px;
-}
-
-header {
-  background: #7F8E95;
-}
-
-.nav-divider {
-  width: 100%;
-  height: 3rem;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
-  border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-}
-
-@media (max-width: 1200px) {
-  #nbtoggler {
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-}
-
-iframe {
-  border-radius: 10px;
-}
-
-.yellow h2 {
-  color:#fff;
-  font-weight:bold;
-  width:100%;
-  margin-top:30px;
-  font-family: "Anton", sans-serif;
-}
-.yellow img {
-  max-height: 200px;
-  max-width: 100%;
   margin-top: 10px;
 }
-
-@media (min-width: 768px) {
-  .yellow h2 {
-    margin-top: 40px;
-    width: 75%;
-  }
-  .yellow img {
-    max-height: 350px;
-  }
-}
-@media (max-width: 768px) {
-  .yellow h2 {
-    font-size: calc(1.0rem + .9vw);
-  }
-  .sidebar {
-    display: none !important;
-  }
-}
-
-@media (max-width: 576px ) {
-  .quote {
-    display: none;
-  }
-  .yellow img {
-    max-height: 150px;
-  }
-}
-@media (min-width: 1248px) {
-  .yellow h2 {
-    margin-top: 70px;
-    width: 50%;
-  }
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  background: #fff;
-  color:#000;
-}
-footer a{
-  color:#fff;
-  font-weight:bold;
-}
-
-.socialmedia svg {
-  color:#fff;
-  width: 20px;
-}
-.yellow h3 {
-  text-transform: uppercase;
-  color:#fff;
-  font-size:14px;
-
-}
-
-.wrapper img {
-  max-width: 100%;
-}
-
-.dropdown-item.active, .dropdown-item:active,
-.sidebar .nav-link.active {
-  font-weight: 600;
-  background: #ccc;
-  color: #333;
-}
-
-.icon-square {
-  width: 3rem;
-  height: 3rem;
-  border-radius: .75rem;
-}
-.icon-square svg{
-  width:1em;
-}
-
-.main h2 {
-  margin-top: 1.3em;
-}
-
-::selection {
-    background-color: #427d99;
-    color: #fff;
-}
-.btn-edit {
-  position: fixed;
-  top: 60px;
-  left: 10px;
-}
-.btn-control-panel {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-}
-.block-list li strong {display:block}
-.block-list li{margin-bottom:25px}
+{% endif %}
 
 {% if controlpanel %}
   .yellow img {max-height:100px}
@@ -264,10 +52,16 @@ footer a{
   }
   header{display:none}
 {% endif %}
-
 </style>
 
 {% block head %}{% endblock %}
+
+<meta name="og:type" content="website">
+<meta name="og:title" content="{% if title %}{{ title }} - {% endif %}{{ _("The Untraceable University") }}">
+<meta name="og:description" content="{% if description %}{{ description }}{% elif info_description %}{{ info.get_content|striptags|truncatewords:50 }}{% else %}{{ _("The goal of the Untraceable University is to find out how we can build a culture that is socially and ecologically restorative, and which embraces radical change to our existing ways of living, learning, and working.") }}{% endif %}">
+<meta name="og:url" content="{{ URL }}{% if canonical %}{{ canonical }}{% else %}{{ request.get_full_path }}{% endif %}">
+<meta name="og:image" content="{{ URL }}{% static "img/logos/" %}logo_{{ request.language }}.png">
+
 </head>
 <body>
 
@@ -319,9 +113,9 @@ footer a{
               href="{% url "about" "guiding-principles" %}">{{ _("Guiding principles") }}</a></li>
             <li><a class="dropdown-item {% if menu == "about" and page == "sites" %}active{% endif %}"
               href="{% url "about" "sites" %}">{{ _("Potential sites") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "about" and page == "about-us" %}active{% endif %}"
-              href="{% url "about" "about-us" %}">{{ _("About us") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "about" and page == "news" %}active{% endif %}"
+            <li><a class="dropdown-item {% if menu == "about" and page == "who-we-are" %}active{% endif %}"
+              href="{% url "about" "who-we-are" %}">{{ _("Who we are") }}</a></li>
+            <li hidden><a class="dropdown-item {% if menu == "about" and page == "news" %}active{% endif %}"
               href="{% url "about" "news" %}">{{ _("News") }}</a></li>
           </ul>
         </li>
@@ -400,11 +194,11 @@ footer a{
         <h5 class="mt-5">{{ _("Language") }}</h5>
         <ul class="list-unstyled">
           {% if request.language == "en" %}
-            <li><strong>English</strong></li>
-            <li><a href="/es/">Español</a></li>
+            <li><i class="bi bi-check-circle"></i> <strong>English</strong></li>
+            <li><i class="bi bi-circle"></i> <a href="/es/">Español</a></li>
           {% else %}
-            <li><strong>Español</strong></li>
-            <li><a href="/">English</a></li>
+            <li><i class="bi bi-check-circle"></i> <strong>Español</strong></li>
+            <li><i class="bi bi-circle"></i> <a href="/">English</a></li>
           {% endif %}
         </ul>
 
@@ -417,6 +211,15 @@ footer a{
           <input type="hidden" name="b_db071d713e76cb286850fcbad_4a944722c8" tabindex="-1" value="">
           <button type="submit" class="btn btn-light">{{ _("Sign up") }}</button>
         </form>
+
+          <p class="mt-4"><strong>{{ _("We embrace open access and open source code.") }}</strong>
+            <a href="{% url "terms-and-conditions" %}">Read more</a>
+          </p>
+
+          <p>
+          {{ _("Content license") }}: <br><a href="{% url "terms-and-conditions" %}" >CC BY 4.0</a>.
+          </p>
+
       </div>
       <div class="col-6 col-lg-2 offset-lg-1 mb-3 socialmedia">
 
@@ -426,34 +229,30 @@ footer a{
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"/></svg>
             <a href="https://www.youtube.com/@UntraceableUniversity">YouTube</a>
           </li>
-          <li class="mb-2">
+          <li class="mb-2" hidden>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/></svg>
             <a href="XXX">Facebook</a>
           </li>
-          <li class="mb-2">
+          <li class="mb-2" hidden>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/></svg>
             <a href="XXX">Mastodon</a>
           </li>
-          <li class="mb-2">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-            <a href="https://github.com/untraceable-university/website">Github</a>
-          </li>
-          <li class="mb-2">
+          <li class="mb-2" hidden>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
             <a href="XXX">Instagram</a>
           </li>
 
         </ul>
+        <h5 class="mt-5">{{ _("Source code") }}</h5>
+        <ul class="list-unstyled">
+        <li>
 
-        <ul class="list-unstyled small" hidden>
-          <li class="mb-2"><strong>{{ _("We embrace open access and open source code.") }}</strong></li>
-          <li class="mb-2">{{ _("Code licensed") }} <a href="https://github.com/untraceable-university/website" target="_blank" rel="license">MIT</a>, {{ _("content") }} <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>.
-          </li>
-          <li class="mb-2">{{ _("We do not track visitors. By default, no cookies are used on this website.") }}
-          <a href="">{{ _("Privacy policy") }}</a>
-          </li>
-          <li class="mb-2">{{ _("Last update:") }} {{ LAST_UPDATE.last_update|date:"M Y" }}</li>
-        </ul>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+            <a href="https://github.com/untraceable-university/website">Github</a>
+            <li>
+
+          </ul>
+
       </div>
     </div>
   </div>

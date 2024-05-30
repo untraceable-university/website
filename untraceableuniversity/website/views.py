@@ -54,15 +54,40 @@ def page(request, slug):
     if info == parent_page:
         info.title = _("Overview")
 
+    title = info.title
+    if info.page.parent_page:
+        title += " - " + info.page.parent_page.name
+
     context = {
         "info": info,
         "menu": parent_page.page.slug,
         "parent_page": parent_page,
         "page": slug,
         "sidebar": PageContent.objects.filter(page__parent_page=info.page.parent_page, language__language_code=request.language, page__is_active=True),
+        "canonical": info.get_absolute_url(),
+        "title": title,
+        "info_description": True,
     }
 
     return render(request, "page.html", context)
+
+@csrf_exempt
+def page_simple(request, slug):
+    info = get_page(request, slug)
+
+    title = info.title
+    if info.page.parent_page:
+        title += " - " + info.page.parent_page.name
+
+    context = {
+        "info": info,
+        "page": slug,
+        "canonical": info.get_absolute_url(),
+        "title": title,
+        "info_description": True,
+    }
+
+    return render(request, "page.simple.html", context)
 
 @csrf_exempt
 def templates(request):
@@ -92,10 +117,13 @@ def contact(request):
         else:
             messages.error(request, _("Sorry, please enter the right value in the robot check question."))
 
+    info = get_page(request, "contact")
+
     context = {
-        "info": get_page(request, "contact"),
+        "info": info,
         "menu": "contact",
         "message_sent": message_sent,
+        "title": info.title,
     }
 
     return render(request, "contact.html", context)

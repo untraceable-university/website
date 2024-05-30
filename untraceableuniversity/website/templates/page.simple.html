@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+
+{% block title %}
+  {{ info }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col-lg-8 col-md-12">
+
+      <h1>{{ info }}</h1>
+      {{ info.get_content }}
+
+    </div>
+
+  </div>
+
+</div>
+
+{% if request.user.is_staff %}
+  <a class="btn btn-warning btn-edit" href="{% url "controlpanel_page" info.page.id %}?redirect={{ request.get_full_path }}">
+    <i class="bi bi-pencil-square"></i>
+  </a>
+{% endif %}
+
+{% endblock %}

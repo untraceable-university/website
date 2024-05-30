@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-29 11:34+0000\n"
-"PO-Revision-Date: 2024-05-29 13:37+0200\n"
+"POT-Creation-Date: 2024-05-30 15:16+0000\n"
+"PO-Revision-Date: 2024-05-30 17:17+0200\n"
 "Last-Translator: Paul Hoekman <paul@cvselection.net>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -28,16 +28,27 @@ msgid "Spanish"
 msgstr "Español"
 
 #: untraceableuniversity/website/templates/_base.html:5
-#: untraceableuniversity/website/templates/_base.html:388
-#: untraceableuniversity/website/templates/index.html:51
+#: untraceableuniversity/website/templates/_base.html:182
+#: untraceableuniversity/website/templates/index.html:41
 msgid "Untraceable University"
 msgstr "Universidad sin Rastros"
 
-#: untraceableuniversity/website/templates/_base.html:286
+#: untraceableuniversity/website/templates/_base.html:60
+#: untraceableuniversity/website/templates/_base.html:80
 msgid "The Untraceable University"
 msgstr "La Universidad sin Rastros"
 
-#: untraceableuniversity/website/templates/_base.html:293
+#: untraceableuniversity/website/templates/_base.html:61
+msgid ""
+"The goal of the Untraceable University is to find out how we can build a "
+"culture that is socially and ecologically restorative, and which embraces "
+"radical change to our existing ways of living, learning, and working."
+msgstr ""
+"El objetivo de la Universidad sin Rastros es descubrir cómo podemos construir"
+" una cultura que sea social y ecológicamente restauradora. Y que abarca un"
+" cambio radical en nuestras formas actuales de vivir, aprender y trabajar."
+
+#: untraceableuniversity/website/templates/_base.html:87
 msgid ""
 "You never change things by fighting against the existing reality. To change "
 "something, build a new model that makes the old model obsolete."
@@ -45,129 +56,118 @@ msgstr ""
 "Nunca se cambian las cosas luchando contra la realidad existente. Para "
 "cambiar algo, construya un nuevo modelo que haga obsoleto el modelo anterior."
 
-#: untraceableuniversity/website/templates/_base.html:312
+#: untraceableuniversity/website/templates/_base.html:106
 msgid "Home"
 msgstr "Inicio"
 
-#: untraceableuniversity/website/templates/_base.html:313
+#: untraceableuniversity/website/templates/_base.html:107
 msgid "About"
 msgstr "Sobre nosotros"
 
-#: untraceableuniversity/website/templates/_base.html:317
-#: untraceableuniversity/website/templates/_base.html:333
-#: untraceableuniversity/website/templates/_base.html:345
-#: untraceableuniversity/website/templates/page.html:87
+#: untraceableuniversity/website/templates/_base.html:111
+#: untraceableuniversity/website/templates/_base.html:127
+#: untraceableuniversity/website/templates/_base.html:139
+#: untraceableuniversity/website/templates/page.html:23
 #: untraceableuniversity/website/views.py:55
 msgid "Overview"
 msgstr "Introducción"
 
-#: untraceableuniversity/website/templates/_base.html:319
+#: untraceableuniversity/website/templates/_base.html:113
 msgid "Guiding principles"
 msgstr "Principios rectores"
 
-#: untraceableuniversity/website/templates/_base.html:321
+#: untraceableuniversity/website/templates/_base.html:115
 msgid "Potential sites"
 msgstr "Sitios potenciales"
 
-#: untraceableuniversity/website/templates/_base.html:323
-#: untraceableuniversity/website/templates/_base.html:393
-msgid "About us"
-msgstr "Sobre nosotros"
+#: untraceableuniversity/website/templates/_base.html:117
+msgid "Who we are"
+msgstr "Quiénes somos"
 
-#: untraceableuniversity/website/templates/_base.html:325
+#: untraceableuniversity/website/templates/_base.html:119
 msgid "News"
 msgstr "Noticias"
 
-#: untraceableuniversity/website/templates/_base.html:329
+#: untraceableuniversity/website/templates/_base.html:123
 msgid "Activities"
 msgstr "Actividades"
 
-#: untraceableuniversity/website/templates/_base.html:335
-#: untraceableuniversity/website/templates/index.html:86
+#: untraceableuniversity/website/templates/_base.html:129
+#: untraceableuniversity/website/templates/index.html:76
 msgid "Research"
 msgstr "Investigación"
 
-#: untraceableuniversity/website/templates/_base.html:337
-#: untraceableuniversity/website/templates/index.html:97
+#: untraceableuniversity/website/templates/_base.html:131
+#: untraceableuniversity/website/templates/index.html:87
 msgid "Education & Outreach"
 msgstr "Educación y divulgación"
 
-#: untraceableuniversity/website/templates/_base.html:341
+#: untraceableuniversity/website/templates/_base.html:135
 msgid "Join Us"
 msgstr "Unite"
 
-#: untraceableuniversity/website/templates/_base.html:347
+#: untraceableuniversity/website/templates/_base.html:141
 msgid "Thematic Action Committees"
 msgstr "Comités de Acción Temática"
 
-#: untraceableuniversity/website/templates/_base.html:349
-#| msgid "Volunteer"
+#: untraceableuniversity/website/templates/_base.html:143
 msgid "Volunteers"
 msgstr "Voluntarios"
 
-#: untraceableuniversity/website/templates/_base.html:351
+#: untraceableuniversity/website/templates/_base.html:145
 msgid "Advisory Board"
 msgstr "Comité Asesor"
 
-#: untraceableuniversity/website/templates/_base.html:355
+#: untraceableuniversity/website/templates/_base.html:149
 msgid "Contact"
 msgstr "Contacto"
 
-#: untraceableuniversity/website/templates/_base.html:396
+#: untraceableuniversity/website/templates/_base.html:187
+#: untraceableuniversity/website/templates/index.html:48
+msgid "About us"
+msgstr "Sobre nosotros"
+
+#: untraceableuniversity/website/templates/_base.html:190
 msgid "We are a non-profit research institute, registered in South Africa."
 msgstr "Somos una ONG sin fines de lucro, registrada en Sudáfrica."
 
-#: untraceableuniversity/website/templates/_base.html:400
+#: untraceableuniversity/website/templates/_base.html:194
 msgid "Language"
 msgstr "Idioma"
 
-#: untraceableuniversity/website/templates/_base.html:413
+#: untraceableuniversity/website/templates/_base.html:207
 msgid "Newsletter"
 msgstr "Boletín"
 
-#: untraceableuniversity/website/templates/_base.html:415
+#: untraceableuniversity/website/templates/_base.html:209
 msgid "Name"
 msgstr "Nombre"
 
-#: untraceableuniversity/website/templates/_base.html:416
+#: untraceableuniversity/website/templates/_base.html:210
 msgid "E-mail"
 msgstr "Correo"
 
-#: untraceableuniversity/website/templates/_base.html:418
+#: untraceableuniversity/website/templates/_base.html:212
 msgid "Sign up"
 msgstr "Registrar"
 
-#: untraceableuniversity/website/templates/_base.html:423
+#: untraceableuniversity/website/templates/_base.html:215
+msgid "We embrace open access and open source code."
+msgstr "Soportamos a acceso libre y código fuente abierto."
+
+#: untraceableuniversity/website/templates/_base.html:220
+#| msgid "Code licensed"
+msgid "Content license"
+msgstr "Licencia de contenido"
+
+#: untraceableuniversity/website/templates/_base.html:226
 #: untraceableuniversity/website/templates/contact.html:117
 msgid "Social media"
 msgstr "Redes sociales"
 
-#: untraceableuniversity/website/templates/_base.html:449
-msgid "We embrace open access and open source code."
-msgstr "Soportamos a acceso libre y código fuente abierto."
-
-#: untraceableuniversity/website/templates/_base.html:450
-msgid "Code licensed"
-msgstr "Licencia de código"
-
-#: untraceableuniversity/website/templates/_base.html:450
-msgid "content"
-msgstr "contenido"
-
-#: untraceableuniversity/website/templates/_base.html:452
-msgid ""
-"We do not track visitors. By default, no cookies are used on this website."
-msgstr ""
-"No rastreamos a los visitantes del sitio. Por defecto, no se utilizan a "
-"cookies para el uso de nuestro sitio web."
-
-#: untraceableuniversity/website/templates/_base.html:453
-msgid "Privacy policy"
-msgstr "Políticas de Privacidad"
-
-#: untraceableuniversity/website/templates/_base.html:455
-msgid "Last update:"
-msgstr "Últimate actualización:"
+#: untraceableuniversity/website/templates/_base.html:246
+msgid "Source code"
+msgstr "Código fuente"
 
 #: untraceableuniversity/website/templates/contact.html:86
 msgid "Your name"
@@ -189,25 +189,25 @@ msgstr "Mensaje"
 msgid "Send"
 msgstr "Enviar"
 
-#: untraceableuniversity/website/templates/index.html:65
-#: untraceableuniversity/website/templates/index.html:91
-#: untraceableuniversity/website/templates/index.html:102
+#: untraceableuniversity/website/templates/index.html:55
+#: untraceableuniversity/website/templates/index.html:81
+#: untraceableuniversity/website/templates/index.html:92
 msgid "Learn more"
 msgstr "Leér más"
 
-#: untraceableuniversity/website/templates/index.html:66
+#: untraceableuniversity/website/templates/index.html:56
 msgid "Join us"
 msgstr "Unite"
 
-#: untraceableuniversity/website/templates/index.html:71
+#: untraceableuniversity/website/templates/index.html:61
 msgid "Introduction of the Untraceable University"
 msgstr "Introducción de La Universidad sin Rastros"
 
-#: untraceableuniversity/website/templates/index.html:114
+#: untraceableuniversity/website/templates/index.html:104
 msgid "Join the Untraceable University Research Initiative"
 msgstr "Unite a La Universidad sin Rastros"
 
-#: untraceableuniversity/website/templates/index.html:116
+#: untraceableuniversity/website/templates/index.html:106
 msgid ""
 "We are looking for people interested in scaling radical ideas around social "
 "justice and environmental sustainability."
@@ -215,11 +215,11 @@ msgstr ""
 "Buscamos personas interesadas en escalar ideas radicales en torno a la "
 "justicia social y la sostenibilidad ambiental."
 
-#: untraceableuniversity/website/templates/index.html:119
+#: untraceableuniversity/website/templates/index.html:109
 msgid "Researcher"
 msgstr "Investigador"
 
-#: untraceableuniversity/website/templates/index.html:121
+#: untraceableuniversity/website/templates/index.html:111
 msgid ""
 "Do you engage in academic research? Does your field have value to add to the "
 "visions and execution of the ideas behind the Untraceable University?"
@@ -228,18 +228,18 @@ msgstr ""
 "a las visiones y la ejecución de las ideas detrás de la Universidad sin "
 "Rastro?"
 
-#: untraceableuniversity/website/templates/index.html:123
-#: untraceableuniversity/website/templates/index.html:130
-#: untraceableuniversity/website/templates/index.html:137
-#: untraceableuniversity/website/templates/index.html:144
+#: untraceableuniversity/website/templates/index.html:113
+#: untraceableuniversity/website/templates/index.html:120
+#: untraceableuniversity/website/templates/index.html:127
+#: untraceableuniversity/website/templates/index.html:134
 msgid "More information"
 msgstr "Más información"
 
-#: untraceableuniversity/website/templates/index.html:126
+#: untraceableuniversity/website/templates/index.html:116
 msgid "Practitioner"
 msgstr "Profesional"
 
-#: untraceableuniversity/website/templates/index.html:128
+#: untraceableuniversity/website/templates/index.html:118
 msgid ""
 "Do you work in a field that is relevant to social and environmental "
 "transitions? To the planning, design, and construction of place and culture? "
@@ -249,11 +249,11 @@ msgstr ""
 "ambientales? ¿A la planificación, diseño y construcción del hogar, ciudad, o "
 "la cultura? Necesitamos tu apoyo."
 
-#: untraceableuniversity/website/templates/index.html:133
+#: untraceableuniversity/website/templates/index.html:123
 msgid "Student"
 msgstr "Estudiante"
 
-#: untraceableuniversity/website/templates/index.html:135
+#: untraceableuniversity/website/templates/index.html:125
 msgid ""
 "Are you a Masters student or PhD candidate and interested in helping "
 "organise events and prepare material that can bring your field's thinking to "
@@ -263,11 +263,11 @@ msgstr ""
 "ayudar a organizar eventos y preparar material que pueda llevar el "
 "pensamiento de tu campo a la Universidad sin Rastros?"
 
-#: untraceableuniversity/website/templates/index.html:140
+#: untraceableuniversity/website/templates/index.html:130
 msgid "Volunteer"
 msgstr "Voluntario"
 
-#: untraceableuniversity/website/templates/index.html:142
+#: untraceableuniversity/website/templates/index.html:132
 msgid ""
 "We have a number of internal volunteer roles available, related to "
 "communications and outreach, website and multimedia development, and event "
@@ -277,17 +277,32 @@ msgstr ""
 "comunicaciones y divulgación, desarrollo de sitios web y multimedia, y "
 "gestión de eventos."
 
-#: untraceableuniversity/website/views.py:90
+#: untraceableuniversity/website/views.py:115
 msgid ""
 "Thanks, we have received your information. We will get back to you within a "
 "few days."
 msgstr "Gracias, recibimos tu información. Te contactamos dentro de unos días."
 
-#: untraceableuniversity/website/views.py:93
+#: untraceableuniversity/website/views.py:118
 msgid "Sorry, please enter the right value in the robot check question."
 msgstr ""
 "Lo siento, ingresa el valor correcto en la pregunta de verificación del "
 "robot."
+
+#~ msgid "content"
+#~ msgstr "contenido"
+
+#~ msgid ""
+#~ "We do not track visitors. By default, no cookies are used on this website."
+#~ msgstr ""
+#~ "No rastreamos a los visitantes del sitio. Por defecto, no se utilizan a "
+#~ "cookies para el uso de nuestro sitio web."
+
+#~ msgid "Privacy policy"
+#~ msgstr "Políticas de Privacidad"
+
+#~ msgid "Last update:"
+#~ msgstr "Últimate actualización:"
 
 #~ msgid "activities"
 #~ msgstr "actividades"

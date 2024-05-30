@@ -48,6 +48,16 @@ class PageContent(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        if self.language_id != 1:
+            url = "/es/"
+        else:
+            url = "/"
+        if self.page.parent_page:
+            url += self.page.parent_page.slug + "/"
+        url += self.page.slug + "/"
+        return url
+
     class Meta:
         ordering = ["page__position", "title"]
 

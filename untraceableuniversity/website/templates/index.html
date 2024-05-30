@@ -3,16 +3,6 @@
 
 {% block head %}
 <style type="text/css">
-.inspiration .card {
-  max-width: 90px;
-  margin-right: 10px;
-  box-shadow:0 10px 16px 0 rgba(0,0,0,0.1),0 6px 20px 0 rgba(0,0,0,0.1) !important;
-  margin-bottom: 10px;
-}
-.inspiration {
-  column-count: 5;
-  column-gap: 2px;
-}
 .joinbox {
   background:#f4f4f4;
 }
@@ -55,7 +45,7 @@ iframe {
 <div class="container px-4 px-md-3 mb-5">
   <div class="row">
     <div class="col-lg-5 mb-3">
-      <h2 class="mt-5"><a href="{% url "about" %}">About Us</a></h2>
+      <h2 class="mt-5"><a href="{% url "about" %}">{{ _("About us") }}</a></h2>
 
       <p class="lead">
         {{ summary.get_content }}

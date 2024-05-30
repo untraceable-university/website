@@ -4,70 +4,6 @@
   {{ info.title }} - {{ info.page.parent_page }}
 {% endblock %}
 
-{% block head %}
-<style type="text/css">
-.framework h3{
-  padding: 10px;
-  margin-top: 30px;
-  margin-left: 234px;
-  text-transform: uppercase;
-}
-
-.framework li {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 30px;
-}
-
-.framework li strong {
-  width: 200px;
-  flex-shrink: 0; /* Prevents the strong element from shrinking */
-  text-transform: uppercase;
-  font-weight: normal;
-  text-align: right;
-  padding-top: 10px;
-  margin-right: 10px;
-}
-
-/* This will make the content occupy the remaining space */
-.framework li span {
-  flex-grow: 1;
-  border-left: 3px solid #333;
-  padding: 10px;
-  background: #f8f9fa;
-}
-
-@media (max-width: 1000px ) {
-  .framework li {
-    display: block;
-  }
-  .framework li strong {
-    padding-top: 0;
-    display: block;
-    font-weight: bold;
-    width: auto;
-    text-align: left;
-  }
-  .framework li span {
-    background: #fff;
-    border: none;
-    padding: 0;
-  }
-  .framework h3 {
-    margin-left: 0;
-  }
-}
-
-.sidebar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-}
-
-</style>
-{% endblock %}
-
 {% block content %}
 
 <div class="container pb-5">
@@ -76,7 +12,7 @@
 
     {% if sidebar %}
     <div class="d-flex flex-column sidebar flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <a href="{% url parent_page.page.slug %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <span class="fs-4">{{ parent_page }}</span>
       </a>
       <hr>
