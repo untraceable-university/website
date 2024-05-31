@@ -45,7 +45,7 @@ def index(request):
     return render(request, "index.html", context)
 
 @csrf_exempt
-def page(request, slug):
+def page(request, slug, child_page=None):
     info = get_page(request, slug)
     parent_page = PageContent.objects.get(page=info.page.parent_page, language__language_code=request.language)
 
@@ -58,15 +58,31 @@ def page(request, slug):
     if info.page.parent_page:
         title += " - " + info.page.parent_page.name
 
+    children = None
+    include_file = None
+    show_date = False
+    if child_page:
+        # Child page means that we are in a sub-sub page, such as About > News > Specific News Item. 
+        # We then load a new get_page request, but only here because we do want the regular sidebar menu
+        # so in this way we only overwrite the main content
+        info = get_page(request, child_page)
+        show_date = True
+    elif info.page.slug == "news":
+        children = PageContent.objects.filter(page__parent_page=info.page, language__language_code=request.language)
+        include_file = "_news.html"
+
     context = {
         "info": info,
         "menu": parent_page.page.slug,
         "parent_page": parent_page,
         "page": slug,
-        "sidebar": PageContent.objects.filter(page__parent_page=info.page.parent_page, language__language_code=request.language, page__is_active=True),
+        "sidebar": PageContent.objects.filter(page__parent_page=parent_page.page, language__language_code=request.language, page__is_active=True),
         "canonical": info.get_absolute_url(),
         "title": title,
         "info_description": True,
+        "children": children,
+        "include_file": include_file,
+        "show_date": show_date,
     }
 
     return render(request, "page.html", context)

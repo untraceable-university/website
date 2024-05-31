@@ -14,6 +14,7 @@ urlpatterns = [
 
     path("about/", views.page, { "slug": "about" }, name="about"),
     path("about/<slug:slug>/", views.page, name="about"),
+    path("about/<slug:slug>/<slug:child_page>/", views.page, name="about"),
 
     path("contact/", views.contact, name="contact"),
     path("templates/", views.templates),
@@ -31,5 +32,6 @@ urlpatterns = [
     # Redirecting old URLs. Remove by June 2024:
     path("research/", lambda request: redirect("/activities/research/")),
     path("teaching/", lambda request: redirect("/activities/education-and-outreach/")),
+    path("overview/", lambda request: redirect("/about/")),
 
 ]

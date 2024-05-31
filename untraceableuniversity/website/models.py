@@ -19,6 +19,7 @@ class Page(models.Model):
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     slug = models.SlugField(max_length=100, null=True, blank=True, unique=True)
     is_active = models.BooleanField(db_index=True, default=True)
+    created_at = models.DateTimeField(auto_now=True)
     FORMAT = [
         ("markdown", "Markdown"),
         ("html", "HTML"),

@@ -11,29 +11,39 @@
   <div class="row">
 
     {% if sidebar %}
-    <div class="d-flex flex-column sidebar flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
-      <a href="{% url parent_page.page.slug %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <span class="fs-4">{{ parent_page }}</span>
-      </a>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        {% for each in sidebar %}
-          <li class="nav-item">
-            {% if each.page.parent_page == each.page %}
-              <a href="{% url each.page.slug %}" class="nav-link link-body-emphasis {% if page == each.page.slug %}active{% endif %}">{{ _("Overview") }}</a>
-            {% else %}
-              <a href="{% url parent_page.page.slug each.page.slug %}" class="nav-link link-body-emphasis {% if page == each.page.slug %}active{% endif %}">{{ each }}</a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+      <div class="d-flex flex-column sidebar flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+        <a href="{% url parent_page.page.slug %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <span class="fs-4">{{ parent_page }}</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          {% for each in sidebar %}
+            <li class="nav-item">
+              {% if each.page.parent_page == each.page %}
+                <a href="{% url each.page.slug %}" class="nav-link link-body-emphasis {% if page == each.page.slug %}active{% endif %}">{{ _("Overview") }}</a>
+              {% else %}
+                <a href="{% url parent_page.page.slug each.page.slug %}" class="nav-link link-body-emphasis {% if page == each.page.slug %}active{% endif %}">{{ each }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     {% endif %}
 
     <div class="{% if sidebar %}col{% else %}col-lg-8 col-md-12 offset-lg-2{% endif %}">
       <h1>{{ info.title }}</h1>
       <div class="main">
-      {{ info.get_content }}
+
+        {% if show_date %}
+          <p><em>{{ info.page.created_at|date:"M d, Y" }}</em></p>
+        {% endif %}
+
+        {{ info.get_content }}
+
+        {% if include_file %}
+          {% include include_file %}
+        {% endif %}
+
       </div>
 
     </div>

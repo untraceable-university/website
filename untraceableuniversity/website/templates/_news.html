@@ -1,0 +1,10 @@
+{% for each in children %}
+  <section>
+    <h2><a href="{{ each.page.slug }}/">{{ each }}</a></h2>
+    <p><em>{{ each.page.created_at|date:"M d, Y" }}</em></p>
+    <div>
+      {{ each.get_content|truncatewords:40 }}
+    </div>
+    <a href="{{ each.page.slug }}/" class="btn btn-primary">{{ _("Read more") }}</a>
+  </section>
+{% endfor %}
