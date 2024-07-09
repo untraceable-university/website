@@ -125,6 +125,8 @@ footer {
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {% if menu == "activities" and page == "activities" %}active{% endif %}"
               href="{% url "activities" %}">{{ _("Overview") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "activities" and page == "inaugural-workshop" %}active{% endif %}"
+              href="{% url "activities" "inaugural-workshop" %}">{{ _("Inaugural workshop") }}</a></li>
             <li><a class="dropdown-item {% if menu == "activities" and page == "research" %}active{% endif %}"
               href="{% url "activities" "research" %}">{{ _("Research") }}</a></li>
             <li><a class="dropdown-item {% if menu == "activities" and page == "education-and-outreach" %}active{% endif %}"

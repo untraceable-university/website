@@ -1,11 +1,11 @@
-sudo docker exec -it uu_web django-admin makemessages --ignore media/* -l es
+sudo docker exec -it uu_web /code/untraceableuniversity/manage.py makemessages --ignore media/* -l es
 echo "A number of .po files were created in /locales. In order to update translations for a certain language, simply open the .po files and edit them. Once this is done, run this command to generate .mo files and activate them:"
 
 echo ""
 echo "To edit, run the following command:"
 echo "lokalize /s/uu/untraceableuniversity/locale/es/LC_MESSAGES/*po"
 echo ""
-echo "sudo docker exec -it uu_web django-admin compilemessages"
+echo "sudo docker exec -it uu_web /code/untraceableuniversity/manage.py compilemessages"
 echo ""
 
 echo "For more information, see: https://docs.djangoproject.com/en/4.2/topics/i18n/translation/#localization-how-to-create-language-files"

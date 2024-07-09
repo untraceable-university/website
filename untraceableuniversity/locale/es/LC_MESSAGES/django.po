@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-30 15:16+0000\n"
-"PO-Revision-Date: 2024-05-30 17:17+0200\n"
+"POT-Creation-Date: 2024-07-09 13:02+0000\n"
+"PO-Revision-Date: 2024-07-09 15:02+0200\n"
 "Last-Translator: Paul Hoekman <paul@cvselection.net>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 24.05.1\n"
 
 #: untraceableuniversity/untraceableuniversity/settings.py:126
 #: untraceableuniversity/untraceableuniversity/settings.sample.py:124
@@ -28,7 +28,7 @@ msgid "Spanish"
 msgstr "Español"
 
 #: untraceableuniversity/website/templates/_base.html:5
-#: untraceableuniversity/website/templates/_base.html:182
+#: untraceableuniversity/website/templates/_base.html:184
 #: untraceableuniversity/website/templates/index.html:41
 msgid "Untraceable University"
 msgstr "Universidad sin Rastros"
@@ -44,9 +44,10 @@ msgid ""
 "culture that is socially and ecologically restorative, and which embraces "
 "radical change to our existing ways of living, learning, and working."
 msgstr ""
-"El objetivo de la Universidad sin Rastros es descubrir cómo podemos construir"
-" una cultura que sea social y ecológicamente restauradora. Y que abarca un"
-" cambio radical en nuestras formas actuales de vivir, aprender y trabajar."
+"El objetivo de la Universidad sin Rastros es descubrir cómo podemos "
+"construir una cultura que sea social y ecológicamente restauradora. Y que "
+"abarca un cambio radical en nuestras formas actuales de vivir, aprender y "
+"trabajar."
 
 #: untraceableuniversity/website/templates/_base.html:87
 msgid ""
@@ -66,7 +67,7 @@ msgstr "Sobre nosotros"
 
 #: untraceableuniversity/website/templates/_base.html:111
 #: untraceableuniversity/website/templates/_base.html:127
-#: untraceableuniversity/website/templates/_base.html:139
+#: untraceableuniversity/website/templates/_base.html:141
 #: untraceableuniversity/website/templates/page.html:23
 #: untraceableuniversity/website/views.py:55
 msgid "Overview"
@@ -93,81 +94,88 @@ msgid "Activities"
 msgstr "Actividades"
 
 #: untraceableuniversity/website/templates/_base.html:129
+msgid "Inaugural workshop"
+msgstr "Taller inaugural"
+
+#: untraceableuniversity/website/templates/_base.html:131
 #: untraceableuniversity/website/templates/index.html:76
 msgid "Research"
 msgstr "Investigación"
 
-#: untraceableuniversity/website/templates/_base.html:131
+#: untraceableuniversity/website/templates/_base.html:133
 #: untraceableuniversity/website/templates/index.html:87
 msgid "Education & Outreach"
 msgstr "Educación y divulgación"
 
-#: untraceableuniversity/website/templates/_base.html:135
+#: untraceableuniversity/website/templates/_base.html:137
 msgid "Join Us"
 msgstr "Unite"
 
-#: untraceableuniversity/website/templates/_base.html:141
+#: untraceableuniversity/website/templates/_base.html:143
 msgid "Thematic Action Committees"
 msgstr "Comités de Acción Temática"
 
-#: untraceableuniversity/website/templates/_base.html:143
+#: untraceableuniversity/website/templates/_base.html:145
 msgid "Volunteers"
 msgstr "Voluntarios"
 
-#: untraceableuniversity/website/templates/_base.html:145
+#: untraceableuniversity/website/templates/_base.html:147
 msgid "Advisory Board"
 msgstr "Comité Asesor"
 
-#: untraceableuniversity/website/templates/_base.html:149
+#: untraceableuniversity/website/templates/_base.html:151
 msgid "Contact"
 msgstr "Contacto"
 
-#: untraceableuniversity/website/templates/_base.html:187
+#: untraceableuniversity/website/templates/_base.html:189
 #: untraceableuniversity/website/templates/index.html:48
 msgid "About us"
 msgstr "Sobre nosotros"
 
-#: untraceableuniversity/website/templates/_base.html:190
+#: untraceableuniversity/website/templates/_base.html:192
 msgid "We are a non-profit research institute, registered in South Africa."
 msgstr "Somos una ONG sin fines de lucro, registrada en Sudáfrica."
 
-#: untraceableuniversity/website/templates/_base.html:194
+#: untraceableuniversity/website/templates/_base.html:196
 msgid "Language"
 msgstr "Idioma"
 
-#: untraceableuniversity/website/templates/_base.html:207
+#: untraceableuniversity/website/templates/_base.html:209
 msgid "Newsletter"
 msgstr "Boletín"
 
-#: untraceableuniversity/website/templates/_base.html:209
+#: untraceableuniversity/website/templates/_base.html:211
 msgid "Name"
 msgstr "Nombre"
 
-#: untraceableuniversity/website/templates/_base.html:210
+#: untraceableuniversity/website/templates/_base.html:212
 msgid "E-mail"
 msgstr "Correo"
 
-#: untraceableuniversity/website/templates/_base.html:212
+#: untraceableuniversity/website/templates/_base.html:214
 msgid "Sign up"
 msgstr "Registrar"
 
-#: untraceableuniversity/website/templates/_base.html:215
+#: untraceableuniversity/website/templates/_base.html:217
 msgid "We embrace open access and open source code."
 msgstr "Soportamos a acceso libre y código fuente abierto."
 
-#: untraceableuniversity/website/templates/_base.html:220
-#| msgid "Code licensed"
+#: untraceableuniversity/website/templates/_base.html:222
 msgid "Content license"
 msgstr "Licencia de contenido"
 
-#: untraceableuniversity/website/templates/_base.html:226
+#: untraceableuniversity/website/templates/_base.html:228
 #: untraceableuniversity/website/templates/contact.html:117
 msgid "Social media"
 msgstr "Redes sociales"
 
-#: untraceableuniversity/website/templates/_base.html:246
+#: untraceableuniversity/website/templates/_base.html:248
 msgid "Source code"
 msgstr "Código fuente"
+
+#: untraceableuniversity/website/templates/_news.html:8
+msgid "Read more"
+msgstr "Leér más"
 
 #: untraceableuniversity/website/templates/contact.html:86
 msgid "Your name"
@@ -277,13 +285,13 @@ msgstr ""
 "comunicaciones y divulgación, desarrollo de sitios web y multimedia, y "
 "gestión de eventos."
 
-#: untraceableuniversity/website/views.py:115
+#: untraceableuniversity/website/views.py:131
 msgid ""
 "Thanks, we have received your information. We will get back to you within a "
 "few days."
 msgstr "Gracias, recibimos tu información. Te contactamos dentro de unos días."
 
-#: untraceableuniversity/website/views.py:118
+#: untraceableuniversity/website/views.py:134
 msgid "Sorry, please enter the right value in the robot check question."
 msgstr ""
 "Lo siento, ingresa el valor correcto en la pregunta de verificación del "
@@ -318,9 +326,6 @@ msgstr ""
 
 #~ msgid "Some examples of inspiring projects and literature:"
 #~ msgstr "Algunos ejemplos de proyectos y publicaciones que nos inspiran:"
-
-#~ msgid "Read more"
-#~ msgstr "Leér más"
 
 #~ msgid ""
 #~ "Find out how you can link your research to feed into the Untraceable "
