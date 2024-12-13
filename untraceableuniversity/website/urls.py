@@ -16,6 +16,7 @@ urlpatterns = [
     path("about/<slug:slug>/", views.page, name="about"),
     path("about/<slug:slug>/<slug:child_page>/", views.page, name="about"),
 
+    path("video/", views.video, name="video"),
     path("contact/", views.contact, name="contact"),
     path("templates/", views.templates),
 

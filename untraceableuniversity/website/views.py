@@ -109,6 +109,9 @@ def page_simple(request, slug):
 def templates(request):
     return render(request, "templates.html")
 
+def video(request):
+    return render(request, "video.html")
+
 def contact(request):
     message_sent = False
     if request.method == "POST":
