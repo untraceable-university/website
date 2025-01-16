@@ -112,3 +112,27 @@ class Question(models.Model):
 
     class Meta:
         ordering = ["question"]
+
+class Link(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True)
+    details = models.JSONField()
+    position = models.PositiveSmallIntegerField()
+    CATEGORIES = [
+        ("docs", "Useful documents"),
+        ("links", "Useful links"),
+    ]
+    category = models.CharField(max_length=8, choices=CATEGORIES, db_index=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["position"]
+
+    @property
+    def icon(self):
+        try:
+            return self.details["icon"]
+        except:
+            return None

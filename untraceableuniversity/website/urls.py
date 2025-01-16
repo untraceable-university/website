@@ -22,17 +22,18 @@ urlpatterns = [
 
     path("terms-and-conditions/", views.page_simple, { "slug": "terms-and-conditions" }, name="terms-and-conditions"),
 
-    # Control panel
-    path("controlpanel/", views.controlpanel, name="controlpanel"),
-    path("controlpanel/page/<int:id>/", views.controlpanel_page, name="controlpanel_page"),
-    path("controlpanel/page/", views.controlpanel_page, name="controlpanel_page"),
-    
+    # Redirects so we can use short URLs in brochures etc.
     path("tac/", lambda request: redirect("/join/tac/")),
     path("cat/", lambda request: redirect("/es/join/tac/")),
 
-    # Redirecting old URLs. Remove by June 2024:
-    path("research/", lambda request: redirect("/activities/research/")),
-    path("teaching/", lambda request: redirect("/activities/education-and-outreach/")),
-    path("overview/", lambda request: redirect("/about/")),
+    # Control panel
+    path("controlpanel/", views.controlpanel, name="controlpanel"),
+    path("controlpanel/pages/", views.controlpanel_pages, name="controlpanel_pages"),
+    path("controlpanel/pages/<int:id>/", views.controlpanel_page, name="controlpanel_page"),
+    path("controlpanel/pages/create/", views.controlpanel_page, name="controlpanel_page"),
+
+    path("controlpanel/links/", views.controlpanel_links, name="controlpanel_links"),
+    path("controlpanel/links/<int:id>/", views.controlpanel_link, name="controlpanel_link"),
+    path("controlpanel/links/create/", views.controlpanel_link, name="controlpanel_link"),
 
 ]

@@ -1,0 +1,91 @@
+<div class="float-end mt-2" style="margin-right:20px">
+  {% if request.language == "en" %}
+    <a href="/es{{ request.get_full_path }}">Español</a>
+  {% else %}
+    <a href="{{ request.get_full_path|slice:"3:" }}">English</a>
+  {% endif %}
+</div>
+
+<div class="bg yellow">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-5 col-lg-4">
+        <h1><a href="{% url "index" %}"><img src="{% static "img/logos/crop/" %}logo_{{ request.language }}.png" alt="{{ _("The Untraceable University") }}"></a></h1>
+      </div>
+      <div class="col-sm-6 col-md-7 col-lg-8 quote">
+        {% if controlpanel %}
+          <h2>Control Panel</h2>
+        {% else %}
+          <h2>
+            "{{ _("You never change things by fighting against the existing reality. To change something, build a new model that makes the old model obsolete.") }}"
+          </h2>
+          <h3>Buckminster Fuller</h3>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<header style="background:#FDBF1E">
+  <div class="container">
+    <nav class="navbar ps-4 pe-4 navbar-expand-xl" >
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nbtoggler" aria-controls="nbtoggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div>
+      <ul class="nav nav-pills collapse navbar-collapse" id="nbtoggler" style="position:relative;top:13px">
+        <li class="nav-item"><a href="{% url "index" %}" class="nav-link {% if menu == "home" %}active" aria-current="page{% endif %}">{{ _("Home") }}</a></li>
+        <li class="nav-item dropdown"><a href="{% url "about" %}" class="nav-link dropdown-toggle {% if menu == "about" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("About") }}</a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "about" and page == "about" %}active{% endif %}"
+              href="{% url "about" %}">{{ _("Overview") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "guiding-principles" %}active{% endif %}"
+              href="{% url "about" "guiding-principles" %}">{{ _("Guiding principles") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "sites" %}active{% endif %}"
+              href="{% url "about" "sites" %}">{{ _("Potential sites") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "who-we-are" %}active{% endif %}"
+              href="{% url "about" "who-we-are" %}">{{ _("Who we are") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "about" and page == "news" %}active{% endif %}"
+              href="{% url "about" "news" %}">{{ _("News") }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"><a href="{% url "activities" %}" class="nav-link dropdown-toggle {% if menu == "activities" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Activities") }}</a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "activities" and page == "activities" %}active{% endif %}"
+              href="{% url "activities" %}">{{ _("Overview") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "activities" and page == "inaugural-workshop" %}active{% endif %}"
+              href="{% url "activities" "inaugural-workshop" %}">{{ _("Inaugural workshop") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "activities" and page == "research" %}active{% endif %}"
+              href="{% url "activities" "research" %}">{{ _("Research") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "activities" and page == "education-and-outreach" %}active{% endif %}"
+              href="{% url "activities" "education-and-outreach" %}">{{ _("Education & Outreach") }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"><a href="{% url "join" %}" class="nav-link dropdown-toggle {% if menu == "join" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Join Us") }}</a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "join" and page == "join" %}active{% endif %}"
+              href="{% url "join" %}">{{ _("Overview") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "join" and page == "tac" %}active{% endif %}"
+              href="{% url "join" "tac" %}">{{ _("Thematic Action Committees") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "join" and page == "volunteers" %}active{% endif %}"
+              href="{% url "about" "volunteers" %}">{{ _("Volunteers") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "join" and page == "advisory-board" %}active{% endif %}"
+              href="{% url "about" "advisory-board" %}">{{ _("Advisory Board") }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a href="{% url "contact" %}" class="nav-link {% if menu == "contact" %}active" aria-current="page{% endif %}">{{ _("Contact") }}</a></li>
+      </ul>
+      </div>
+
+    </nav>
+  </div>
+</header>

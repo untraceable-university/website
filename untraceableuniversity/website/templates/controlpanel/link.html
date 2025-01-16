@@ -1,0 +1,110 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    textarea{height:100px}
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h1>
+      {% block title %}
+        {% if info %}Edit link: {{ info }}{% else %}Add link{% endif %}
+      {% endblock %}
+      </h1>
+
+      <form method="post" id="form">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" name="name" value="{{ info.name }}">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3" name="description">{{ info.description }}</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Type</label>
+          <select class="form-select" name="category">
+            <option value=""></option>
+            {% for key,value in categories %}
+              <option value="{{ key }}" {% if key == info.category %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Position</label>
+          <input type="number" class="form-control" name="position" value="{{ info.position }}">
+        </div>
+
+        <div>
+          <div class="btn-group" role="group">
+            {% for icon in icons %}
+              <button type="button" class="btn {% if info.icon == icon %}btn-success{% else %}btn-outline-primary{% endif %} icon-button" data-icon="{{ icon }}">
+                <i class="bi bi-{{ icon }}"></i>
+              </button>
+            {% endfor %}
+          </div>
+          <input type="hidden" name="icon" id="selected_icon" value="{{ info.icon }}">
+        </div>
+
+        <div class="row mb-1 mt-5">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-5 text-center">
+            <strong>ENGLISH</strong>
+          </div>
+          <div class="col-sm-5 text-center">
+            <strong>SPANISH</strong>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-form-label col-sm-2">View link</label>
+          <div class="col-sm-5">
+            <input type="url" class="form-control" name="link_view_en" value="{{ details.link_view_en }}">
+          </div>
+          <div class="col-sm-5">
+            <input type="url" class="form-control" name="link_view_es" value="{{ details.link_view_es }}">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-form-label col-sm-2">Edit link</label>
+          <div class="col-sm-5">
+            <input type="url" class="form-control" name="link_edit_en" value="{{ details.link_edit_en }}">
+          </div>
+          <div class="col-sm-5">
+            <input type="url" class="form-control" name="link_edit_es" value="{{ details.link_edit_es }}">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript">
+  $(function(){
+    $(".icon-button").click(function() {
+      $(".icon-button").removeClass("btn-success").addClass("btn-outline-primary");
+      $(this).addClass("btn-success").removeClass("btn-outline-primary");
+      $("#selected_icon").val($(this).data("icon"));
+    });
+  });
+  </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col">
+
+    <h1>
+    {% block title %}
+      Links - Control panel
+    {% endblock %}
+    </h1>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Link</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for each in links %}
+        <tr>
+          <td>{{ each.position }}</td>
+          <td><a href="{% url 'controlpanel_link' each.id %}">{{ each }}</a></td>
+          <td>{{ each.category }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

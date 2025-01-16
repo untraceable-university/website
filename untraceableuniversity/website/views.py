@@ -18,6 +18,7 @@ from django.utils.translation import gettext_lazy as _
 # For the control panel
 from django.contrib.admin.views.decorators import staff_member_required
 from django.forms import modelform_factory, modelformset_factory
+from django.urls import reverse
 
 def get_page(request, slug):
     try:
@@ -148,15 +149,31 @@ def contact(request):
     return render(request, "contact.html", context)
 
 # This is the control panel, where staff can edit information
+# STAFF ONLY for all pages
 @staff_member_required
 def controlpanel(request):
 
     context = {
         "controlpanel": True,
         "pages": Page.objects.all(),
+        "menu": "index",
+        "links": Link.objects.filter(category="links"),
+        "docs": Link.objects.filter(category="docs"),
     }
 
     return render(request, "controlpanel/index.html", context)
+
+@staff_member_required
+def controlpanel_pages(request):
+
+    context = {
+        "controlpanel": True,
+        "pages": Page.objects.all(),
+        "menu": "content",
+        "page": "pages",
+    }
+
+    return render(request, "controlpanel/pages.html", context)
 
 @staff_member_required
 def controlpanel_page(request, id=None):
@@ -209,7 +226,64 @@ def controlpanel_page(request, id=None):
         "controlpanel": True,
         "form": form,
         "forms": forms,
+        "menu": "content",
     }
 
     return render(request, "controlpanel/page.html", context)
+
+@staff_member_required
+def controlpanel_links(request):
+
+    context = {
+        "controlpanel": True,
+        "links": Link.objects.all().order_by("category", "position"),
+        "menu": "links",
+        "page": "links",
+    }
+
+    return render(request, "controlpanel/links.html", context)
+
+@staff_member_required
+def controlpanel_link(request, id=None):
+
+    info = None
+    if id:
+        info = Link.objects.get(pk=id)
+
+    if request.method == "POST":
+        if not info:
+            info = Link()
+        info.name = request.POST["name"]
+        info.description = request.POST.get("description")
+        info.category = request.POST["category"]
+        info.position = request.POST["position"]
+        info.details = {}
+        post = ["link_view_en", "link_view_es", "link_edit_en", "link_edit_es", "icon"]
+        for each in post:
+            if request.POST.get(each):
+                info.details[each] = request.POST.get(each)
+            else:
+                info.details.pop(each, None)
+        info.save()
+        messages.success(request, _("Information was saved."))
+        return redirect(reverse("controlpanel_links"))
+
+    icons = ["file-pdf", "file-earmark-easel", "file-spreadsheet", "card-list"]
+
+    details = {}
+    if info and info.details:
+        for key,value in info.details.items():
+            details[key] = value
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "links",
+        "page": "edit" if info else "add",
+        "categories": Link.CATEGORIES,
+        "icons": icons,
+        "details": details,
+    }
+
+    return render(request, "controlpanel/link.html", context)
 

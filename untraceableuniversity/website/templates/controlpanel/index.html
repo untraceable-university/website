@@ -1,41 +1,71 @@
 {% extends "_base.html" %}
 
+{% block title %}
+Control panel
+{% endblock %}
+
 {% block content %}
 
 <div class="container pb-5">
 
   <div class="row">
 
-    <div class="col">
+    <div class="col-4">
 
-    <h1>
-    {% block title %}
-      Control panel
-    {% endblock %}
-    </h1>
+      <h2>{{ _("Useful documents") }}</h2>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Page</th>
-          <th>Type</th>
-          <th>Parent</th>
-          <th>Add child</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for each in pages %}
-        <tr>
-          <td><a href="{% url 'controlpanel_page' each.id %}?redirect=/controlpanel/">{{ each }}</a>
-          {% if not each.is_active %}<span class="badge bg-secondary">Inactive</span>{% endif %}
-          </td>
-          <td>{{ each.get_format_display }}</td>
-          <td>{{ each.parent_page }}</td>
-          <td><a href="{% url 'controlpanel_page' %}?parent={{ each.id }}">Add</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+      <ul class="list-group">
+
+          {% for each in docs %}
+          <li class="list-group-item d-flex align-items-start pb-3 pt-3">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">{{ each }}</div>
+              <p>{{ each.description|linebreaksbr }}</p>
+
+              <i class="bi bi-{{ each.icon }} pe-2"></i>
+              {% if each.details.link_view_en %}
+                <a class="pe-2" href="{{ each.details.link_view_en }}">English</a>
+              {% endif %}
+              {% if each.details.link_view_es %}
+                <a href="{{ each.details.link_view_es }}">Español</a>
+              {% endif %}
+
+              {% if each.details.link_edit_en or each.details.link_edit_es %}
+                <br>
+                <i class="bi bi-pencil pe-2"></i>
+                {% if each.details.link_edit_en %}
+                  <a class="pe-2" href="{{ each.details.link_edit_en }}">English</a>
+                {% endif %}
+                {% if each.details.link_edit_es %}
+                  <a href="{{ each.details.link_edit_es }}">Español</a>
+                {% endif %}
+              {% endif %}
+
+            </div>
+          </li>
+          {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <div class="col-4">
+
+      <h2>{{ _("Useful links") }}</h2>
+
+      <ul class="list-group">
+
+          {% for each in links %}
+            <li class="list-group-item d-flex align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold"><a href="{{ each.link_view_en }}">{{ each }}</a></div>
+                {{ each.description|linebreaksbr }}
+              </div>
+            </li>
+          {% endfor %}
+
+        </ul>
+
 
     </div>
   </div>
