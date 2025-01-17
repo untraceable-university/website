@@ -36,4 +36,20 @@ urlpatterns = [
     path("controlpanel/links/<int:id>/", views.controlpanel_link, name="controlpanel_link"),
     path("controlpanel/links/create/", views.controlpanel_link, name="controlpanel_link"),
 
+    path("controlpanel/tags/", views.controlpanel_tags, name="controlpanel_tags"),
+    path("controlpanel/tags/<int:id>/", views.controlpanel_tag, name="controlpanel_tag"),
+    path("controlpanel/tags/create/", views.controlpanel_tag, name="controlpanel_tag"),
+
+    path("controlpanel/people/", views.controlpanel_people_list, name="controlpanel_people_list"),
+    path("controlpanel/people/<int:id>/", views.controlpanel_people, name="controlpanel_people"),
+    path("controlpanel/people/create/", views.controlpanel_people, name="controlpanel_people"),
+
+    path("controlpanel/meetings/", views.controlpanel_events, {"event_type": "meeting"}, name="controlpanel_meetings"),
+    path("controlpanel/meetings/<int:id>/", views.controlpanel_event, name="controlpanel_meeting"),
+    path("controlpanel/meetings/create/", views.controlpanel_event, name="controlpanel_meeting"),
+
+    path("controlpanel/organizations/", views.controlpanel_organizations, name="controlpanel_organizations"),
+    path("controlpanel/organizations/<int:id>/", views.controlpanel_organization, name="controlpanel_organization"),
+    path("controlpanel/organizations/create/", views.controlpanel_organization, name="controlpanel_organization"),
+
 ]

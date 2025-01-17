@@ -26,10 +26,21 @@
 
         <li class="nav-item dropdown"><a href="{% url "controlpanel_links" %}" class="nav-link dropdown-toggle {% if menu == "links" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Links") }}</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item {% if menu == "content" and page == "links" %}active{% endif %}"
+            <li><a class="dropdown-item {% if menu == "links" and page == "links" %}active{% endif %}"
               href="{% url "controlpanel_links" %}">{{ _("Manage links") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "content" and page == "create_link" %}active{% endif %}"
+            <li><a class="dropdown-item {% if menu == "links" and page == "create_link" %}active{% endif %}"
               href="{% url "controlpanel_link" %}">{{ _("Create new link") }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "contacts" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Contacts") }}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "contacts" and page == "organizations" %}active{% endif %}"
+              href="{% url "controlpanel_organizations" %}">{{ _("Organisations") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "contacts" and page == "people" %}active{% endif %}"
+              href="{% url "controlpanel_people_list" %}">{{ _("People") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "contacts" and page == "tags" %}active{% endif %}"
+              href="{% url "controlpanel_tags" %}">{{ _("Tags") }}</a></li>
           </ul>
         </li>
 

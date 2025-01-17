@@ -232,6 +232,123 @@ def controlpanel_page(request, id=None):
     return render(request, "controlpanel/page.html", context)
 
 @staff_member_required
+def controlpanel_tags(request):
+
+    context = {
+        "controlpanel": True,
+        "tags": Tag.objects.all(),
+        "menu": "contacts",
+        "page": "tags",
+    }
+
+    return render(request, "controlpanel/tags.html", context)
+
+@staff_member_required
+def controlpanel_tag(request, id=None):
+
+    info = None
+    if id:
+        info = Tag.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "contacts",
+        "page": "tags",
+    }
+
+    return render(request, "controlpanel/tag.html", context)
+
+@staff_member_required
+def controlpanel_organizations(request):
+
+    context = {
+        "controlpanel": True,
+        "organizations": Organization.objects.all(),
+        "menu": "contacts",
+        "page": "organizations",
+    }
+
+    return render(request, "controlpanel/organizations.html", context)
+
+@staff_member_required
+def controlpanel_organization(request, id=None):
+
+    info = None
+    if id:
+        info = Organization.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "contacts",
+        "page": "organizations",
+    }
+
+    return render(request, "controlpanel/organization.html", context)
+
+@staff_member_required
+def controlpanel_people_list(request):
+
+    context = {
+        "controlpanel": True,
+        "people": People.objects.all(),
+        "menu": "contacts",
+        "page": "people",
+    }
+
+    return render(request, "controlpanel/people.html", context)
+
+@staff_member_required
+def controlpanel_people(request, id=None):
+
+    info = None
+    if id:
+        info = People.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "contacts",
+        "page": "people",
+    }
+
+    return render(request, "controlpanel/people.html", context)
+
+@staff_member_required
+def controlpanel_events(request, event_type="meetings"):
+
+    events = Event.objects.all()
+    if event_type:
+        events = events.filter(event_type=event_type)
+
+    context = {
+        "controlpanel": True,
+        "eventes": events,
+        "menu": "events",
+        "page": "events",
+    }
+
+    return render(request, "controlpanel/events.html", context)
+
+
+@staff_member_required
+def controlpanel_event(request, id=None):
+
+    info = None
+    if id:
+        info = Event.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "events",
+        "page": "event",
+    }
+
+    return render(request, "controlpanel/event.html", context)
+
+@staff_member_required
 def controlpanel_links(request):
 
     context = {

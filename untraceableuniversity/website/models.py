@@ -2,6 +2,7 @@ from django.db import models
 from markdown import markdown
 from django.utils.safestring import mark_safe
 from mdeditor.fields import MDTextField
+from django.utils.translation import gettext_lazy as _
 
 class Language(models.Model):
     name = models.CharField(max_length=255)
@@ -136,3 +137,78 @@ class Link(models.Model):
             return self.details["icon"]
         except:
             return None
+
+class Country(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+class Organization(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
+    url = models.URLField(null=True, blank=True)
+    is_partner = models.BooleanField(db_index=True, default=False)
+    logo = models.FileField(null=True, blank=True, upload_to="logos")
+    tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+class People(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
+    url = models.URLField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+class Event(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    date_start = models.DateTimeField(blank=True, null=True)
+    date_end = models.DateTimeField(blank=True, null=True)
+    meeting_notes = models.TextField(blank=True, null=True)
+    directions = models.TextField(blank=True, null=True)
+    people = models.ManyToManyField(People, through="EventRelationship")
+
+    EVENT_TYPES = [
+        ("meeting", _("Meeting")),
+    ]
+    event_type = models.CharField(max_length=15, choices=EVENT_TYPES, db_index=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+class EventRelationship(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    people = models.ForeignKey(People, on_delete=models.CASCADE)
+    RELATIONSHIPS = [
+        ("participant", _("Participant")),
+    ]
+    relationship = models.CharField(max_length=15, choices=RELATIONSHIPS, db_index=True)

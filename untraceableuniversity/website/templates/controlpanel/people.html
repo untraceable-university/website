@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h1>
+      {% block title %}
+        {{ _("People") }} - {{ _("Control panel") }}
+      {% endblock %}
+      </h1>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ _("Name") }}</th>
+            <th>{{ _("Country") }}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for each in people %}
+          <tr>
+            <td><a href="{% url 'controlpanel_people' each.id %}">{{ each }}</a></td>
+            <td>{{ each.country }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+      <a href="{% url "controlpanel_people" %}" class="btn btn-primary"><i class="fa fa-plus fa-fw"></i> {{ _("Add people") }}</a>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
