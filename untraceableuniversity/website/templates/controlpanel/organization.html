@@ -20,7 +20,7 @@
       {% endblock %}
       </h1>
 
-      <form method="post" id="form">
+      <form method="post" id="form" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div class="mb-3">
@@ -46,6 +46,21 @@
               <option value="{{ each.id }}" {% if each == info.country %}selected{% endif %}>{{ each }}</option>
             {% endfor %}
           </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Logo") }}</label>
+          {% if info.logo %}
+            <div>
+              <img src="{{ info.logo.url }}">
+            </div>
+          {% endif %}
+          <input type="file" class="form-control" name="logo" accept="image/*">
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" value="true" class="form-check-input" id="is_partner" name="is_partner" {% if info.is_partner %}checked{% endif %}>
+          <label class="form-check-label" for="is_partner">{{ _("Official partner (listed on website)") }}</label>
         </div>
 
         <button type="submit" class="btn btn-success">{{ _("Save") }}</button>

@@ -164,7 +164,7 @@ class Organization(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     url = models.URLField(null=True, blank=True)
     is_partner = models.BooleanField(db_index=True, default=False)
-    logo = models.FileField(null=True, blank=True, upload_to="logos")
+    logo = models.ImageField(null=True, blank=True, upload_to="logos")
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):

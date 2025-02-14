@@ -154,6 +154,7 @@ def contact(request):
         "menu": "contact",
         "message_sent": message_sent,
         "title": info.title,
+        "hide_partners": True,
     }
 
     return render(request, "contact.html", context)
@@ -309,9 +310,21 @@ def controlpanel_organizations(request):
 @staff_member_required
 def controlpanel_organization(request, id=None):
 
-    info = None
+    info = Organization()
     if id:
         info = Organization.objects.get(pk=id)
+
+    if request.method == "POST":
+        info.name = request.POST["name"]
+        info.description = request.POST["description"]
+        info.url = request.POST["url"]
+        info.country_id = request.POST.get("country")
+        info.is_partner = True if request.POST.get("is_partner") else False
+        if "logo" in request.FILES:
+            info.logo = request.FILES["logo"]
+        info.save()
+
+        messages.success(request, _("Information was saved."))
 
     context = {
         "controlpanel": True,

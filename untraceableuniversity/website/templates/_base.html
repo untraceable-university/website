@@ -51,6 +51,16 @@ footer {
     left: -200px;
   }
 {% endif %}
+
+.partners {
+  padding: 50px 0;
+  text-align: center;
+}
+.partner-logo {
+  max-width: 150px;
+  max-height: 150px;
+  margin: 50px 10px;
+}
 </style>
 
 {% block head %}{% endblock %}
@@ -84,6 +94,31 @@ footer {
   {% endif %}
 
   {% block content %}{% endblock %}
+
+
+  {% if not hide_partners %}
+  <div class="nav-divider"></div>
+
+  <div class="partners">
+    <div class="container">
+      <h1 class="text-center mb-1 mt-4">{{ _("Our partners") }}</h1>
+      <p class="text-center">
+        {{ _("We have formal partnerships with the following organisations. Interested in joining?") }}
+        <a href="{% url "contact" %}">{{ _("Contact us") }}</a>
+      </p>
+
+      <div class="row justify-content-center">
+        {% for each in PARTNERS %}
+          <div class="col-6 col-md-4">
+            <a href="{{ each.url }}">
+              <img src="{{ each.logo.url }}" alt="{{ each }}" class="partner-logo img-fluid">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
 </div>
 
