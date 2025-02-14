@@ -159,6 +159,8 @@ class Tag(models.Model):
 class Organization(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    notes = models.TextField(blank=True, null=True)
+    notes_html = models.TextField(blank=True, null=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     url = models.URLField(null=True, blank=True)
     is_partner = models.BooleanField(db_index=True, default=False)

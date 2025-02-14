@@ -19,13 +19,19 @@
         <tr>
           <th>{{ _("Name") }}</th>
           <th>{{ _("Country") }}</th>
+          <th>{{ _("Tags") }}</th>
         </tr>
       </thead>
       <tbody>
       {% for each in organizations %}
         <tr>
           <td><a href="{% url 'controlpanel_organization' each.id %}">{{ each }}</a></td>
-          <td>{{ each.country }}</td>
+          <td>{{ each.country|default_if_none:"" }}</td>
+          <td>
+            {% for tag in each.tags.all %}
+              <span class="badge bg-light text-dark">{{ tag }}</span>
+            {% endfor %}
+          </td>
         </tr>
       {% endfor %}
       </tbody>

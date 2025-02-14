@@ -50,7 +50,7 @@
               href="{% url "about" "sites" %}">{{ _("Potential sites") }}</a></li>
             <li><a class="dropdown-item {% if menu == "about" and page == "who-we-are" %}active{% endif %}"
               href="{% url "about" "who-we-are" %}">{{ _("Who we are") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "about" and page == "news" %}active{% endif %}"
+            <li hidden><a class="dropdown-item {% if menu == "about" and page == "news" %}active{% endif %}"
               href="{% url "about" "news" %}">{{ _("News") }}</a></li>
           </ul>
         </li>

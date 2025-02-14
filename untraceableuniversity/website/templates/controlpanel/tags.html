@@ -18,14 +18,12 @@
       <thead>
         <tr>
           <th>{{ _("Name") }}</th>
-          <th>{{ _("Country") }}</th>
         </tr>
       </thead>
       <tbody>
       {% for each in tags %}
         <tr>
-          <td><a href="{% url 'controlpanel_tags' each.id %}">{{ each }}</a></td>
-          <td>{{ each.country }}</td>
+          <td><a href="{% url 'controlpanel_tag' each.id %}">{{ each }}</a></td>
         </tr>
       {% endfor %}
       </tbody>

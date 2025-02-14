@@ -20,6 +20,16 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.forms import modelform_factory, modelformset_factory
 from django.urls import reverse
 
+import os
+import json
+
+# Quick debugging, sometimes it's tricky to locate the PRINT in all the Django
+# output in the console, so just using a simply function to highlight it better
+def p(text):
+    print("----------------------")
+    print(text)
+    print("----------------------")
+
 def get_page(request, slug):
     try:
         return PageContent.objects.get(slug=slug, language__language_code=request.language)
@@ -153,6 +163,14 @@ def contact(request):
 @staff_member_required
 def controlpanel(request):
 
+    if "import" in request.GET:
+        import csv
+        with open('media/import/countries.csv', mode='r', encoding='utf-8-sig') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                Country.objects.create(id=row[0], name=row[1])
+
+
     context = {
         "controlpanel": True,
         "pages": Page.objects.all(),
@@ -262,6 +280,23 @@ def controlpanel_tag(request, id=None):
 @staff_member_required
 def controlpanel_organizations(request):
 
+    if "import" in request.GET:
+        file_path = os.path.join(settings.MEDIA_ROOT, "organizations.json")
+        with open(file_path, "r") as json_file:
+            j = json.load(json_file)
+            for each in j:
+                info = Organization.objects.create(
+                    name=each["name"],
+                    country_id=each["country"],
+                    description=each["description"],
+                    notes=each["notes"],
+                    notes_html=each["notes_html"],
+                )
+                for tag in each["tags"]:
+                    if tag != "Untraceable University":
+                        tag, created = Tag.objects.get_or_create(name=tag)
+                        info.tags.add(tag)
+
     context = {
         "controlpanel": True,
         "organizations": Organization.objects.all(),
@@ -283,6 +318,7 @@ def controlpanel_organization(request, id=None):
         "info": info,
         "menu": "contacts",
         "page": "organizations",
+        "countries": Country.objects.all(),
     }
 
     return render(request, "controlpanel/organization.html", context)
@@ -403,4 +439,3 @@ def controlpanel_link(request, id=None):
     }
 
     return render(request, "controlpanel/link.html", context)
-

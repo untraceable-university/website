@@ -1,0 +1,58 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    textarea{height:100px}
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h1>
+      {% block title %}
+        {% if info %}{{ _("Edit organization") }}: {{ info }}{% else %}{{ _("Add organization") }}{% endif %}
+      {% endblock %}
+      </h1>
+
+      <form method="post" id="form">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Name") }}</label>
+          <input type="text" class="form-control" name="name" value="{{ info.name }}">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("URL") }}</label>
+          <input type="url" class="form-control" name="url" value="{{ info.url|default_if_none:"" }}">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Description") }}</label>
+          <textarea class="form-control" rows="3" name="description">{{ info.description|default_if_none:"" }}</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Country") }}</label>
+          <select class="form-select" name="country">
+            <option value=""></option>
+            {% for each in countries %}
+              <option value="{{ each.id }}" {% if each == info.country %}selected{% endif %}>{{ each }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">{{ _("Save") }}</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
