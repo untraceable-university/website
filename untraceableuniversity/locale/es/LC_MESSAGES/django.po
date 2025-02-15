@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-15 04:29+0000\n"
-"PO-Revision-Date: 2025-02-15 06:38+0200\n"
+"POT-Creation-Date: 2025-02-15 06:08+0000\n"
+"PO-Revision-Date: 2025-02-15 08:08+0200\n"
 "Last-Translator: Paul Hoekman <paul@cvselection.net>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -35,18 +35,18 @@ msgstr "Reunión"
 msgid "Participant"
 msgstr "Participante"
 
-#: untraceableuniversity/website/templates/_base.html:5
-#: untraceableuniversity/website/templates/_base.html:133
+#: untraceableuniversity/website/templates/_base.html:6
+#: untraceableuniversity/website/templates/_base.html:136
 #: untraceableuniversity/website/templates/index.html:41
 msgid "Untraceable University"
 msgstr "Universidad sin Rastros"
 
-#: untraceableuniversity/website/templates/_base.html:69
+#: untraceableuniversity/website/templates/_base.html:70
 #: untraceableuniversity/website/templates/_nav.html:14
 msgid "The Untraceable University"
 msgstr "La Universidad sin Rastros"
 
-#: untraceableuniversity/website/templates/_base.html:70
+#: untraceableuniversity/website/templates/_base.html:71
 msgid ""
 "The goal of the Untraceable University is to find out how we can build a "
 "culture that is socially and ecologically restorative, and which embraces "
@@ -57,41 +57,40 @@ msgstr ""
 "abarca un cambio radical en nuestras formas actuales de vivir, aprender y "
 "trabajar."
 
-#: untraceableuniversity/website/templates/_base.html:104
+#: untraceableuniversity/website/templates/_base.html:105
 msgid "Our partners"
 msgstr "Nuestros aliados"
 
-#: untraceableuniversity/website/templates/_base.html:106
+#: untraceableuniversity/website/templates/_base.html:107
 msgid ""
 "We have formal partnerships with the following organisations. Interested in "
 "joining?"
 msgstr ""
-"Contamos con alianzas formales con las siguientes organizaciones. ¿Te interesa"
-" unirte?"
+"Contamos con alianzas formales con las siguientes organizaciones. ¿Te "
+"interesa unirte?"
 
-#: untraceableuniversity/website/templates/_base.html:107
-#| msgid "Contact"
-msgid "Contact us"
-msgstr "Contacto"
+#: untraceableuniversity/website/templates/_base.html:109
+msgid "Please get in touch."
+msgstr "Por favor contáctenos"
 
-#: untraceableuniversity/website/templates/_base.html:138
+#: untraceableuniversity/website/templates/_base.html:141
 #: untraceableuniversity/website/templates/index.html:48
 msgid "About us"
 msgstr "Sobre nosotros"
 
-#: untraceableuniversity/website/templates/_base.html:141
+#: untraceableuniversity/website/templates/_base.html:144
 msgid "We are a non-profit research institute, registered in South Africa."
 msgstr "Somos una ONG sin fines de lucro, registrada en Sudáfrica."
 
-#: untraceableuniversity/website/templates/_base.html:145
+#: untraceableuniversity/website/templates/_base.html:148
 msgid "Language"
 msgstr "Idioma"
 
-#: untraceableuniversity/website/templates/_base.html:158
+#: untraceableuniversity/website/templates/_base.html:161
 msgid "Newsletter"
 msgstr "Boletín"
 
-#: untraceableuniversity/website/templates/_base.html:160
+#: untraceableuniversity/website/templates/_base.html:163
 #: untraceableuniversity/website/templates/controlpanel/events.html:20
 #: untraceableuniversity/website/templates/controlpanel/organization.html:27
 #: untraceableuniversity/website/templates/controlpanel/organizations.html:20
@@ -100,36 +99,36 @@ msgstr "Boletín"
 msgid "Name"
 msgstr "Nombre"
 
-#: untraceableuniversity/website/templates/_base.html:161
+#: untraceableuniversity/website/templates/_base.html:164
 msgid "E-mail"
 msgstr "Correo"
 
-#: untraceableuniversity/website/templates/_base.html:163
+#: untraceableuniversity/website/templates/_base.html:166
 msgid "Sign up"
 msgstr "Registrar"
 
-#: untraceableuniversity/website/templates/_base.html:166
+#: untraceableuniversity/website/templates/_base.html:169
 msgid "We embrace open access and open source code."
 msgstr "Soportamos a acceso libre y código fuente abierto."
 
-#: untraceableuniversity/website/templates/_base.html:171
+#: untraceableuniversity/website/templates/_base.html:174
 msgid "Content license"
 msgstr "Licencia de contenido"
 
-#: untraceableuniversity/website/templates/_base.html:177
+#: untraceableuniversity/website/templates/_base.html:180
 #: untraceableuniversity/website/templates/contact.html:117
 msgid "Social media"
 msgstr "Redes sociales"
 
-#: untraceableuniversity/website/templates/_base.html:197
+#: untraceableuniversity/website/templates/_base.html:200
 msgid "Source code"
 msgstr "Código fuente"
 
-#: untraceableuniversity/website/templates/_base.html:214
+#: untraceableuniversity/website/templates/_base.html:217
 msgid "Go to control panel"
 msgstr "Ir al panel de control"
 
-#: untraceableuniversity/website/templates/_base.html:218
+#: untraceableuniversity/website/templates/_base.html:221
 msgid "Back to homepage"
 msgstr "Regresar a la portada"
 
@@ -244,7 +243,6 @@ msgid "Control panel"
 msgstr "Panel de control"
 
 #: untraceableuniversity/website/templates/controlpanel/_nav.html:18
-#| msgid "content"
 msgid "Content"
 msgstr "Contenido"
 
@@ -269,7 +267,6 @@ msgid "Create new link"
 msgstr "Crear enlace nuevo"
 
 #: untraceableuniversity/website/templates/controlpanel/_nav.html:36
-#| msgid "Contact"
 msgid "Contacts"
 msgstr "Contactos"
 
@@ -464,6 +461,10 @@ msgstr ""
 #: untraceableuniversity/website/views.py:434
 msgid "Information was saved."
 msgstr "Información ha sido guardada"
+
+#~| msgid "Contact"
+#~ msgid "Contact us"
+#~ msgstr "Contacto"
 
 #~ msgid ""
 #~ "We do not track visitors. By default, no cookies are used on this website."

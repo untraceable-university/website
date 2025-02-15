@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
 <html>
 <head>
@@ -104,7 +105,9 @@ footer {
         <h1 class="text-center mb-1 mt-4">{{ _("Our partners") }}</h1>
         <p class="text-center">
           {{ _("We have formal partnerships with the following organisations. Interested in joining?") }}
-          <a href="{% url "contact" %}">{{ _("Contact us") }}</a>
+          <a href="{% url "contact" %}">
+            {{ _("Please get in touch.") }}
+          </a>
         </p>
 
         <div class="row justify-content-center">
