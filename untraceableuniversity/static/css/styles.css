@@ -287,4 +287,6 @@ footer ::selection {
   top: 0;
   height: 100vh;
 }
-
+a.badge {
+  text-decoration: none;
+}

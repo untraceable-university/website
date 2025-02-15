@@ -10,28 +10,25 @@
 
     <h1>
     {% block title %}
-      {{ _("Tags") }} - {{ _("Control panel") }}
+      {{ _("Tagged items") }}: {{ info }} - {{ _("Control panel") }}
     {% endblock %}
     </h1>
 
+    <h3>{{ _("Organisations") }}</h3>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>{{ _("Name") }}</th>
-          <th>{{ _("Show tagged items") }}</th>
         </tr>
       </thead>
       <tbody>
-      {% for each in tags %}
+      {% for each in organizations %}
         <tr>
-          <td><a href="{% url 'controlpanel_tag' each.id %}">{{ each }}</a></td>
-          <td><a href="{% url 'controlpanel_tagged' each.id %}">{{ _("View items") }}</a></td>
+          <td><a href="{% url 'controlpanel_organization' each.id %}">{{ each }}</a></td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
-
-    <a href="{% url "controlpanel_tag" %}" class="btn btn-primary"><i class="fa fa-plus fa-fw"></i> {{ _("Add tag") }}</a>
 
     </div>
   </div>

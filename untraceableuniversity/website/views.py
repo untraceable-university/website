@@ -265,9 +265,16 @@ def controlpanel_tags(request):
 @staff_member_required
 def controlpanel_tag(request, id=None):
 
-    info = None
+    info = Tag()
     if id:
         info = Tag.objects.get(pk=id)
+
+    if request.method == "POST":
+        info.name = request.POST["name"]
+        info.save()
+
+        messages.success(request, _("Information was saved."))
+        return redirect(reverse("controlpanel_tags"))
 
     context = {
         "controlpanel": True,
@@ -277,6 +284,21 @@ def controlpanel_tag(request, id=None):
     }
 
     return render(request, "controlpanel/tag.html", context)
+
+@staff_member_required
+def controlpanel_tagged(request, id):
+
+    info = Tag.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "menu": "contacts",
+        "page": "tags",
+        "organizations": Organization.objects.filter(tags=info),
+        "info": info,
+    }
+
+    return render(request, "controlpanel/tagged.html", context)
 
 @staff_member_required
 def controlpanel_organizations(request):
@@ -303,6 +325,7 @@ def controlpanel_organizations(request):
         "organizations": Organization.objects.all(),
         "menu": "contacts",
         "page": "organizations",
+        "load_datatables": True,
     }
 
     return render(request, "controlpanel/organizations.html", context)
@@ -325,6 +348,11 @@ def controlpanel_organization(request, id=None):
         info.save()
 
         messages.success(request, _("Information was saved."))
+
+        if "redirect" in request.GET:
+            return redirect(request.GET["redirect"])
+        else:
+            return redirect(reverse("controlpanel_organizations"))
 
     context = {
         "controlpanel": True,

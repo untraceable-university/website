@@ -1,5 +1,4 @@
 {% load static %}
-{% load i18n %}
 <!doctype html>
 <html>
 <head>
@@ -31,7 +30,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static "css/styles.css" %}?r" />
+<link rel="stylesheet" href="{% static "css/styles.css" %}?f" />
+
+{% if load_datatables %}
+  <link href="{% static 'css/datatables.min.css' %}" rel="stylesheet" />
+{% endif %}
 
 <style type="text/css">
 footer {
@@ -113,7 +116,7 @@ footer {
         <div class="row justify-content-center">
           {% for each in PARTNERS %}
             <div class="col-6 col-md-4">
-              <a href="{{ each.url }}">
+              <a href="{{ each.url }}" title="{{ each }}">
                 <img src="{{ each.logo.url }}" alt="{{ each }}" class="partner-logo img-fluid">
               </a>
             </div>
@@ -167,7 +170,7 @@ footer {
         </form>
 
           <p class="mt-4"><strong>{{ _("We embrace open access and open source code.") }}</strong>
-            <a href="{% url "terms-and-conditions" %}">Read more</a>
+            <a href="{% url "terms-and-conditions" %}">{{ _("Read more") }}</a>
           </p>
 
           <p>
@@ -222,6 +225,16 @@ footer {
       <i class="bi bi-arrow-bar-left"></i>
     </a>
   {% endif %}
+{% endif %}
+
+{% if load_datatables %}
+  <script src="{% static 'js/datatables.min.js' %}"></script>
+  <script>
+    $(".datatable").DataTable({
+      "pageLength": 20,  // Set the default page length to 20
+      "lengthMenu": [ [10, 20, 50, 100, -1], [10, 20, 50, 100, "{{ _("All") }}"] ]  // Show 20 or "Show All" option
+    });
+  </script>
 {% endif %}
 
 {% block js %}

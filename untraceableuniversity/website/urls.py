@@ -38,6 +38,7 @@ urlpatterns = [
 
     path("controlpanel/tags/", views.controlpanel_tags, name="controlpanel_tags"),
     path("controlpanel/tags/<int:id>/", views.controlpanel_tag, name="controlpanel_tag"),
+    path("controlpanel/tags/<int:id>/items/", views.controlpanel_tagged, name="controlpanel_tagged"),
     path("controlpanel/tags/create/", views.controlpanel_tag, name="controlpanel_tag"),
 
     path("controlpanel/people/", views.controlpanel_people_list, name="controlpanel_people_list"),

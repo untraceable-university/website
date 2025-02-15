@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    textarea{height:100px}
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h1>
+      {% block title %}
+        {% if info %}Edit tag: {{ info }}{% else %}Add tag{% endif %}
+      {% endblock %}
+      </h1>
+
+      <form method="post" id="form">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Name") }}</label>
+          <input type="text" class="form-control" name="name" value="{{ info.name }}">
+        </div>
+
+        <button type="submit" class="btn btn-success">{{ _("Save") }}</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
