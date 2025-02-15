@@ -1,4 +1,4 @@
-sudo docker exec -it uu_web /code/untraceableuniversity/manage.py makemessages --ignore media/* -l es
+sudo docker exec -it uu_web /code/untraceableuniversity/manage.py makemessages --ignore "media/*" --ignore "media/**" -l es
 echo "A number of .po files were created in /locales. In order to update translations for a certain language, simply open the .po files and edit them. Once this is done, run this command to generate .mo files and activate them:"
 
 echo ""

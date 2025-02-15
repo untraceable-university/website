@@ -78,7 +78,7 @@
               href="{% url "join" "tac" %}">{{ _("Thematic Action Committees") }}</a></li>
             <li><a class="dropdown-item {% if menu == "join" and page == "volunteers" %}active{% endif %}"
               href="{% url "about" "volunteers" %}">{{ _("Volunteers") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "join" and page == "advisory-board" %}active{% endif %}"
+            <li hidden><a class="dropdown-item {% if menu == "join" and page == "advisory-board" %}active{% endif %}"
               href="{% url "about" "advisory-board" %}">{{ _("Advisory Board") }}</a></li>
           </ul>
         </li>
