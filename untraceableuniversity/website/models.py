@@ -162,10 +162,22 @@ class Organization(models.Model):
     notes = models.TextField(blank=True, null=True)
     notes_html = models.TextField(blank=True, null=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
-    url = models.URLField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True, max_length=1000)
     is_partner = models.BooleanField(db_index=True, default=False)
     logo = models.ImageField(null=True, blank=True, upload_to="logos")
     tags = models.ManyToManyField(Tag)
+
+    def get_notes(self):
+        if self.notes:
+            return mark_safe(self.notes_html)
+        else:
+            return ""
+
+    def get_description(self):
+        if self.description:
+            return mark_safe(markdown(self.description))
+        else:
+            return ""
 
     def __str__(self):
         return self.name
@@ -176,10 +188,25 @@ class Organization(models.Model):
 class People(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    notes = models.TextField(blank=True, null=True)
+    notes_html = models.TextField(blank=True, null=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
-    url = models.URLField(null=True, blank=True)
+    phone = models.CharField(max_length=30, blank=True, null=True)
+    url = models.URLField(null=True, blank=True, max_length=1000)
     email = models.EmailField(null=True, blank=True)
     tags = models.ManyToManyField(Tag)
+
+    def get_notes(self):
+        if self.notes:
+            return mark_safe(self.notes_html)
+        else:
+            return ""
+
+    def get_description(self):
+        if self.description:
+            return mark_safe(markdown(self.description))
+        else:
+            return ""
 
     def __str__(self):
         return self.name

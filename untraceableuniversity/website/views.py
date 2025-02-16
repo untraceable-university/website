@@ -308,17 +308,10 @@ def controlpanel_organizations(request):
         with open(file_path, "r") as json_file:
             j = json.load(json_file)
             for each in j:
-                info = Organization.objects.create(
-                    name=each["name"],
-                    country_id=each["country"],
-                    description=each["description"],
-                    notes=each["notes"],
-                    notes_html=each["notes_html"],
-                )
-                for tag in each["tags"]:
-                    if tag != "Untraceable University":
-                        tag, created = Tag.objects.get_or_create(name=tag)
-                        info.tags.add(tag)
+                if each["url"]:
+                    info = Organization.objects.get(name=each["name"])
+                    info.url = each["url"]
+                    info.save()
 
     context = {
         "controlpanel": True,
@@ -367,17 +360,54 @@ def controlpanel_organization(request, id=None):
 @staff_member_required
 def controlpanel_people_list(request):
 
+    if "import" in request.GET:
+        file_path = os.path.join(settings.MEDIA_ROOT, "people.json")
+        with open(file_path, "r") as json_file:
+            j = json.load(json_file)
+            for each in j:
+                info = People.objects.create(
+                    name=each["name"],
+                    email=each["email"],
+                    phone=each["phone"],
+                    url=each["url"],
+                    country_id=each["country"],
+                    description=each["description"],
+                    notes=each["notes"],
+                    notes_html=each["notes_html"],
+                )
+                for tag in each["tags"]:
+                    if tag != "Untraceable University":
+                        tag, created = Tag.objects.get_or_create(name=tag)
+                        info.tags.add(tag)
+
+
     context = {
         "controlpanel": True,
         "people": People.objects.all(),
         "menu": "contacts",
         "page": "people",
+        "load_datatables": True,
     }
 
     return render(request, "controlpanel/people.html", context)
 
 @staff_member_required
-def controlpanel_people(request, id=None):
+def controlpanel_people(request, id):
+
+    info = People.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "contacts",
+        "page": "people",
+        "tags": Tag.objects.all(),
+    }
+
+    return render(request, "controlpanel/person.html", context)
+
+@staff_member_required
+def controlpanel_people_form(request, id=None):
 
     info = None
     if id:
@@ -388,9 +418,10 @@ def controlpanel_people(request, id=None):
         "info": info,
         "menu": "contacts",
         "page": "people",
+        "tags": Tag.objects.all(),
     }
 
-    return render(request, "controlpanel/people.html", context)
+    return render(request, "controlpanel/person.form.html", context)
 
 @staff_member_required
 def controlpanel_events(request, event_type="meetings"):

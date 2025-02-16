@@ -1,0 +1,24 @@
+
+<section id="tags">
+  <h3 class="mt-4">Tags</h3>
+  <ul class="list-unstyled tags">
+    {% for each in info.tags.all %}
+      <li><a class="badge bg-warning" href="{{ each.get_absolute_url }}">{{ each }}</a>
+        <a href="" data-id="{{ each.id }}" class="badge bg-dark remove"><i class="fa fa-close"></i></a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a id="show_add_tag" class="bg-secondary badge"><i class="fa fa-plus"></i></a>
+
+  <div id="add_tag">
+    <select class="select2">
+      <option></option>
+      {% for each in tags %}
+        <option value="{{ each.id }}">{{ each }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+</section>
+

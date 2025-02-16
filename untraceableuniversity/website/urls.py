@@ -42,6 +42,7 @@ urlpatterns = [
     path("controlpanel/tags/create/", views.controlpanel_tag, name="controlpanel_tag"),
 
     path("controlpanel/people/", views.controlpanel_people_list, name="controlpanel_people_list"),
+    path("controlpanel/people/<int:id>/edit/", views.controlpanel_people_form, name="controlpanel_people_form"),
     path("controlpanel/people/<int:id>/", views.controlpanel_people, name="controlpanel_people"),
     path("controlpanel/people/create/", views.controlpanel_people, name="controlpanel_people"),
 

@@ -1,0 +1,89 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    textarea{height:100px}
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+      <div class="col-9">
+        <h1>{{ info }}</h1>
+
+        <dl class="horizontal">
+
+          {% if info.email %}
+            <dt>E-mail</dt>
+            <dd><a href="mailto:{{ info.email }}">{{ info.email }}</a></dd>
+          {% endif %}
+
+          {% if info.phone %}
+            <dt>Phone</dt>
+            <dd>{{ info.phone }}</dd>
+          {% endif %}
+
+          {% if info.country %}
+            <dt>Country</dt>
+            <dd>{{ info.country }}</dd>
+          {% endif %}
+
+          {% if info.url %}
+            <dt>URL</dt>
+            <dd><a href="{{ info.url }}">{{ info.url|truncatechars:50 }}</a></dd>
+          {% endif %}
+
+        </dl>
+
+        {% if info.notes %}
+          <section>
+            <h2>Notes</h2>
+            {{ info.get_notes }}
+          </section>
+        {% endif %}
+
+        {% if referrals %}
+          <section class="mb-4">
+            <h2>Associated people</h2>
+            <ul class="list-group">
+              {% for each in referrals %}
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold"><a href="{{ each.origin.get_absolute_url }}">{{ each.origin }}</a></div>
+                  <span class="black-referrals">
+                  {{ each.block|safe }}
+                  </span>
+                </div>
+              </li>
+              {% endfor %}
+          </section>
+         {% endif %}
+
+
+        {% if info.description %}
+          <section>
+            <h2>Description</h2>
+            {{ info.get_description }}
+          </section>
+        {% endif %}
+      </div>
+
+    <div class="col-3">
+
+      {% include "controlpanel/_engagement.html" %}
+      {% include "controlpanel/_tags.html" %}
+
+    </div>
+  </div>
+
+  <a class="btn btn-warning btn-edit" href="{% url "controlpanel_people_form" info.id %}?redirect={{ request.get_full_path }}">
+    <i class="bi bi-pencil-square"></i>
+  </a>
+
+</div>
+
+{% endblock %}

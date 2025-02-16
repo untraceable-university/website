@@ -1,0 +1,66 @@
+<section id="engagement">
+  <h3>Engagement</h3>
+
+  <ul class="list-group mb-3" id="engagements">
+    {% for each in engagements %}
+      <li class="list-group-item d-flex w-100 justify-content-between">
+        <strong>
+          {% if each.record is not info %}
+            <a href="{{ each.record.get_absolute_url }}">{{ each }}</a>
+          {% else %}
+            {{ each }}
+          {% endif %}
+        </strong>
+        <small>{{ each.date_end|timesince }}</small>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <select class="input-control" id="engagement">
+    <option value=""></option>
+    {% for each in engagement_types %}
+      <option value="{{ each.id }}">{{ each }}</option>
+    {% endfor %}
+  </select>
+</section>
+
+<script type="text/javascript">
+$(function(){ 
+    $("select#engagement").change(function(){
+      id = $("input[name=id]").val();
+      $.ajax({
+        type: 'POST',
+        url: '/ajax/record/{{ info.id }}/engagement/', // URL where the POST request should be sent
+        data: {
+          engagement: $(this).val(),
+        }, // Data to be sent in the request
+        dataType: 'json', // Expected data type of the response
+        success: function(response) { // Callback function to handle successful response
+          // Check if the response is OK
+          if(response && response.response === "OK") {
+            // Get the result string from the response
+            var resultString = response.result;
+            
+            var parts = resultString.split(' - '); // Split the resultString into parts using ' - ' as the delimiter
+
+            // Construct the HTML string with <strong> and <small> tags
+            var htmlString = '<li class="list-group-item d-flex w-100 justify-content-between"><strong>' + parts[0] + '</strong><small>' + parts[1] + '</small></li>';
+
+            // Append the HTML string to the <ul> element
+            $('ul#engagements').append(htmlString);
+
+            $("select#engagement").val("");
+          } else {
+            // If response is not OK, show an alert
+            alert("Something went wrong");
+          }
+        },
+        error: function(xhr, status, error) { // Callback function to handle errors
+          // Show an alert if there is an error
+          alert("Something went wrong");
+        }
+      });
+    });
+    
+});
+</script>
