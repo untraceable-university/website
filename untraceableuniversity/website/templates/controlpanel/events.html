@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-        {% for each in meetings %}
+        {% for each in events %}
           <tr>
             <td><a href="{% url 'controlpanel_meeting' each.id %}">{{ each }}</a></td>
             <td>{{ each.get_date }}</td>

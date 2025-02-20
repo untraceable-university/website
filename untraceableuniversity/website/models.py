@@ -220,8 +220,10 @@ class Event(models.Model):
     date_start = models.DateTimeField(blank=True, null=True)
     date_end = models.DateTimeField(blank=True, null=True)
     meeting_notes = models.TextField(blank=True, null=True)
+    thirtyseconds = models.TextField(blank=True, null=True)
     directions = models.TextField(blank=True, null=True)
     people = models.ManyToManyField(People, through="EventRelationship")
+    is_finished = models.BooleanField(default=False)
 
     EVENT_TYPES = [
         ("meeting", _("Meeting")),

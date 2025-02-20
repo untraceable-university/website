@@ -303,16 +303,6 @@ def controlpanel_tagged(request, id):
 @staff_member_required
 def controlpanel_organizations(request):
 
-    if "import" in request.GET:
-        file_path = os.path.join(settings.MEDIA_ROOT, "organizations.json")
-        with open(file_path, "r") as json_file:
-            j = json.load(json_file)
-            for each in j:
-                if each["url"]:
-                    info = Organization.objects.get(name=each["name"])
-                    info.url = each["url"]
-                    info.save()
-
     context = {
         "controlpanel": True,
         "organizations": Organization.objects.all(),
@@ -380,7 +370,6 @@ def controlpanel_people_list(request):
                         tag, created = Tag.objects.get_or_create(name=tag)
                         info.tags.add(tag)
 
-
     context = {
         "controlpanel": True,
         "people": People.objects.all(),
@@ -409,9 +398,20 @@ def controlpanel_people(request, id):
 @staff_member_required
 def controlpanel_people_form(request, id=None):
 
-    info = None
+    info = People()
     if id:
         info = People.objects.get(pk=id)
+        
+    if request.method == "POST":
+        info.name = request.POST["name"]
+        info.email = request.POST["email"]
+        info.phone = request.POST["phone"]
+        info.url = request.POST["url"]
+        info.description = request.POST["description"]
+        info.country_id = request.POST.get("country")
+        info.save()
+        messages.success(request, _("Information was saved."))
+        return redirect(reverse("controlpanel_people_list"))
 
     context = {
         "controlpanel": True,
@@ -419,6 +419,7 @@ def controlpanel_people_form(request, id=None):
         "menu": "contacts",
         "page": "people",
         "tags": Tag.objects.all(),
+        "countries": Country.objects.all(),
     }
 
     return render(request, "controlpanel/person.form.html", context)
@@ -426,13 +427,35 @@ def controlpanel_people_form(request, id=None):
 @staff_member_required
 def controlpanel_events(request, event_type="meetings"):
 
+    if "import" in request.GET:
+        Event.objects.all().delete()
+        file_path = os.path.join(settings.MEDIA_ROOT, "meetings.json")
+        with open(file_path, "r") as json_file:
+            j = json.load(json_file)
+            for each in j:
+                info = Event.objects.create(
+                    name=each["name"],
+                    description=each["description"],
+                    meeting_notes=each["notes"],
+                    thirtyseconds=each["thirtyseconds"],
+                    date_start=each["scheduled_date_start"],
+                    date_end=each["scheduled_date_end"],
+                    is_finished=each["finished"],
+                    directions=each["directions"],
+                    event_type="meeting",
+                )
+                for people in each["people"]:
+                    p(people)
+                    people = People.objects.get(name=people)
+                    EventRelationship.objects.create(event=info, people=people, relationship="participant")
+
     events = Event.objects.all()
     if event_type:
         events = events.filter(event_type=event_type)
 
     context = {
         "controlpanel": True,
-        "eventes": events,
+        "events": events,
         "menu": "events",
         "page": "events",
     }
