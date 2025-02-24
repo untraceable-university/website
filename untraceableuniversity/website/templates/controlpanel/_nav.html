@@ -41,6 +41,8 @@
               href="{% url "controlpanel_people_list" %}">{{ _("People") }}</a></li>
             <li><a class="dropdown-item {% if menu == "contacts" and page == "tags" %}active{% endif %}"
               href="{% url "controlpanel_tags" %}">{{ _("Tags") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "contacts" and page == "meeting" %}active{% endif %}"
+              href="{% url "controlpanel_meetings" %}?upcoming=true">{{ _("Meetings") }}</a></li>
           </ul>
         </li>
 

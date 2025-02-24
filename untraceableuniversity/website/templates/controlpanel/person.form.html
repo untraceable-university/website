@@ -44,8 +44,13 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">{{ _("Description") }}</label>
+          <label class="form-label">{{ _("Official description") }}</label>
           <textarea class="form-control" rows="3" name="description">{{ info.description|default_if_none:"" }}</textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Notes") }}</label>
+          <textarea class="form-control" rows="3" name="notes">{{ info.notes|default_if_none:"" }}</textarea>
         </div>
 
         <div class="mb-3">

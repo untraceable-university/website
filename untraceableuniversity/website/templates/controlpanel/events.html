@@ -14,18 +14,36 @@
       {% endblock %}
       </h1>
 
-      <table class="table table-striped">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+          <a class="nav-link {% if request.GET.upcoming %}active{% endif %}" href="./?upcoming=true">{{ _("Upcoming meetings") }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if not request.GET.upcoming and not request.GET.all %}active{% endif %}" href="./">{{ _("Past meetings") }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.GET.all %}active{% endif %}" href="./?all=true">{{ _("All meetings") }}</a>
+        </li>
+      </ul>
+
+      <table class="table table-striped datatable">
         <thead>
           <tr>
             <th>{{ _("Name") }}</th>
             <th>{{ _("Date") }}</th>
+            <th>{{ _("Participants") }}</th>
           </tr>
         </thead>
         <tbody>
         {% for each in events %}
           <tr>
             <td><a href="{% url 'controlpanel_meeting' each.id %}">{{ each }}</a></td>
-            <td>{{ each.get_date }}</td>
+            <td data-sort="-{{ each.date_start|date:"YmdHis" }}">{{ each.date_start|date:"M d, Y" }}</td>
+            <td>
+              {% for person in each.people.all %}
+                <li>{{ person.firstname }}</li>
+              {% endfor %}
+            </td>
           </tr>
         {% endfor %}
         </tbody>

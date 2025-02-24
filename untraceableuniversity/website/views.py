@@ -3,6 +3,8 @@ from .models import *
 from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
 
 # We want to give people a cookie-less experience so we turn off CSRF
 # by default (we don't have many forms anyways)
@@ -19,6 +21,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
 from django.forms import modelform_factory, modelformset_factory
 from django.urls import reverse
+from django.utils import timezone
 
 import os
 import json
@@ -391,6 +394,7 @@ def controlpanel_people(request, id):
         "menu": "contacts",
         "page": "people",
         "tags": Tag.objects.all(),
+        "engagements": Event.objects.filter(people=info),
     }
 
     return render(request, "controlpanel/person.html", context)
@@ -436,7 +440,7 @@ def controlpanel_events(request, event_type="meetings"):
                 info = Event.objects.create(
                     name=each["name"],
                     description=each["description"],
-                    meeting_notes=each["notes"],
+                    meeting_notes=each["notes"] if each["notes"] else each["meeting_notes"],
                     thirtyseconds=each["thirtyseconds"],
                     date_start=each["scheduled_date_start"],
                     date_end=each["scheduled_date_end"],
@@ -445,7 +449,6 @@ def controlpanel_events(request, event_type="meetings"):
                     event_type="meeting",
                 )
                 for people in each["people"]:
-                    p(people)
                     people = People.objects.get(name=people)
                     EventRelationship.objects.create(event=info, people=people, relationship="participant")
 
@@ -453,23 +456,29 @@ def controlpanel_events(request, event_type="meetings"):
     if event_type:
         events = events.filter(event_type=event_type)
 
+    events = events.prefetch_related("people")
+
+    if "upcoming" in request.GET:
+        events = events.filter(date_end__gte=timezone.now())
+    elif not "all" in request.GET:
+        events = events.filter(date_end__lte=timezone.now())
+
     context = {
         "controlpanel": True,
         "events": events,
-        "menu": "events",
-        "page": "events",
+        "menu": "contacts",
+        "page": event_type,
+        "load_datatables": True,
+        "datatables_order": 1,
     }
 
     return render(request, "controlpanel/events.html", context)
 
 
 @staff_member_required
-def controlpanel_event(request, id=None):
+def controlpanel_event(request, id):
 
-    info = None
-    if id:
-        info = Event.objects.get(pk=id)
-
+    info = Event.objects.get(pk=id)
     context = {
         "controlpanel": True,
         "info": info,
@@ -478,6 +487,48 @@ def controlpanel_event(request, id=None):
     }
 
     return render(request, "controlpanel/event.html", context)
+
+@staff_member_required
+def controlpanel_event_form(request, id=None):
+
+    info = Event()
+    if id:
+        info = Event.objects.get(pk=id)
+        
+    if request.method == "POST":
+        info.name = request.POST["name"]
+        info.description = request.POST["description"]
+        info.meeting_notes = request.POST["meeting_notes"]
+        info.thirtyseconds = request.POST["thirtyseconds"]
+        info.directions = request.POST["directions"]
+        info.event_type = request.POST["event_type"]
+
+        date_start = request.POST.get("date_start")
+        time_start = request.POST.get("time_start")
+        info.date_start = f"{date_start} {time_start}"
+
+        date_end = request.POST.get("date_end")
+        time_end = request.POST.get("time_end")
+        info.date_end = f"{date_end} {time_end}"
+
+        info.save()
+        messages.success(request, _("Information was saved."))
+        if "redirect" in request.GET:
+            return redirect(request.GET["redirect"])
+        else:
+            return redirect(reverse("controlpanel_meetings"))
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "contacts",
+        "page": "people",
+        "tags": Tag.objects.all(),
+        "event_types": Event.EVENT_TYPES,
+    }
+
+    return render(request, "controlpanel/event.form.html", context)
+
 
 @staff_member_required
 def controlpanel_links(request):
@@ -534,3 +585,22 @@ def controlpanel_link(request, id=None):
     }
 
     return render(request, "controlpanel/link.html", context)
+
+@csrf_exempt
+def controlpanel_ajax_tags(request):
+    if request.method == "DELETE":
+        page = request.GET["page"]
+        tag = Tag.objects.get(pk=request.GET["tag"])
+        if page == "people":
+            info = People.objects.get(pk=request.GET["id"])
+        info.tags.remove(tag)
+        return JsonResponse({"response":"OK"}, safe=False)
+    elif request.method == "POST":
+        tag = Tag.objects.get(pk=request.POST["tag"])
+        page = request.POST["page"]
+        if page == "people":
+            info = People.objects.get(pk=request.POST["id"])
+        info.tags.add(tag)
+        d = model_to_dict(tag)
+        d["response"] = "OK"
+        return JsonResponse(d, safe=False)

@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static "css/styles.css" %}?f" />
+<link rel="stylesheet" href="{% static "css/styles.css" %}?f2" />
 
 {% if load_datatables %}
   <link href="{% static 'css/datatables.min.css' %}" rel="stylesheet" />
@@ -232,6 +232,7 @@ footer {
   <script>
     $(".datatable").DataTable({
       "pageLength": 20,  // Set the default page length to 20
+      {% if datatables_order %}"order": [[{{ datatables_order }}, "asc"]], {% endif %}
       "lengthMenu": [ [10, 20, 50, 100, -1], [10, 20, 50, 100, "{{ _("All") }}"] ]  // Show 20 or "Show All" option
     });
   </script>

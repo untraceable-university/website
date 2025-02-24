@@ -50,8 +50,16 @@ urlpatterns = [
     path("controlpanel/meetings/<int:id>/", views.controlpanel_event, name="controlpanel_meeting"),
     path("controlpanel/meetings/create/", views.controlpanel_event, name="controlpanel_meeting"),
 
+    path("controlpanel/events/", views.controlpanel_events, name="controlpanel_events"),
+    path("controlpanel/events/<int:id>/", views.controlpanel_event, name="controlpanel_event"),
+    path("controlpanel/events/create/", views.controlpanel_event_form, name="controlpanel_event_form"),
+    path("controlpanel/events/<int:id>/edit/", views.controlpanel_event_form, name="controlpanel_event_form"),
+
     path("controlpanel/organizations/", views.controlpanel_organizations, name="controlpanel_organizations"),
     path("controlpanel/organizations/<int:id>/", views.controlpanel_organization, name="controlpanel_organization"),
     path("controlpanel/organizations/create/", views.controlpanel_organization, name="controlpanel_organization"),
+
+    # Ajax
+    path("controlpanel/ajax/tags/", views.controlpanel_ajax_tags, name="controlpanel_ajax_tags"),
 
 ]

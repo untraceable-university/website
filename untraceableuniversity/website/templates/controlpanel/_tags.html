@@ -4,12 +4,14 @@
   <ul class="list-unstyled tags">
     {% for each in info.tags.all %}
       <li><a class="badge bg-warning" href="{{ each.get_absolute_url }}">{{ each }}</a>
-        <a href="" data-id="{{ each.id }}" class="badge bg-dark remove"><i class="fa fa-close"></i></a>
+        <a href="" data-id="{{ each.id }}" class="badge bg-dark remove">
+          <i class="bi bi-trash"></i>
+        </a>
       </li>
     {% endfor %}
   </ul>
 
-  <a id="show_add_tag" class="bg-secondary badge"><i class="fa fa-plus"></i></a>
+  <a id="show_add_tag" ><i class="bi bi-plus-square-fill"></i></a>
 
   <div id="add_tag">
     <select class="select2">
@@ -22,3 +24,83 @@
 
 </section>
 
+<script type="text/javascript">
+$(function(){
+  /* Recurring snippet that allows for tag management, used on several pages */
+  {% if info %}
+    $(".tags .remove").click(function(e){
+      e.preventDefault();
+      var id = $(this).data("id");
+      var li = $(this).closest('li');
+      $.ajax({
+        type: "DELETE",
+        url: "/controlpanel/ajax/tags/?tag="+id+"&id={{info.id}}&page={{ page }}", // URL where the POST request should be sent
+        data: {
+        }, // Data to be sent in the request
+        dataType: "json", // Expected data type of the response
+        success: function(response) { // Callback function to handle successful response
+          // Check if the response is OK
+          if(response && response.response === "OK") {
+            // All good, take action
+            li.hide("fast");
+          } else {
+            // If response is not OK, show an alert
+            alert("Something went wrong");
+          }
+        },
+        error: function(xhr, status, error) { // Callback function to handle errors
+          // Show an alert if there is an error
+          alert("Something went wrong");
+        }
+      });
+    });
+
+    $("#add_tag select").change(function(e){
+      tag = $(this).val();
+      $.ajax({
+        type: "POST",
+        url: "/controlpanel/ajax/tags/",
+        data: {
+          tag: tag,
+          page: "{{ page }}",
+          id: {{ info.id }},
+        }, // Data to be sent in the request
+        dataType: "json", // Expected data type of the response
+        success: function(response) { // Callback function to handle successful response
+          // Check if the response is OK
+          if(response && response.response === "OK") {
+            // All good, take action
+            $("ul.tags").append('<li><a class="badge bg-warning" href="/tags/' + response.id + '">' + response.name + '</a></li>');
+          } else {
+            // If response is not OK, show an alert
+            alert("Something went wrong");
+          }
+        },
+        error: function(xhr, status, error) { // Callback function to handle errors
+          // Show an alert if there is an error
+          alert("Something went wrong");
+        }
+      });
+    });
+
+    $("#show_add_tag").click(function(e){
+      e.preventDefault();
+      $(this).hide();
+      $("#add_tag").show();
+      $("#add_tag .select2-container").css('width', '100%');
+    });
+    /* End of tag management */
+
+    /* CTRL+E edits the current document */
+    document.addEventListener("keydown", function(event) {
+      if (event.ctrlKey && event.key === "e") {
+        if ($("#edit").length) {
+          window.location.href = $("#edit").attr('href');
+        }
+      }
+    });
+    /* End of CTRL+E for editing */
+    {% endif %}
+  
+});
+</script>

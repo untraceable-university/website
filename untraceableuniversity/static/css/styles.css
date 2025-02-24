@@ -290,3 +290,8 @@ footer ::selection {
 a.badge {
   text-decoration: none;
 }
+#dt-length-0 {
+  margin-right: 10px;
+}
+#add_people,#add_tag{display:none}
+#show_add_people, #show_add_tag{cursor:pointer}

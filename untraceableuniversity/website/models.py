@@ -4,6 +4,45 @@ from django.utils.safestring import mark_safe
 from mdeditor.fields import MDTextField
 from django.utils.translation import gettext_lazy as _
 
+def get_date_range(start, end, months_only=False):
+
+    if start and not end and months_only:
+        return "Since " + start.strftime("%b %Y")
+
+    elif start and not end:
+        return "Start date: " + start.strftime("%b %d, %Y")
+
+    if not start or not end:
+        return None
+
+    start_date = start.strftime("%b %Y") if months_only else start.strftime("%b %d, %Y")
+    start_time = "00:00" if months_only else start.strftime("%H:%M")
+    end_date = end.strftime("%b %Y") if months_only else end.strftime("%b %d, %Y")
+    end_time = "00:00" if months_only else end.strftime("%H:%M")
+
+    if start_date == end_date:
+        if months_only:
+            return start_date
+        elif start_time == "00:00" and end_time == "00:00":
+            return start_date
+        elif start_time == end_time:
+            return start.strftime("%b %d, %Y %H:%M")
+        else:
+            return start_date + " " + start_time + " - " + end_time
+    else:
+        if start.strftime("%Y%m") == end.strftime("%Y%m"):
+            return start.strftime("%b") + " " + start.strftime("%d") + " - " + end.strftime("%d") + ", " + start.strftime("%Y")
+        elif start_time != "00:00" and end_time != "00:00":
+            return start.strftime("%b %d, %Y %H:%M") + " - " + end.strftime("%b %d, %Y %H:%M")
+        elif start.strftime("%Y") == end.strftime("%Y"):
+            if months_only:
+                return start.strftime("%b") + " - " + end_date
+            else:
+                return start.strftime("%b %d") + " - " + end_date
+        else:
+            return start_date + " - " + end_date
+
+
 class Language(models.Model):
     name = models.CharField(max_length=255)
     language_code = models.CharField(max_length=5, help_text="Language code used in Django to pull in the right locale")
@@ -175,7 +214,7 @@ class Organization(models.Model):
 
     def get_description(self):
         if self.description:
-            return mark_safe(markdown(self.description))
+            return mark_safe(markdown(self.description, extensions=["nl2br"]))
         else:
             return ""
 
@@ -195,6 +234,11 @@ class People(models.Model):
     url = models.URLField(null=True, blank=True, max_length=1000)
     email = models.EmailField(null=True, blank=True)
     tags = models.ManyToManyField(Tag)
+
+    @property
+    def firstname(self):
+        name = self.name
+        return name.split(" ")[0]
 
     def get_notes(self):
         if self.notes:
@@ -234,7 +278,24 @@ class Event(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["-date_start", "-date_end", "name"]
+
+    def get_description(self):
+        if self.description:
+            return mark_safe(markdown(self.description, extensions=["nl2br"]))
+        else:
+            return ""
+
+    def get_notes(self):
+        return mark_safe(markdown(self.meeting_notes, extensions=["nl2br"]))
+        
+    @property
+    def get_dates(self):
+        return get_date_range(self.date_start, self.date_end)
+
+    @property
+    def get_dates_months(self):
+        return get_date_range(self.date_start, self.date_end, True)
 
 class EventRelationship(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)

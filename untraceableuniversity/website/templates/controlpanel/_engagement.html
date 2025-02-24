@@ -6,7 +6,7 @@
       <li class="list-group-item d-flex w-100 justify-content-between">
         <strong>
           {% if each.record is not info %}
-            <a href="{{ each.record.get_absolute_url }}">{{ each }}</a>
+            <a href="{% url "controlpanel_event" each.id %}">{{ each }}</a>
           {% else %}
             {{ each }}
           {% endif %}
@@ -16,7 +16,7 @@
     {% endfor %}
   </ul>
 
-  <select class="input-control" id="engagement">
+  <select hidden class="input-control" id="engagement">
     <option value=""></option>
     {% for each in engagement_types %}
       <option value="{{ each.id }}">{{ each }}</option>
