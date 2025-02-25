@@ -529,7 +529,6 @@ def controlpanel_event_form(request, id=None):
 
     return render(request, "controlpanel/event.form.html", context)
 
-
 @staff_member_required
 def controlpanel_links(request):
 

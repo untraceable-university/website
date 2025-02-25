@@ -141,14 +141,14 @@ footer {
         </a>
       </div>
       <div class="col-lg-2 mb-3">
-        <h5>{{ _("About us") }}</h5>
-        <ul class="list-unstyled">
+        <h5 hidden>{{ _("About us") }}</h5>
+        <ul class="list-unstyled" hidden>
           <li class="mb-2">
             {{ _("We are a non-profit research institute, registered in South Africa.") }}
           </li>
         </ul>
 
-        <h5 class="mt-5">{{ _("Language") }}</h5>
+        <h5 class="mt- 5">{{ _("Language") }}</h5>
         <ul class="list-unstyled">
           {% if request.language == "en" %}
             <li><i class="bi bi-check-circle"></i> <strong>English</strong></li>
