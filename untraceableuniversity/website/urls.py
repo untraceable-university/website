@@ -61,5 +61,6 @@ urlpatterns = [
 
     # Ajax
     path("controlpanel/ajax/tags/", views.controlpanel_ajax_tags, name="controlpanel_ajax_tags"),
+    path("controlpanel/ajax/events/<int:id>/", views.controlpanel_ajax_event, name="controlpanel_ajax_event"),
 
 ]

@@ -3,6 +3,8 @@
 {% block head %}
   <style type="text/css">
     textarea{height:100px}
+    a.remove{opacity:0.3}
+    a.remove:hover{opacity:1}
   </style>
 {% endblock %}
 
@@ -13,28 +15,39 @@
   <div class="row">
 
       <div class="col-9">
-        <h1 class="mb-0">{{ info }}</h1>
+        <h1 class="mb-0">
+        {% block title %}
+          {{ info }}
+        {% endblock %}
+        </h1>
         <p>
           {{ info.get_dates }} | {{ info.date_start|timesince }} ago
         </p>
 
+        {% if info.directions %}
+          <section class="mb-4">
+            <h2>Directions</h2>
+            {{ info.directions|urlize }}
+          </section>
+        {% endif %}
+
         {% if info.thirtyseconds %}
-          <section>
+          <section class="mb-4">
             <h2>Summary</h2>
             {{ info.thirtyseconds }}
           </section>
         {% endif %}
 
         {% if info.meeting_notes %}
-          <section class="mt-4">
+          <section class="mb-4">
             <h2>Meeting minutes</h2>
             {{ info.get_notes }}
           </section>
         {% endif %}
 
         {% if info.description %}
-          <section class="mt-4">
-            <h2>Description</h2>
+          <section class="mb-4">
+            <h2>Official description/agenda</h2>
             {{ info.get_description }}
           </section>
         {% endif %}
@@ -44,11 +57,30 @@
     <div class="col-3">
 
       <h2>{{ _("Participants") }}</h2>
-      <ul>
+      <ul class="people">
       {% for each in info.people.all %}
-        <li><a href="{% url "controlpanel_people" each.id %}">{{ each }}</li>
+        <li>
+          <a href="{% url "controlpanel_people" each.id %}">
+            {{ each }}
+          </a>
+
+          <a href="" data-id="{{ each.id }}" class="badge bg-dark remove ms-2">
+            <i class="bi bi-trash"></i>
+          </a>
+        </li>
       {% endfor %}
       </ul>
+
+      <a id="show_add_people" class="text-success fs-5"><i class="bi bi-plus-square-fill"></i></a>
+
+      <div id="add_people">
+        <select class="select2">
+          <option></option>
+          {% for each in all_people %}
+            <option value="{{ each.id }}">{{ each }}</option>
+          {% endfor %}
+        </select>
+      </div>
 
     </div>
   </div>
@@ -59,4 +91,83 @@
 
 </div>
 
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function(){
+
+    document.addEventListener("keydown", function(e) {
+      if (event.key === 'd' && event.ctrlKey && !event.target.matches('input, textarea, [contenteditable]')) {
+        e.preventDefault();
+        window.location.href = $("#done").attr('href');
+      }
+    });
+
+    $(document).on("click", ".people .remove", function(e) {
+      e.preventDefault();
+      var id = $(this).data("id");
+      var li = $(this).closest('li');
+      $.ajax({
+        type: "DELETE",
+        url: "/controlpanel/ajax/events/{{info.id}}/?remove_participant="+id, // URL where the POST request should be sent
+        data: {
+        }, // Data to be sent in the request
+        dataType: "json", // Expected data type of the response
+        success: function(response) { // Callback function to handle successful response
+          // Check if the response is OK
+          if(response && response.response === "OK") {
+            // All good, take action
+            li.hide("fast");
+          } else {
+            // If response is not OK, show an alert
+            alert("Something went wrong");
+          }
+        },
+        error: function(xhr, status, error) { // Callback function to handle errors
+          // Show an alert if there is an error
+          alert("Something went wrong");
+        }
+      });
+    });
+
+    $("#add_people select").change(function(e){
+      id = $(this).val();
+      if (id) {
+        $.ajax({
+          type: "POST",
+          url: "/controlpanel/ajax/events/{{ info.id }}/",
+          data: {
+            participant: id
+          }, // Data to be sent in the request
+          dataType: "json", // Expected data type of the response
+          success: function(response) { // Callback function to handle successful response
+            // Check if the response is OK
+            if(response && response.response === "OK") {
+              $("ul.people").append('<li><a href="/controlpanel/people/' + response.id + '">' + response.name + '</a><a href="" data-id="'+response.id+'" class="badge bg-dark remove ms-2"><i class="bi bi-trash"></i></a></li>');
+              $('#add_people select').val(null);
+              $('#add_people select').trigger('change');
+            } else {
+              // If response is not OK, show an alert
+              alert("Something went wrong");
+            }
+          },
+          error: function(xhr, status, error) { // Callback function to handle errors
+            // Show an alert if there is an error
+            alert("Something went wrong");
+          }
+        });
+      }
+    });
+
+    $("#show_add_people").click(function(e){
+      e.preventDefault();
+      $(this).hide();
+      $("#add_people").show();
+      $("#add_people .select2-container").css('width', '100%');
+    });
+  
+});
+</script>
+  
 {% endblock %}

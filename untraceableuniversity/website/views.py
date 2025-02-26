@@ -482,8 +482,9 @@ def controlpanel_event(request, id):
     context = {
         "controlpanel": True,
         "info": info,
-        "menu": "events",
-        "page": "event",
+        "menu": "contacts",
+        "page": "meeting",
+        "all_people": People.objects.all(),
     }
 
     return render(request, "controlpanel/event.html", context)
@@ -601,5 +602,19 @@ def controlpanel_ajax_tags(request):
             info = People.objects.get(pk=request.POST["id"])
         info.tags.add(tag)
         d = model_to_dict(tag)
+        d["response"] = "OK"
+        return JsonResponse(d, safe=False)
+
+@csrf_exempt
+def controlpanel_ajax_event(request, id):
+    info = Event.objects.get(pk=id)
+    if request.method == "DELETE":
+        people = People.objects.get(pk=request.GET["remove_participant"])
+        info.people.remove(people)
+        return JsonResponse({"response":"OK"}, safe=False)
+    elif request.method == "POST":
+        people = People.objects.get(pk=request.POST["participant"])
+        info.people.add(people)
+        d = {"name": people.name, "id": people.id}
         d["response"] = "OK"
         return JsonResponse(d, safe=False)
