@@ -10,7 +10,7 @@
 
     <h1>
     {% block title %}
-      {{ _("Tagged items") }}: {{ info }} - {{ _("Control panel") }}
+      {{ _("Tagged items") }}: {{ info }}
     {% endblock %}
     </h1>
 
@@ -44,6 +44,24 @@
         {% for each in people %}
           <tr>
             <td><a href="{% url 'controlpanel_people' each.id %}">{{ each }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    {% if leads %}
+      <h3>{{ _("Leads") }}</h3>
+      <table class="table table-striped mb-4">
+        <thead>
+          <tr>
+            <th>{{ _("Name") }}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for each in leads %}
+          <tr>
+            <td><a href="{% url 'controlpanel_lead' each.id %}">{{ each }}</a></td>
           </tr>
         {% endfor %}
         </tbody>

@@ -100,7 +100,7 @@ Control panel
         {% for each in links %}
           <li class="list-group-item d-flex align-items-start">
             <div class="ms-2 me-auto">
-              <div class="fw-bold"><a href="{{ each.link_view_en }}">{{ each }}</a></div>
+              <div class="fw-bold"><a href="{{ each.details.link_view_en }}">{{ each }}</a></div>
               {{ each.description|linebreaksbr }}
             </div>
           </li>

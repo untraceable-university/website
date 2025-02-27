@@ -313,6 +313,7 @@ def controlpanel_tagged(request, id):
         "page": "tags",
         "organizations": Organization.objects.filter(tags=info),
         "people": People.objects.filter(tags=info),
+        "leads": Lead.objects.filter(tags=info),
         "info": info,
     }
 
