@@ -16,7 +16,7 @@
 
       <h1>
       {% block title %}
-        {% if info %}{{ _("Edit event") }}: {{ info }}{% else %}{{ _("Add event") }}{% endif %}
+        {% if info.id %}{{ _("Edit event") }}: {{ info }}{% else %}{{ _("Add event") }}{% endif %}
       {% endblock %}
       </h1>
 
@@ -36,20 +36,20 @@
         <div class="mb-3 row">
           <label class="form-label col-sm-2">{{ _("Start time") }}</label>
           <div class="col-sm-5">
-            <input type="date" class="form-control" name="date_start" value="{{ info.date_start|date:"Y-m-d" }}">
+            <input type="date" class="form-control" name="date_start" value="{{ info.date_start|date:"Y-m-d" }}" required>
           </div>
           <div class="col-sm-5">
-            <input type="time" class="form-control" name="time_start" value="{{ info.date_start|date:"H:i" }}">
+            <input type="time" class="form-control" name="time_start" value="{{ info.date_start|date:"H:i" }}" required>
           </div>
         </div>
 
         <div class="mb-3 row">
           <label class="form-label col-sm-2">{{ _("End time") }}</label>
           <div class="col-sm-5">
-            <input type="date" class="form-control" name="date_end" value="{{ info.date_end|date:"Y-m-d" }}">
+            <input type="date" class="form-control" name="date_end" value="{{ info.date_end|date:"Y-m-d" }}" required>
           </div>
           <div class="col-sm-5">
-            <input type="time" class="form-control" name="time_end" value="{{ info.date_end|date:"H:i" }}">
+            <input type="time" class="form-control" name="time_end" value="{{ info.date_end|date:"H:i" }}" required>
           </div>
         </div>
 

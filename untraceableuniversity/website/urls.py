@@ -48,7 +48,7 @@ urlpatterns = [
 
     path("controlpanel/meetings/", views.controlpanel_events, {"event_type": "meeting"}, name="controlpanel_meetings"),
     path("controlpanel/meetings/<int:id>/", views.controlpanel_event, name="controlpanel_meeting"),
-    path("controlpanel/meetings/create/", views.controlpanel_event, name="controlpanel_meeting"),
+    path("controlpanel/meetings/create/", views.controlpanel_event_form, name="controlpanel_meeting"),
 
     path("controlpanel/events/", views.controlpanel_events, name="controlpanel_events"),
     path("controlpanel/events/<int:id>/", views.controlpanel_event, name="controlpanel_event"),

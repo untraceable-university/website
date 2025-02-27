@@ -551,7 +551,7 @@ def controlpanel_event_form(request, id=None):
         if "redirect" in request.GET:
             return redirect(request.GET["redirect"])
         else:
-            return redirect(reverse("controlpanel_meetings"))
+            return redirect(reverse("controlpanel_meeting", args=[info.id]))
 
     context = {
         "controlpanel": True,
