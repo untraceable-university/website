@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
+from django.contrib.auth import logout
 
 # We want to give people a cookie-less experience so we turn off CSRF
 # by default (we don't have many forms anyways)
@@ -675,6 +676,35 @@ def controlpanel_lead_form(request, id=None):
     }
 
     return render(request, "controlpanel/lead.form.html", context)
+
+@staff_member_required
+def controlpanel_profile(request):
+
+    if request.method == "POST":
+        user = request.user
+        user.first_name = request.POST["first_name"]
+        user.last_name = request.POST["last_name"]
+        user.email = request.POST["email"]
+        user.username = request.POST["email"]
+
+        if request.POST.get("password"):
+            user.set_password(request.POST["password"])
+
+        user.save()
+
+
+    context = {
+        "controlpanel": True,
+        "menu": "profile",
+        "page": "profile",
+    }
+
+    return render(request, "controlpanel/profile.html", context)
+
+def controlpanel_logout(request):
+    logout(request)
+    messages.success(request, _("You are now logged out."))
+    return redirect("/")
 
 @csrf_exempt
 def controlpanel_ajax_tags(request):

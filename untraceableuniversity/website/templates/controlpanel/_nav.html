@@ -1,63 +1,76 @@
 <header style="background:#FDBF1E">
   <div class="container">
-    <nav class="navbar ps-4 pe-4 navbar-expand-xl" >
+    <nav class="navbar navbar-expand-lg">
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nbtoggler" aria-controls="nbtoggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div>
-      <ul class="nav nav-pills collapse navbar-collapse" id="nbtoggler" style="position:relative;top:13px">
-        <li class="nav-item">
-          <a href="{% url "controlpanel" %}" class="nav-link {% if menu == "index" %}active" aria-current="page{% endif %}">
-            <i class="bi bi-lock"></i>
-            {{ _("Control panel") }}
+      <div class="container-fluid">
+        <ul class="nav nav-pills collapse navbar-collapse d-flex" id="nbtoggler" style="position:relative;top:13px">
+          <li class="nav-item">
+            <a href="{% url "controlpanel" %}" class="nav-link {% if menu == "index" %}active" aria-current="page{% endif %}">
+              <i class="bi bi-lock"></i>
+              {{ _("Control panel") }}
+            </a>
+          </li>
+
+          <li class="nav-item dropdown"><a href="{% url "controlpanel_pages" %}" class="nav-link dropdown-toggle {% if menu == "content" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Web pages") }}</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item {% if menu == "content" and page == "pages" %}active{% endif %}"
+                href="{% url "controlpanel_pages" %}">{{ _("Manage pages") }}</a></li>
+              <li><a class="dropdown-item {% if menu == "content" and page == "create_page" %}active{% endif %}"
+                href="{% url "controlpanel_page" %}">{{ _("Create new page") }}</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item {% if menu == "links" and page == "links" %}active{% endif %}"
+                href="{% url "controlpanel_links" %}">{{ _("Manage links") }}</a></li>
+              <li><a class="dropdown-item {% if menu == "links" and page == "create_link" %}active{% endif %}"
+                href="{% url "controlpanel_link" %}">{{ _("Create new link") }}</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "contacts" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Contacts") }}</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item {% if menu == "contacts" and page == "organizations" %}active{% endif %}"
+                href="{% url "controlpanel_organizations" %}">{{ _("Organisations") }}</a></li>
+              <li><a class="dropdown-item {% if menu == "contacts" and page == "people" %}active{% endif %}"
+                href="{% url "controlpanel_people_list" %}">{{ _("People") }}</a></li>
+              <li><a class="dropdown-item {% if menu == "contacts" and page == "tags" %}active{% endif %}"
+                href="{% url "controlpanel_tags" %}">{{ _("Tags") }}</a></li>
+              <li><a class="dropdown-item {% if menu == "contacts" and page == "meeting" %}active{% endif %}"
+                href="{% url "controlpanel_meetings" %}?upcoming=true">{{ _("Meetings") }}</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "leads" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Leads") }}</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item {% if menu == "leads" and page == "leads" %}active{% endif %}"
+                href="{% url "controlpanel_leads" %}">{{ _("View leads") }}</a></li>
+              <li><a class="dropdown-item {% if menu == "leads" and page == "lead" and not info.id %}active{% endif %}"
+                href="{% url "controlpanel_lead_form" %}">{{ _("Add lead") }}</a></li>
+            </ul>
+          </li>
+
+          <li class="ms-auto nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "leads" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill"></i>
+            {{ request.user.first_name }}
           </a>
-        </li>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item {% if menu == "profile" and page == "profile" %}active{% endif %}"
+                href="{% url "controlpanel_profile" %}">{{ _("My profile") }}</a></li>
+              <li><a class="dropdown-item" href="{% url "controlpanel_logout" %}">{{ _("Log out") }}</a></li>
+            </ul>
+          </li>
 
-        <li class="nav-item dropdown"><a href="{% url "controlpanel_pages" %}" class="nav-link dropdown-toggle {% if menu == "content" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Web pages") }}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item {% if menu == "content" and page == "pages" %}active{% endif %}"
-              href="{% url "controlpanel_pages" %}">{{ _("Manage pages") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "content" and page == "create_page" %}active{% endif %}"
-              href="{% url "controlpanel_page" %}">{{ _("Create new page") }}</a></li>
-          </ul>
-        </li>
+        </ul>
 
-        <li class="nav-item dropdown">
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item {% if menu == "links" and page == "links" %}active{% endif %}"
-              href="{% url "controlpanel_links" %}">{{ _("Manage links") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "links" and page == "create_link" %}active{% endif %}"
-              href="{% url "controlpanel_link" %}">{{ _("Create new link") }}</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "contacts" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Contacts") }}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item {% if menu == "contacts" and page == "organizations" %}active{% endif %}"
-              href="{% url "controlpanel_organizations" %}">{{ _("Organisations") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "contacts" and page == "people" %}active{% endif %}"
-              href="{% url "controlpanel_people_list" %}">{{ _("People") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "contacts" and page == "tags" %}active{% endif %}"
-              href="{% url "controlpanel_tags" %}">{{ _("Tags") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "contacts" and page == "meeting" %}active{% endif %}"
-              href="{% url "controlpanel_meetings" %}?upcoming=true">{{ _("Meetings") }}</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "leads" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Leads") }}</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item {% if menu == "leads" and page == "leads" %}active{% endif %}"
-              href="{% url "controlpanel_leads" %}">{{ _("View leads") }}</a></li>
-            <li><a class="dropdown-item {% if menu == "leads" and page == "lead" and not info.id %}active{% endif %}"
-              href="{% url "controlpanel_lead_form" %}">{{ _("Add lead") }}</a></li>
-          </ul>
-        </li>
-
-      </ul>
       </div>
 
     </nav>
+
   </div>
 </header>

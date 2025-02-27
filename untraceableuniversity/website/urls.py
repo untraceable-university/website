@@ -65,6 +65,10 @@ urlpatterns = [
     path("controlpanel/leads/create/", views.controlpanel_lead_form, name="controlpanel_lead_form"),
     path("controlpanel/leads/<int:id>/edit/", views.controlpanel_lead_form, name="controlpanel_lead_form"),
 
+    path("controlpanel/profile/", views.controlpanel_profile, name="controlpanel_profile"),
+
+    path("controlpanel/logout/", views.controlpanel_logout, name="controlpanel_logout"),
+
     # Ajax
     path("controlpanel/ajax/tags/", views.controlpanel_ajax_tags, name="controlpanel_ajax_tags"),
     path("controlpanel/ajax/events/<int:id>/", views.controlpanel_ajax_event, name="controlpanel_ajax_event"),

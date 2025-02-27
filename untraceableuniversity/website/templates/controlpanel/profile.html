@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    textarea{height:100px}
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+    <div class="col">
+
+      <h1>
+      {% block title %}
+        {{ _("My profile") }}
+      {% endblock %}
+      </h1>
+
+      <form method="post" id="form" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("E-mail") }}</label>
+          <input type="email" class="form-control" name="email" value="{{ request.user.email }}" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("First name") }}</label>
+          <input type="text" class="form-control" name="first_name" value="{{ request.user.first_name }}" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Last name") }}</label>
+          <input type="text" class="form-control" name="last_name" value="{{ request.user.last_name }}" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">{{ _("Change password") }}</label>
+          <input type="password" class="form-control" name="password" value="">
+        </div>
+
+        <button type="submit" class="btn btn-success">{{ _("Save") }}</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

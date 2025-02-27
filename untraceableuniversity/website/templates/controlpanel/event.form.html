@@ -82,3 +82,15 @@
 </div>
 
 {% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function(){
+  $("input[name='date_start']").change(function() {
+    if ($("input[name='date_end']").val() === "") {
+      $("input[name='date_end']").val($(this).val());
+    }
+  });
+});
+</script>
+{% endblock %}
