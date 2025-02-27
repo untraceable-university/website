@@ -10,25 +10,21 @@
 
     <h1>
     {% block title %}
-      {{ _("Organizations") }} - {{ _("Control panel") }}
+      {{ _("Leads") }} - {{ _("Control panel") }}
     {% endblock %}
     </h1>
 
     <table class="table table-striped datatable">
       <thead>
         <tr>
-          <th>{{ _("Partner") }}</th>
           <th>{{ _("Name") }}</th>
-          <th style="width:100px">{{ _("Country") }}</th>
           <th>{{ _("Tags") }}</th>
         </tr>
       </thead>
       <tbody>
-      {% for each in organizations %}
+      {% for each in leads %}
         <tr>
-          <td class="text-center">{% if each.is_partner %}✓{% endif %}</td>
-          <td><a href="{% url 'controlpanel_organization' each.id %}">{{ each }}</a></td>
-          <td><span class="badge bg-secondary">{{ each.country|default_if_none:"" }}</span></td>
+          <td><a href="{% url 'controlpanel_lead' each.id %}">{{ each }}</a></td>
           <td>
             {% for tag in each.tags.all %}
               <a href="{% url "controlpanel_tagged" tag.id %}" class="badge bg-light text-dark">{{ tag }}</a>
@@ -39,7 +35,7 @@
       </tbody>
     </table>
 
-    <a href="{% url "controlpanel_organization_form" %}" class="btn btn-primary"><i class="bi bi-plus"></i> {{ _("Add organization") }}</a>
+    <a href="{% url "controlpanel_lead_form" %}" class="btn btn-primary"><i class="bi bi-plus"></i> {{ _("Add lead") }}</a>
 
     </div>
   </div>

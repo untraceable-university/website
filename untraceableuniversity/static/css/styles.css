@@ -295,3 +295,6 @@ a.badge {
 }
 #add_people,#add_tag{display:none}
 #show_add_people, #show_add_tag{cursor:pointer}
+li .remove{opacity:0;transition: opacity 0.1s ease;}
+li:hover .remove{opacity:0.8}
+li .remove:hover{color:red;opacity:1}

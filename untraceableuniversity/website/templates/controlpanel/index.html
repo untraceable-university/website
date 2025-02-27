@@ -14,7 +14,7 @@ Control panel
 
       <h2>{{ _("Useful documents") }}</h2>
 
-      <ul class="list-group">
+      <ul class="list-group mb-4">
 
           {% for each in docs %}
           <li class="list-group-item d-flex align-items-start pb-3 pt-3">
@@ -47,6 +47,48 @@ Control panel
 
         </ul>
 
+        <a href="{% url "controlpanel_links" %}">{{ _("Manage documents and links") }}</a>
+
+    </div>
+
+    <div class="col-4">
+
+      <h2>{{ _("Meetings") }}</h2>
+
+      <h4 class="mt-4">{{ _("Upcoming") }}</h4>
+      <ul class="list-group">
+
+        {% for each in events %}
+          <li class="list-group-item d-flex align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold"><a href="{% url "controlpanel_event" each.id %}">{{ each }}</a></div>
+              {{ each.date_start|date:"D M d - H:i" }}
+            </div>
+          </li>
+        {% endfor %}
+
+      </ul>
+
+      <h4 class="mt-5">{{ _("Recent") }}</h4>
+
+      <ul class="list-group mb-4">
+
+        {% for each in past_events %}
+          <li class="list-group-item d-flex align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold"><a href="{% url "controlpanel_event" each.id %}">{{ each }}</a></div>
+              {{ each.date_start|date:"D M d - H:i" }}
+            </div>
+            {% if each.thirtyseconds or each.meeting_notes %}
+              <i title="{{ _("Meeting minutes available") }}" class="bi bi-journal-check text-success"></i>
+            {% endif %}
+          </li>
+        {% endfor %}
+
+      </ul>
+
+      <a href="{% url "controlpanel_meetings" %}">{{ _("View all") }}</a>
+
     </div>
 
     <div class="col-4">
@@ -55,17 +97,28 @@ Control panel
 
       <ul class="list-group">
 
-          {% for each in links %}
-            <li class="list-group-item d-flex align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold"><a href="{{ each.link_view_en }}">{{ each }}</a></div>
-                {{ each.description|linebreaksbr }}
-              </div>
-            </li>
-          {% endfor %}
+        {% for each in links %}
+          <li class="list-group-item d-flex align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold"><a href="{{ each.link_view_en }}">{{ each }}</a></div>
+              {{ each.description|linebreaksbr }}
+            </div>
+          </li>
+        {% endfor %}
 
-        </ul>
+      </ul>
 
+      <h2 class="mt-4">{{ _("Latest leads") }}</h2>
+
+      <ul>
+
+        {% for each in leads %}
+          <li>
+            <a href="{% url "controlpanel_lead" each.id %}">{{ each }}</a>
+          </li>
+        {% endfor %}
+
+      </ul>
 
     </div>
   </div>

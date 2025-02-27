@@ -1,0 +1,58 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    textarea{height:100px}
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container pb-5">
+
+  <div class="row">
+
+      <div class="col-9">
+        <h1>
+          {% block title %}
+            {{ info }}
+          {% endblock %}
+        </h1>
+
+        {% if info.url %}
+          <div class="mb-4">
+            <i class="bi bi-link-45deg"></i>
+            <a href="{{ info.url }}">{{ info.url|truncatechars:50 }}</a>
+          </div>
+        {% endif %}
+
+        {% if info.notes %}
+          <section>
+            <h2>{{ _("My notes") }}</h2>
+            {{ info.get_notes }}
+          </section>
+        {% endif %}
+
+        {% if info.description %}
+          <section>
+            <h2>{{ _("Official description") }}</h2>
+            {{ info.get_description }}
+          </section>
+        {% endif %}
+
+      </div>
+
+    <div class="col-3">
+
+      {% include "controlpanel/_tags.html" %}
+
+    </div>
+  </div>
+
+  <a class="btn btn-warning btn-edit" href="{% url "controlpanel_lead_form" info.id %}?redirect={{ request.get_full_path }}">
+    <i class="bi bi-pencil-square"></i>
+  </a>
+
+</div>
+
+{% endblock %}

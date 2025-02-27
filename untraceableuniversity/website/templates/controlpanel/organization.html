@@ -12,62 +12,64 @@
 
   <div class="row">
 
-    <div class="col">
-
+    <div class="col-9">
       <h1>
-      {% block title %}
-        {% if info %}{{ _("Edit organization") }}: {{ info }}{% else %}{{ _("Add organization") }}{% endif %}
-      {% endblock %}
+        {% block title %}
+          {{ info }}
+        {% endblock %}
       </h1>
 
-      <form method="post" id="form" enctype="multipart/form-data">
-        {% csrf_token %}
+      {% if info.url or info.country %}
+        <div class="mb-4 d-flex justify-content-between">
 
-        <div class="mb-3">
-          <label class="form-label">{{ _("Name") }}</label>
-          <input type="text" class="form-control" name="name" value="{{ info.name }}">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">{{ _("URL") }}</label>
-          <input type="url" class="form-control" name="url" value="{{ info.url|default_if_none:"" }}">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">{{ _("Description") }}</label>
-          <textarea class="form-control" rows="3" name="description">{{ info.description|default_if_none:"" }}</textarea>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">{{ _("Country") }}</label>
-          <select class="form-select" name="country">
-            <option value=""></option>
-            {% for each in countries %}
-              <option value="{{ each.id }}" {% if each == info.country %}selected{% endif %}>{{ each }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">{{ _("Logo") }}</label>
-          {% if info.logo %}
-            <div>
-              <img src="{{ info.logo.url }}">
-            </div>
+          {% if info.url %}
+            <span>
+              <i class="bi bi-link-45deg"></i>
+              <a href="{{ info.url }}">{{ info.url|truncatechars:50 }}</a>
+            </span>
           {% endif %}
-          <input type="file" class="form-control" name="logo" accept="image/*">
-        </div>
 
-        <div class="mb-3 form-check">
-          <input type="checkbox" value="true" class="form-check-input" id="is_partner" name="is_partner" {% if info.is_partner %}checked{% endif %}>
-          <label class="form-check-label" for="is_partner">{{ _("Official partner (listed on website)") }}</label>
-        </div>
+          {% if info.country %}
+            <span>
+              <i class="bi bi-globe"></i>
+              {{ info.country }}
+            </span>
+          {% endif %}
 
-        <button type="submit" class="btn btn-success">{{ _("Save") }}</button>
-      </form>
+        </div>
+      {% endif %}
+
+      {% if info.notes %}
+        <section class="mb-4">
+          <h2>{{ _("Notes") }}</h2>
+          {{ info.get_notes }}
+        </section>
+      {% endif %}
+
+      {% if info.description %}
+        <section class="mb-4">
+          <h2>{{ _("Official description") }}</h2>
+          {{ info.get_description }}
+        </section>
+      {% endif %}
+
+    </div>
+
+    <div class="col-3">
+
+      {% if info.logo %}
+        <img src="{{ info.logo.url }}" class="mb-4">
+      {% endif %}
+
+      {% include "controlpanel/_tags.html" %}
 
     </div>
   </div>
+
+  <a class="btn btn-warning btn-edit" href="{% url "controlpanel_organization_form" info.id %}?redirect={{ request.get_full_path }}">
+    <i class="bi bi-pencil-square"></i>
+  </a>
+
 </div>
 
 {% endblock %}

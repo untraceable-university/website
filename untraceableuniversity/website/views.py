@@ -168,11 +168,22 @@ def contact(request):
 def controlpanel(request):
 
     if "import" in request.GET:
-        import csv
-        with open('media/import/countries.csv', mode='r', encoding='utf-8-sig') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                Country.objects.create(id=row[0], name=row[1])
+        file_path = os.path.join(settings.MEDIA_ROOT, "leads.json")
+        with open(file_path, "r") as json_file:
+            j = json.load(json_file)
+            for each in j:
+                info = Lead.objects.create(
+                    name=each["name"],
+                    url=each["url"],
+                    description=each["description"],
+                    notes=each["notes"],
+                    created_at=each["created_at"],
+                )
+                for tag in each["tags"]:
+                    if tag != "Untraceable University":
+                        tag, created = Tag.objects.get_or_create(name=tag)
+                        info.tags.add(tag)
+
 
 
     context = {
@@ -181,6 +192,9 @@ def controlpanel(request):
         "menu": "index",
         "links": Link.objects.filter(category="links"),
         "docs": Link.objects.filter(category="docs"),
+        "events": Event.objects.filter(date_end__gte=timezone.now()).order_by("date_start")[:5],
+        "past_events": Event.objects.filter(date_end__lt=timezone.now()).order_by("-date_start")[:5],
+        "leads": Lead.objects.all().order_by("-created_at")[:5],
     }
 
     return render(request, "controlpanel/index.html", context)
@@ -298,6 +312,7 @@ def controlpanel_tagged(request, id):
         "menu": "contacts",
         "page": "tags",
         "organizations": Organization.objects.filter(tags=info),
+        "people": People.objects.filter(tags=info),
         "info": info,
     }
 
@@ -317,7 +332,7 @@ def controlpanel_organizations(request):
     return render(request, "controlpanel/organizations.html", context)
 
 @staff_member_required
-def controlpanel_organization(request, id=None):
+def controlpanel_organization_form(request, id=None):
 
     info = Organization()
     if id:
@@ -338,7 +353,7 @@ def controlpanel_organization(request, id=None):
         if "redirect" in request.GET:
             return redirect(request.GET["redirect"])
         else:
-            return redirect(reverse("controlpanel_organizations"))
+            return redirect(reverse("controlpanel_organization", args=[info.id]))
 
     context = {
         "controlpanel": True,
@@ -346,6 +361,21 @@ def controlpanel_organization(request, id=None):
         "menu": "contacts",
         "page": "organizations",
         "countries": Country.objects.all(),
+    }
+
+    return render(request, "controlpanel/organization.form.html", context)
+
+@staff_member_required
+def controlpanel_organization(request, id):
+
+    info = Organization.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "contacts",
+        "page": "organizations",
+        "tags": Tag.objects.all(),
     }
 
     return render(request, "controlpanel/organization.html", context)
@@ -457,10 +487,12 @@ def controlpanel_events(request, event_type="meetings"):
         events = events.filter(event_type=event_type)
 
     events = events.prefetch_related("people")
+    show_summaries = False
 
     if "upcoming" in request.GET:
         events = events.filter(date_end__gte=timezone.now())
     elif not "all" in request.GET:
+        show_summaries = True
         events = events.filter(date_end__lte=timezone.now())
 
     context = {
@@ -470,6 +502,7 @@ def controlpanel_events(request, event_type="meetings"):
         "page": event_type,
         "load_datatables": True,
         "datatables_order": 1,
+        "show_summaries": show_summaries,
     }
 
     return render(request, "controlpanel/events.html", context)
@@ -586,6 +619,62 @@ def controlpanel_link(request, id=None):
 
     return render(request, "controlpanel/link.html", context)
 
+@staff_member_required
+def controlpanel_leads(request):
+
+    context = {
+        "controlpanel": True,
+        "leads": Lead.objects.all(),
+        "menu": "leads",
+        "page": "leads",
+        "load_datatables": True,
+    }
+
+    return render(request, "controlpanel/leads.html", context)
+
+@staff_member_required
+def controlpanel_lead(request, id):
+
+    info = Lead.objects.get(pk=id)
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "leads",
+        "page": "leads",
+        "tags": Tag.objects.all(),
+    }
+
+    return render(request, "controlpanel/lead.html", context)
+
+@staff_member_required
+def controlpanel_lead_form(request, id=None):
+
+    info = Lead()
+    if id:
+        info = Lead.objects.get(pk=id)
+
+    if request.method == "POST":
+        info.name = request.POST["name"]
+        info.description = request.POST["description"]
+        info.notes = request.POST["notes"]
+        info.url = request.POST["url"]
+        info.created_at = timezone.now()
+        info.save()
+
+        messages.success(request, _("Information was saved."))
+
+        return redirect(reverse("controlpanel_lead", args=[info.id]))
+
+    context = {
+        "controlpanel": True,
+        "info": info,
+        "menu": "leads",
+        "page": "lead_form",
+    }
+
+    return render(request, "controlpanel/lead.form.html", context)
+
 @csrf_exempt
 def controlpanel_ajax_tags(request):
     if request.method == "DELETE":
@@ -593,6 +682,10 @@ def controlpanel_ajax_tags(request):
         tag = Tag.objects.get(pk=request.GET["tag"])
         if page == "people":
             info = People.objects.get(pk=request.GET["id"])
+        elif page == "leads":
+            info = Lead.objects.get(pk=request.GET["id"])
+        elif page == "organizations":
+            info = Organization.objects.get(pk=request.GET["id"])
         info.tags.remove(tag)
         return JsonResponse({"response":"OK"}, safe=False)
     elif request.method == "POST":
@@ -600,6 +693,10 @@ def controlpanel_ajax_tags(request):
         page = request.POST["page"]
         if page == "people":
             info = People.objects.get(pk=request.POST["id"])
+        elif page == "leads":
+            info = Lead.objects.get(pk=request.POST["id"])
+        elif page == "organizations":
+            info = Organization.objects.get(pk=request.POST["id"])
         info.tags.add(tag)
         d = model_to_dict(tag)
         d["response"] = "OK"

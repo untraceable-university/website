@@ -27,11 +27,13 @@
         <tr>
           <td>{{ each.position }}</td>
           <td><a href="{% url 'controlpanel_link' each.id %}">{{ each }}</a></td>
-          <td>{{ each.category }}</td>
+          <td>{% if each.category == "docs" %}{{ _("Document") }}{% else %}{{ _("Link") }}{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
+
+    <a href="{% url "controlpanel_link" %}" class="btn btn-primary"><i class="bi bi-plus"></i> {{ _("Add item") }}</a>
 
     </div>
   </div>

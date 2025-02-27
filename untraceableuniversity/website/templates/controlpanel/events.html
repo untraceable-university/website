@@ -29,20 +29,33 @@
       <table class="table table-striped datatable">
         <thead>
           <tr>
-            <th>{{ _("Name") }}</th>
-            <th>{{ _("Date") }}</th>
-            <th>{{ _("Participants") }}</th>
+            <th class="col-fill">{{ _("Title") }}</th>
+            <th class="col-min">{{ _("Date") }}</th>
+            <th class="col-min">{{ _("Participants") }}</th>
           </tr>
         </thead>
         <tbody>
         {% for each in events %}
           <tr>
-            <td><a href="{% url 'controlpanel_meeting' each.id %}">{{ each }}</a></td>
-            <td data-sort="-{{ each.date_start|date:"YmdHis" }}">{{ each.date_start|date:"M d, Y" }}</td>
             <td>
+              <a href="{% url 'controlpanel_meeting' each.id %}">{{ each }}</a>
+
+              {% if show_summaries %}
+                <br>
+                {% if each.thirtyseconds %}
+                  {{ each.thirtyseconds }}
+                {% elif each.meeting_notes %}
+                  {{ each.get_notes|truncatewords:20 }}
+                {% endif %}
+              {% endif %}
+            </td>
+            <td class="text-nowrap" data-sort="-{{ each.date_start|date:"YmdHis" }}">{{ each.date_start|date:"M d, Y" }}</td>
+            <td class="text-nowrap">
+              <ul class="list-unstyled">
               {% for person in each.people.all %}
                 <li>{{ person.firstname }}</li>
               {% endfor %}
+              </ul>
             </td>
           </tr>
         {% endfor %}

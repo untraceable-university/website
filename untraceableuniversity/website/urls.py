@@ -57,7 +57,13 @@ urlpatterns = [
 
     path("controlpanel/organizations/", views.controlpanel_organizations, name="controlpanel_organizations"),
     path("controlpanel/organizations/<int:id>/", views.controlpanel_organization, name="controlpanel_organization"),
-    path("controlpanel/organizations/create/", views.controlpanel_organization, name="controlpanel_organization"),
+    path("controlpanel/organizations/create/", views.controlpanel_organization_form, name="controlpanel_organization_form"),
+    path("controlpanel/organizations/<int:id>/edit/", views.controlpanel_organization_form, name="controlpanel_organization_form"),
+
+    path("controlpanel/leads/", views.controlpanel_leads, name="controlpanel_leads"),
+    path("controlpanel/leads/<int:id>/", views.controlpanel_lead, name="controlpanel_lead"),
+    path("controlpanel/leads/create/", views.controlpanel_lead_form, name="controlpanel_lead_form"),
+    path("controlpanel/leads/<int:id>/edit/", views.controlpanel_lead_form, name="controlpanel_lead_form"),
 
     # Ajax
     path("controlpanel/ajax/tags/", views.controlpanel_ajax_tags, name="controlpanel_ajax_tags"),

@@ -304,3 +304,27 @@ class EventRelationship(models.Model):
         ("participant", _("Participant")),
     ]
     relationship = models.CharField(max_length=15, choices=RELATIONSHIPS, db_index=True)
+
+class Lead(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    notes = models.TextField(blank=True, null=True)
+    url = models.URLField(null=True, blank=True, max_length=1000)
+    tags = models.ManyToManyField(Tag)
+    created_at = models.DateTimeField()
+    is_processed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+    def get_description(self):
+        if self.description:
+            return mark_safe(markdown(self.description, extensions=["nl2br"]))
+        else:
+            return ""
+
+    def get_notes(self):
+        return mark_safe(markdown(self.notes, extensions=["nl2br"]))

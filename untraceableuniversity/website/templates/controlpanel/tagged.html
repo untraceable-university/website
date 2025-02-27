@@ -14,21 +14,41 @@
     {% endblock %}
     </h1>
 
-    <h3>{{ _("Organisations") }}</h3>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>{{ _("Name") }}</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for each in organizations %}
-        <tr>
-          <td><a href="{% url 'controlpanel_organization' each.id %}">{{ each }}</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+    {% if organizations %}
+      <h3>{{ _("Organisations") }}</h3>
+      <table class="table table-striped mb-4">
+        <thead>
+          <tr>
+            <th>{{ _("Name") }}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for each in organizations %}
+          <tr>
+            <td><a href="{% url 'controlpanel_organization' each.id %}">{{ each }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    {% if people %}
+      <h3>{{ _("People") }}</h3>
+      <table class="table table-striped mb-4">
+        <thead>
+          <tr>
+            <th>{{ _("Name") }}</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for each in people %}
+          <tr>
+            <td><a href="{% url 'controlpanel_people' each.id %}">{{ each }}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
 
     </div>
   </div>

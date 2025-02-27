@@ -3,8 +3,8 @@
   <h3 class="mt-4">Tags</h3>
   <ul class="list-unstyled tags">
     {% for each in info.tags.all %}
-      <li><a class="badge bg-warning" href="{{ each.get_absolute_url }}">{{ each }}</a>
-        <a href="" data-id="{{ each.id }}" class="badge bg-dark remove">
+      <li><a class="badge bg-warning" href="{% url "controlpanel_tagged" each.id %}">{{ each }}</a>
+        <a href="" data-id="{{ each.id }}" class="ms-2 remove">
           <i class="bi bi-trash"></i>
         </a>
       </li>
@@ -28,7 +28,7 @@
 $(function(){
   /* Recurring snippet that allows for tag management, used on several pages */
   {% if info %}
-    $(".tags .remove").click(function(e){
+    $(document).on("click", ".tags .remove", function(e) {
       e.preventDefault();
       var id = $(this).data("id");
       var li = $(this).closest('li');
@@ -70,7 +70,7 @@ $(function(){
           // Check if the response is OK
           if(response && response.response === "OK") {
             // All good, take action
-            $("ul.tags").append('<li><a class="badge bg-warning" href="/tags/' + response.id + '">' + response.name + '</a></li>');
+            $("ul.tags").append('<li><a class="badge bg-warning" href="/controlpanel/tags/' + response.id + '/items/">' + response.name + '</a> <a href="" data-id="' + response.id + '" class="ms-2 remove"><i class="bi bi-trash"></i></a></li>');
           } else {
             // If response is not OK, show an alert
             alert("Something went wrong");

@@ -15,7 +15,7 @@
           </a>
         </li>
 
-        <li class="nav-item dropdown"><a href="{% url "controlpanel_pages" %}" class="nav-link dropdown-toggle {% if menu == "content" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Content") }}</a>
+        <li class="nav-item dropdown"><a href="{% url "controlpanel_pages" %}" class="nav-link dropdown-toggle {% if menu == "content" %}active" aria-current="page{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Web pages") }}</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {% if menu == "content" and page == "pages" %}active{% endif %}"
               href="{% url "controlpanel_pages" %}">{{ _("Manage pages") }}</a></li>
@@ -24,7 +24,7 @@
           </ul>
         </li>
 
-        <li class="nav-item dropdown"><a href="{% url "controlpanel_links" %}" class="nav-link dropdown-toggle {% if menu == "links" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Links") }}</a>
+        <li class="nav-item dropdown">
           <ul class="dropdown-menu">
             <li><a class="dropdown-item {% if menu == "links" and page == "links" %}active{% endif %}"
               href="{% url "controlpanel_links" %}">{{ _("Manage links") }}</a></li>
@@ -43,6 +43,15 @@
               href="{% url "controlpanel_tags" %}">{{ _("Tags") }}</a></li>
             <li><a class="dropdown-item {% if menu == "contacts" and page == "meeting" %}active{% endif %}"
               href="{% url "controlpanel_meetings" %}?upcoming=true">{{ _("Meetings") }}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "leads" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">{{ _("Leads") }}</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item {% if menu == "leads" and page == "leads" %}active{% endif %}"
+              href="{% url "controlpanel_leads" %}">{{ _("View leads") }}</a></li>
+            <li><a class="dropdown-item {% if menu == "leads" and page == "lead" and not info.id %}active{% endif %}"
+              href="{% url "controlpanel_lead_form" %}">{{ _("Add lead") }}</a></li>
           </ul>
         </li>
 
