@@ -329,6 +329,7 @@ def controlpanel_organizations(request):
         "menu": "contacts",
         "page": "organizations",
         "load_datatables": True,
+        "datatables_order": 1,
     }
 
     return render(request, "controlpanel/organizations.html", context)

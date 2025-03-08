@@ -11,7 +11,7 @@
             {{ each }}
           {% endif %}
         </strong>
-        <small>{{ each.date_end|timesince }}</small>
+        <small title="{{ each.date_end|date:"M d, Y H:i" }} ({{ each.date_end|timesince }} ago)">{{ each.date_end|date:"M Y" }}</small>
       </li>
     {% endfor %}
   </ul>

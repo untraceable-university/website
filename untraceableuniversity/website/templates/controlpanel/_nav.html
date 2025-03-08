@@ -55,7 +55,7 @@
             </ul>
           </li>
 
-          <li class="ms-auto nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "leads" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="ms-auto nav-item dropdown"><a href="{% url "controlpanel_organizations" %}" class="nav-link dropdown-toggle {% if menu == "profile" %}active" aria-current="link{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-fill"></i>
             {{ request.user.first_name }}
           </a>
