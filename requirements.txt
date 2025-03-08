@@ -1,4 +1,4 @@
-Django==5.0.6
+Django==5.1.7
 psycopg2
 Pillow
 python-dateutil
