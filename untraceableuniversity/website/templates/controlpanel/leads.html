@@ -1,5 +1,14 @@
 {% extends "_base.html" %}
 
+{% block head %}
+  <style type="text/css">
+  .table th:last-child,
+  .table td:last-child {
+    white-space: nowrap;
+  }
+  </style>
+{% endblock %}
+
 {% block content %}
 
 <div class="container pb-5">
@@ -19,6 +28,7 @@
         <tr>
           <th>{{ _("Name") }}</th>
           <th>{{ _("Tags") }}</th>
+          <th>{{ _("Added") }}</th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +40,7 @@
               <a href="{% url "controlpanel_tagged" tag.id %}" class="badge bg-light text-dark">{{ tag }}</a>
             {% endfor %}
           </td>
+          <td data-sort="{{ each.created_at|date:"YmdHis" }}">{{ each.created_at|date:"M d, Y" }}</td>
         </tr>
       {% endfor %}
       </tbody>

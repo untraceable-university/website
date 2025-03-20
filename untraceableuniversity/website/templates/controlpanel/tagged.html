@@ -1,5 +1,20 @@
 {% extends "_base.html" %}
 
+{% block head %}
+  <style type="text/css">
+  .table th:last-child,
+  .table td:last-child {
+    width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .table {
+    table-layout: fixed;
+  }
+  </style>
+{% endblock %}
+
 {% block content %}
 
 <div class="container pb-5">
@@ -16,16 +31,18 @@
 
     {% if organizations %}
       <h3>{{ _("Organisations") }}</h3>
-      <table class="table table-striped mb-4">
+      <table class="table table-striped mb-5">
         <thead>
           <tr>
             <th>{{ _("Name") }}</th>
+            <th>{{ _("Website") }}</th>
           </tr>
         </thead>
         <tbody>
         {% for each in organizations %}
           <tr>
             <td><a href="{% url 'controlpanel_organization' each.id %}">{{ each }}</a></td>
+            <td>{% if each.url %}<a href="{{ each.url }}">{{ each.url }}</a>{% endif %}</td>
           </tr>
         {% endfor %}
         </tbody>
@@ -34,16 +51,18 @@
 
     {% if people %}
       <h3>{{ _("People") }}</h3>
-      <table class="table table-striped mb-4">
+      <table class="table table-striped mb-5">
         <thead>
           <tr>
             <th>{{ _("Name") }}</th>
+            <th>{{ _("E-mail") }}</th>
           </tr>
         </thead>
         <tbody>
         {% for each in people %}
           <tr>
             <td><a href="{% url 'controlpanel_people' each.id %}">{{ each }}</a></td>
+            <td>{% if each.email %}<a href="mailto:{{ each.email }}">{{ each.email }}</a>{% endif %}</td>
           </tr>
         {% endfor %}
         </tbody>
@@ -56,12 +75,14 @@
         <thead>
           <tr>
             <th>{{ _("Name") }}</th>
+            <th>{{ _("Added") }}</th>
           </tr>
         </thead>
         <tbody>
         {% for each in leads %}
           <tr>
             <td><a href="{% url 'controlpanel_lead' each.id %}">{{ each }}</a></td>
+            <td>{{ each.created_at|date:"M d, Y" }}</td>
           </tr>
         {% endfor %}
         </tbody>
